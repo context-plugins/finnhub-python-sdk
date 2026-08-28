@@ -1,0 +1,8879 @@
+# Reference
+
+**Parsed** endpoints return the typed payload and raise `ApiError` on a documented non-2xx. For the raw endpoints, see [Raw API Reference](raw-api-reference.md).
+
+> Source: [FinnhubClient](finnhub/client.py)
+
+<details>
+<summary><code>def aggregate_indicator(symbol: str, resolution: str, *, request_options: RequestOptionsOrDict | None = None) -> AggregateIndicators</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v. A full list of indicators can be found <a href="https://docs.google.com/spreadsheets/d/1MWuy0WuT2yVlxr1KbPdggVygMZtJfunDnhe-C0GEXYM/edit?usp=sharing" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.aggregate_indicator(symbol, resolution)
+    # TODO: Handle 'response' of type AggregateIndicators
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.aggregate_indicator(symbol, resolution)
+    # TODO: Handle 'response' of type AggregateIndicators
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | symbol |
+| <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[AggregateIndicators](finnhub/models/aggregate_indicators.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def ai_chat(*, search: AichatBody | AichatBodyDict | None = None, request_options: RequestOptionsOrDict | None = None) -> AichatResponse</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Chat with our AI copilot trained on the extensive Finnhub's global data. You can ask it any finance-related questions just like with other LLM models and receive results in texts and widgets.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.ai_chat()
+    # TODO: Handle 'response' of type AichatResponse
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.ai_chat()
+    # TODO: Handle 'response' of type AichatResponse
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>search</code> | <code>[AichatBody](finnhub/models/aichat_body.py) \| [AichatBodyDict](finnhub/models/aichat_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[AichatResponse](finnhub/models/aichat_response.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def airline_price_index(airline: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> AirlinePriceIndexData</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>The Flight Ticket Price Index API provides comprehensive data on airline ticket prices, including the average daily ticket price and its percentage change (price index). This data, collected weekly and projected two weeks ahead, aggregates daily prices and indexes from the 50 busiest and largest airports across the USA. The dataset includes detailed information on airlines, dates, and average ticket prices, offering valuable insights for market analysis and pricing strategies.</p><p>The price index is calculated as percentage change of average daily ticket price from the previous weekly reading. Raw ticket prices data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact us</a> to inquire about the raw price data.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.airline_price_index(airline, from_, to)
+    # TODO: Handle 'response' of type AirlinePriceIndexData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.airline_price_index(airline, from_, to)
+    # TODO: Handle 'response' of type AirlinePriceIndexData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>airline</code> | <code>str</code> | Filter data by airline. Accepted values: <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code> |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[AirlinePriceIndexData](finnhub/models/airline_price_index_data.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def bank_branch(symbol: Any, *, request_options: RequestOptionsOrDict | None = None) -> BankBranchRes</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Retrieve list of US bank branches information for a given symbol.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.bank_branch(symbol)
+    # TODO: Handle 'response' of type BankBranchRes
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.bank_branch(symbol)
+    # TODO: Handle 'response' of type BankBranchRes
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>Any</code> | Symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[BankBranchRes](finnhub/models/bank_branch_res.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def bond_price(isin: str, from_: int, to: int, *, request_options: RequestOptionsOrDict | None = None) -> BondCandles</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get bond's price data. The following datasets are supported:</p><table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Exchange</th>
+      <th>Segment</th>
+      <th>Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td class="text-blue">US Government Bonds</td>
+      <td>Government Bonds</td>
+      <td>End-of-day</td>
+    </tr>
+    <tr>
+      <td class="text-blue">FINRA Trace</td>
+      <td>BTDS: US Corporate Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+    <tr>
+      <td class="text-blue">FINRA Trace</td>
+      <td>144A Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+    <tr>
+  	  <td class="text-blue">International Bonds</td>
+      <td>International Bonds</td>
+      <td>End-of-day</td>
+    </tr>
+</tbody>
+</table>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.bond_price(isin, from_, to)
+    # TODO: Handle 'response' of type BondCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.bond_price(isin, from_, to)
+    # TODO: Handle 'response' of type BondCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>isin</code> | <code>str</code> | ISIN. |
+| <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
+| <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[BondCandles](finnhub/models/bond_candles.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def bond_profile(*, isin: str | None = None, cusip: str | None = None, figi: str | None = None, request_options: RequestOptionsOrDict | None = None) -> BondProfile</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get general information of a bond. You can query by FIGI, ISIN or CUSIP. A list of supported bonds can be found <a href="/api/v1/bond/list?type=csv&token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.bond_profile()
+    # TODO: Handle 'response' of type BondProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.bond_profile()
+    # TODO: Handle 'response' of type BondProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
+| <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
+| <code>figi</code> | <code>str \| None</code> | FIGI<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[BondProfile](finnhub/models/bond_profile.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def bond_tick(isin: str, date: Date, limit: int, skip: int, exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> BondTickData</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get trade-level data for bonds. The following datasets are supported:</p><table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Exchange</th>
+      <th>Segment</th>
+      <th>Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="text-blue">FINRA Trace</th>
+      <td>BTDS: US Corporate Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+    <tr>
+      <td class="text-blue">FINRA Trace</th>
+      <td>144A Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+  </tbody>
+</table>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.bond_tick(isin, date, limit, skip, exchange)
+    # TODO: Handle 'response' of type BondTickData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.bond_tick(isin, date, limit, skip, exchange)
+    # TODO: Handle 'response' of type BondTickData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>isin</code> | <code>str</code> | ISIN. |
+| <code>date</code> | <code>Date</code> | Date: 2020-04-02. |
+| <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
+| <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
+| <code>exchange</code> | <code>str</code> | Currently support the following values: <code>trace</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[BondTickData](finnhub/models/bond_tick_data.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def bond_yield_curve(code: str, *, request_options: RequestOptionsOrDict | None = None) -> BondYieldCurve</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get yield curve data for Treasury bonds.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.bond_yield_curve(code)
+    # TODO: Handle 'response' of type BondYieldCurve
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.bond_yield_curve(code)
+    # TODO: Handle 'response' of type BondYieldCurve
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>code</code> | <code>str</code> | Bond's code. You can find the list of supported code <a href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing" target="_blank" rel="noopener">here</a>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[BondYieldCurve](finnhub/models/bond_yield_curve.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_basic_financials(symbol: str, metric: str, *, request_options: RequestOptionsOrDict | None = None) -> BasicFinancials</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company basic financials such as margin, P/E ratio, 52-week high/low etc.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_basic_financials(symbol, metric)
+    # TODO: Handle 'response' of type BasicFinancials
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_basic_financials(symbol, metric)
+    # TODO: Handle 'response' of type BasicFinancials
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>metric</code> | <code>str</code> | Metric type. Can be 1 of the following values <code>all</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[BasicFinancials](finnhub/models/basic_financials.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_capex_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> CapexEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's capital expenditure estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_capex_estimates(symbol)
+    # TODO: Handle 'response' of type CapexEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_capex_estimates(symbol)
+    # TODO: Handle 'response' of type CapexEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CapexEstimates](finnhub/models/capex_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_dps_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> DpsEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's Dividend per Share estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_dps_estimates(symbol)
+    # TODO: Handle 'response' of type DpsEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_dps_estimates(symbol)
+    # TODO: Handle 'response' of type DpsEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[DpsEstimates](finnhub/models/dps_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_earnings(symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None) -> list[EarningResult]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company historical quarterly earnings surprise going back to 2000.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_earnings(symbol)
+    # TODO: Handle 'response' of type list[EarningResult]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_earnings(symbol)
+    # TODO: Handle 'response' of type list[EarningResult]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>limit</code> | <code>int \| None</code> | Limit number of period returned. Leave blank to get the full history.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[EarningResult](finnhub/models/earning_result.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_earnings_quality_score(symbol: str, freq: str, *, request_options: RequestOptionsOrDict | None = None) -> CompanyEarningsQualityScore</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>This endpoint provides Earnings Quality Score for global companies.</p><p> Earnings quality refers to the extent to which current earnings predict future earnings. "High-quality" earnings are expected to persist, while "low-quality" earnings do not. A higher score means a higher earnings quality</p><p>Finnhub uses a proprietary model which takes into consideration 4 criteria:</p> <ul style="list-style-type: unset; margin-left: 30px;"><li>Profitability</li><li>Growth</li><li>Cash Generation & Capital Allocation</li><li>Leverage</li></ul><br/><p>We then compare the metrics of each company in each category against its peers in the same industry to gauge how quality its earnings is.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_earnings_quality_score(symbol, freq)
+    # TODO: Handle 'response' of type CompanyEarningsQualityScore
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_earnings_quality_score(symbol, freq)
+    # TODO: Handle 'response' of type CompanyEarningsQualityScore
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>freq</code> | <code>str</code> | Frequency. Currently support <code>annual</code> and <code>quarterly</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CompanyEarningsQualityScore](finnhub/models/company_earnings_quality_score.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_ebit_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EbitEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's ebit estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_ebit_estimates(symbol)
+    # TODO: Handle 'response' of type EbitEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_ebit_estimates(symbol)
+    # TODO: Handle 'response' of type EbitEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EbitEstimates](finnhub/models/ebit_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_ebitda_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EbitdaEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's ebitda estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_ebitda_estimates(symbol)
+    # TODO: Handle 'response' of type EbitdaEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_ebitda_estimates(symbol)
+    # TODO: Handle 'response' of type EbitdaEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EbitdaEstimates](finnhub/models/ebitda_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_eps_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EarningsEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's EPS estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_eps_estimates(symbol)
+    # TODO: Handle 'response' of type EarningsEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_eps_estimates(symbol)
+    # TODO: Handle 'response' of type EarningsEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EarningsEstimates](finnhub/models/earnings_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_esg_score(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> CompanyEsg</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>This endpoint provides the latest ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_esg_score(symbol)
+    # TODO: Handle 'response' of type CompanyEsg
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_esg_score(symbol)
+    # TODO: Handle 'response' of type CompanyEsg
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CompanyEsg](finnhub/models/company_esg.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_executive(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> CompanyExecutive</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of company's executives and members of the Board.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_executive(symbol)
+    # TODO: Handle 'response' of type CompanyExecutive
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_executive(symbol)
+    # TODO: Handle 'response' of type CompanyExecutive
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CompanyExecutive](finnhub/models/company_executive.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_fcf_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> FcfEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's free cash flow estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_fcf_estimates(symbol)
+    # TODO: Handle 'response' of type FcfEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_fcf_estimates(symbol)
+    # TODO: Handle 'response' of type FcfEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[FcfEstimates](finnhub/models/fcf_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_gross_income_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> GrossIncomeEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's gross income estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_gross_income_estimates(symbol)
+    # TODO: Handle 'response' of type GrossIncomeEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_gross_income_estimates(symbol)
+    # TODO: Handle 'response' of type GrossIncomeEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[GrossIncomeEstimates](finnhub/models/gross_income_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_historical_esg_score(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> HistoricalCompanyEsg</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>This endpoint provides historical ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_historical_esg_score(symbol)
+    # TODO: Handle 'response' of type HistoricalCompanyEsg
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_historical_esg_score(symbol)
+    # TODO: Handle 'response' of type HistoricalCompanyEsg
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[HistoricalCompanyEsg](finnhub/models/historical_company_esg.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_net_income_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> NetIncomeEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's net income estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_net_income_estimates(symbol)
+    # TODO: Handle 'response' of type NetIncomeEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_net_income_estimates(symbol)
+    # TODO: Handle 'response' of type NetIncomeEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[NetIncomeEstimates](finnhub/models/net_income_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_news(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> list[CompanyNews]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List latest company news by symbol. This endpoint is only available for North American companies.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_news(symbol, from_, to)
+    # TODO: Handle 'response' of type list[CompanyNews]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_news(symbol, from_, to)
+    # TODO: Handle 'response' of type list[CompanyNews]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[CompanyNews](finnhub/models/company_news.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_ocf_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> OcfEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's operating cash flow estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_ocf_estimates(symbol)
+    # TODO: Handle 'response' of type OcfEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_ocf_estimates(symbol)
+    # TODO: Handle 'response' of type OcfEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[OcfEstimates](finnhub/models/ocf_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_peers(symbol: str, *, grouping: str | None = None, request_options: RequestOptionsOrDict | None = None) -> list[str]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company peers. Return a list of peers operating in the same country and sector/industry.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_peers(symbol)
+    # TODO: Handle 'response' of type list[str]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_peers(symbol)
+    # TODO: Handle 'response' of type list[str]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>grouping</code> | <code>str \| None</code> | Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>, <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;str&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_pretax_income_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> PretaxIncomeEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's pretax income estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_pretax_income_estimates(symbol)
+    # TODO: Handle 'response' of type PretaxIncomeEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_pretax_income_estimates(symbol)
+    # TODO: Handle 'response' of type PretaxIncomeEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[PretaxIncomeEstimates](finnhub/models/pretax_income_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_profile(*, symbol: str | None = None, isin: str | None = None, cusip: str | None = None, request_options: RequestOptionsOrDict | None = None) -> CompanyProfile</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get general information of a company. You can query by symbol, ISIN or CUSIP
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_profile()
+    # TODO: Handle 'response' of type CompanyProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_profile()
+    # TODO: Handle 'response' of type CompanyProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL e.g.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
+| <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CompanyProfile](finnhub/models/company_profile.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_profile2(*, symbol: str | None = None, isin: str | None = None, cusip: str | None = None, request_options: RequestOptionsOrDict | None = None) -> CompanyProfile2</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get general information of a company. You can query by symbol, ISIN or CUSIP. This is the free version of <a href="#company-profile">Company Profile</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_profile2()
+    # TODO: Handle 'response' of type CompanyProfile2
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_profile2()
+    # TODO: Handle 'response' of type CompanyProfile2
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL e.g.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
+| <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CompanyProfile2](finnhub/models/company_profile2.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def company_revenue_estimates(symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> RevenueEstimates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's revenue estimates.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.company_revenue_estimates(symbol)
+    # TODO: Handle 'response' of type RevenueEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.company_revenue_estimates(symbol)
+    # TODO: Handle 'response' of type RevenueEstimates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[RevenueEstimates](finnhub/models/revenue_estimates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def congressional_trading(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> CongressionalTrading</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get stock trades data disclosed by members of congress.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.congressional_trading(symbol, from_, to)
+    # TODO: Handle 'response' of type CongressionalTrading
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.congressional_trading(symbol, from_, to)
+    # TODO: Handle 'response' of type CongressionalTrading
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CongressionalTrading](finnhub/models/congressional_trading.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def country(*, request_options: RequestOptionsOrDict | None = None) -> list[CountryMetadata]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List all countries and metadata.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.country()
+    # TODO: Handle 'response' of type list[CountryMetadata]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.country()
+    # TODO: Handle 'response' of type list[CountryMetadata]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[CountryMetadata](finnhub/models/country_metadata.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def covid_19(*, request_options: RequestOptionsOrDict | None = None) -> list[CovidInfo]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state breakdown. Data is sourced from CDC and reputable sources. You can also access this API <a href="https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19" target="_blank" rel="nofollow">here</a>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.covid_19()
+    # TODO: Handle 'response' of type list[CovidInfo]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.covid_19()
+    # TODO: Handle 'response' of type list[CovidInfo]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[CovidInfo](finnhub/models/covid_info.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def crypto_candles(symbol: str, resolution: str, from_: int, to: int, *, request_options: RequestOptionsOrDict | None = None) -> CryptoCandles</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get candlestick data for crypto symbols.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.crypto_candles(symbol, resolution, from_, to)
+    # TODO: Handle 'response' of type CryptoCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.crypto_candles(symbol, resolution, from_, to)
+    # TODO: Handle 'response' of type CryptoCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Use symbol returned in <code>/crypto/symbol</code> endpoint for this field. |
+| <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
+| <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
+| <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CryptoCandles](finnhub/models/crypto_candles.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def crypto_exchanges(*, request_options: RequestOptionsOrDict | None = None) -> list[str]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List supported crypto exchanges
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.crypto_exchanges()
+    # TODO: Handle 'response' of type list[str]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.crypto_exchanges()
+    # TODO: Handle 'response' of type list[str]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;str&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def crypto_profile(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> CryptoProfile</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get crypto's profile.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.crypto_profile(symbol)
+    # TODO: Handle 'response' of type CryptoProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.crypto_profile(symbol)
+    # TODO: Handle 'response' of type CryptoProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Crypto symbol such as BTC or ETH. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[CryptoProfile](finnhub/models/crypto_profile.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def crypto_symbols(exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> list[CryptoSymbol]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List supported crypto symbols by exchange
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.crypto_symbols(exchange)
+    # TODO: Handle 'response' of type list[CryptoSymbol]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.crypto_symbols(exchange)
+    # TODO: Handle 'response' of type list[CryptoSymbol]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>exchange</code> | <code>str</code> | Exchange you want to get the list of symbols from. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[CryptoSymbol](finnhub/models/crypto_symbol.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def earnings_calendar(*, from_: Date | None = None, to: Date | None = None, symbol: str | None = None, international: bool | None = None, request_options: RequestOptionsOrDict | None = None) -> EarningsCalendar</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get historical and coming earnings release. EPS and Revenue in this endpoint are non-GAAP, which means they are adjusted to exclude some one-time or unusual items. This is the same data investors usually react to and talked about on the media. Estimates are sourced from both sell-side and buy-side analysts.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.earnings_calendar()
+    # TODO: Handle 'response' of type EarningsCalendar
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.earnings_calendar()
+    # TODO: Handle 'response' of type EarningsCalendar
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>from_</code> | <code>Date \| None</code> | From date: 2020-03-15.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
+| <code>symbol</code> | <code>str \| None</code> | Filter by symbol: AAPL.<br>**Default**: <code>None</code> |
+| <code>international</code> | <code>bool \| None</code> | Set to <code>true</code> to include international markets. Default value is <code>false</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EarningsCalendar](finnhub/models/earnings_calendar.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def earnings_call_live(*, from_: Date | None = None, to: Date | None = None, symbol: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EarningsCallLive</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Stream live earnings calls with data provided in the calendar. The data will be available in m3u8 format. mp3 files will be available once the calls finish in the <code>recording</code> field.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.earnings_call_live()
+    # TODO: Handle 'response' of type EarningsCallLive
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.earnings_call_live()
+    # TODO: Handle 'response' of type EarningsCallLive
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
+| <code>symbol</code> | <code>str \| None</code> | Filter by symbol: AAPL.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EarningsCallLive](finnhub/models/earnings_call_live.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def economic_calendar(*, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> EconomicCalendar</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get recent and upcoming economic releases.</p><p>Historical events and surprises are available for Enterprise clients.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.economic_calendar()
+    # TODO: Handle 'response' of type EconomicCalendar
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.economic_calendar()
+    # TODO: Handle 'response' of type EconomicCalendar
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EconomicCalendar](finnhub/models/economic_calendar.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def economic_code(*, request_options: RequestOptionsOrDict | None = None) -> list[EconomicCode]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List codes of supported economic data.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.economic_code()
+    # TODO: Handle 'response' of type list[EconomicCode]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.economic_code()
+    # TODO: Handle 'response' of type list[EconomicCode]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[EconomicCode](finnhub/models/economic_code.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def economic_data(code: str, *, request_options: RequestOptionsOrDict | None = None) -> EconomicData</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get economic data.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.economic_data(code)
+    # TODO: Handle 'response' of type EconomicData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.economic_data(code)
+    # TODO: Handle 'response' of type EconomicData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>code</code> | <code>str</code> | Economic code. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EconomicData](finnhub/models/economic_data.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def etfs_allocation(*, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EtfsAllocation</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get ETF equity allocation based on the characteristics of the holdings.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.etfs_allocation()
+    # TODO: Handle 'response' of type EtfsAllocation
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.etfs_allocation()
+    # TODO: Handle 'response' of type EtfsAllocation
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EtfsAllocation](finnhub/models/etfs_allocation.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def etfs_country_exposure(*, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EtfsCountryExposure</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get ETF country exposure data.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.etfs_country_exposure()
+    # TODO: Handle 'response' of type EtfsCountryExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.etfs_country_exposure()
+    # TODO: Handle 'response' of type EtfsCountryExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EtfsCountryExposure](finnhub/models/etfs_country_exposure.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def etfs_holdings(*, symbol: str | None = None, isin: str | None = None, skip: int | None = None, date: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EtfsHoldings</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings. A list of supported ETFs can be found <a href="/api/v1/etf/list?token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.etfs_holdings()
+    # TODO: Handle 'response' of type EtfsHoldings
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.etfs_holdings()
+    # TODO: Handle 'response' of type EtfsHoldings
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
+| <code>skip</code> | <code>int \| None</code> | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.<br>**Default**: <code>None</code> |
+| <code>date</code> | <code>str \| None</code> | Query holdings by date. You can use either this param or <code>skip</code> param, not both.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EtfsHoldings](finnhub/models/etfs_holdings.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def etfs_profile(*, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EtfsProfile</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get ETF profile information. This endpoint has global coverage. A list of supported ETFs can be found <a href="/api/v1/etf/list?type=csv&token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.etfs_profile()
+    # TODO: Handle 'response' of type EtfsProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.etfs_profile()
+    # TODO: Handle 'response' of type EtfsProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EtfsProfile](finnhub/models/etfs_profile.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def etfs_sector_exposure(*, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None) -> EtfsSectorExposure</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get ETF sector exposure data.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.etfs_sector_exposure()
+    # TODO: Handle 'response' of type EtfsSectorExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.etfs_sector_exposure()
+    # TODO: Handle 'response' of type EtfsSectorExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EtfsSectorExposure](finnhub/models/etfs_sector_exposure.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def fda_committee_meeting_calendar(*, request_options: RequestOptionsOrDict | None = None) -> list[FdacomitteeMeeting]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+FDA's advisory committees are established to provide functions which support the agency's mission of protecting and promoting the public health, while meeting the requirements set forth in the Federal Advisory Committee Act. Committees are either mandated by statute or established at the discretion of the Department of Health and Human Services. Each committee is subject to renewal at two-year intervals unless the committee charter states otherwise.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.fda_committee_meeting_calendar()
+    # TODO: Handle 'response' of type list[FdacomitteeMeeting]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.fda_committee_meeting_calendar()
+    # TODO: Handle 'response' of type list[FdacomitteeMeeting]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[FdacomitteeMeeting](finnhub/models/fdacomittee_meeting.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def filings(*, symbol: str | None = None, cik: str | None = None, access_number: str | None = None, form: str | None = None, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> list[Filing]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List company's filing. Limit to 250 documents at a time. This data is available for bulk download on <a href="https://www.kaggle.com/finnhub/sec-filings" target="_blank">Kaggle SEC Filings database</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.filings()
+    # TODO: Handle 'response' of type list[Filing]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.filings()
+    # TODO: Handle 'response' of type list[Filing]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol. Leave <code>symbol</code>,<code>cik</code> and <code>accessNumber</code> empty to list latest filings.<br>**Default**: <code>None</code> |
+| <code>cik</code> | <code>str \| None</code> | CIK.<br>**Default**: <code>None</code> |
+| <code>access_number</code> | <code>str \| None</code> | Access number of a specific report you want to retrieve data from.<br>**Default**: <code>None</code> |
+| <code>form</code> | <code>str \| None</code> | Filter by form. You can use this value <code>NT 10-K</code> to find non-timely filings for a company.<br>**Default**: <code>None</code> |
+| <code>from_</code> | <code>Date \| None</code> | From date: 2023-03-15.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date: 2023-03-16.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[Filing](finnhub/models/filing.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def filings_sentiment(access_number: str, *, request_options: RequestOptionsOrDict | None = None) -> SecsentimentAnalysis</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get sentiment analysis of 10-K and 10-Q filings from SEC. An abnormal increase in the number of positive/negative words in filings can signal a significant change in the company's stock price in the upcoming 4 quarters. We make use of <a href= "https://sraf.nd.edu/textual-analysis/resources/" target="_blank">Loughran and McDonald Sentiment Word Lists</a> to calculate the sentiment for each filing.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.filings_sentiment(access_number)
+    # TODO: Handle 'response' of type SecsentimentAnalysis
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.filings_sentiment(access_number)
+    # TODO: Handle 'response' of type SecsentimentAnalysis
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>access_number</code> | <code>str</code> | Access number of a specific report you want to retrieve data from. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SecsentimentAnalysis](finnhub/models/secsentiment_analysis.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def financials(symbol: str, statement: str, freq: str, *, preliminary: str | None = None, request_options: RequestOptionsOrDict | None = None) -> FinancialStatements</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get standardized balance sheet, income statement and cash flow for global companies going back 30+ years. Data is sourced from original filings most of which made available through <a href="#filings">SEC Filings</a> and <a href="#international-filings">International Filings</a> endpoints.</p><p>Set <code>preliminary</code> param to true for faster updates for US companies.</p><p><i>Wondering why our standardized data is different from Bloomberg, Reuters, Factset, S&P or Yahoo Finance ? Check out our <a href="/faq">FAQ page</a> to learn more</i></p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.financials(symbol, statement, freq)
+    # TODO: Handle 'response' of type FinancialStatements
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.financials(symbol, statement, freq)
+    # TODO: Handle 'response' of type FinancialStatements
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>statement</code> | <code>str</code> | Statement can take 1 of these values <code>bs, ic, cf</code> for Balance Sheet, Income Statement, Cash Flow respectively. |
+| <code>freq</code> | <code>str</code> | Frequency can take 1 of these values <code>annual, quarterly, ttm, ytd</code>.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow. |
+| <code>preliminary</code> | <code>str \| None</code> | If set to <code>true</code>, it will return Preliminary financial statements for the latest period which are usually available within an hour of the earnings announcement if finalized data is not available yet. This preliminary data is currently available for US companies. You will see <code>"preliminary": true</code> in the data if that period is using preliminary data.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[FinancialStatements](finnhub/models/financial_statements.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def financials_reported(*, symbol: str | None = None, cik: str | None = None, access_number: str | None = None, freq: str | None = None, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> FinancialsAsReported</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get financials as reported. This data is available for bulk download on <a href="https://www.kaggle.com/finnhub/reported-financials" target="_blank">Kaggle SEC Financials database</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.financials_reported()
+    # TODO: Handle 'response' of type FinancialsAsReported
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.financials_reported()
+    # TODO: Handle 'response' of type FinancialsAsReported
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol.<br>**Default**: <code>None</code> |
+| <code>cik</code> | <code>str \| None</code> | CIK.<br>**Default**: <code>None</code> |
+| <code>access_number</code> | <code>str \| None</code> | Access number of a specific report you want to retrieve financials from.<br>**Default**: <code>None</code> |
+| <code>freq</code> | <code>str \| None</code> | Frequency. Can be either <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>.<br>**Default**: <code>None</code> |
+| <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>. Filter for endDate.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>. Filter for endDate.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[FinancialsAsReported](finnhub/models/financials_as_reported.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def forex_candles(symbol: str, resolution: str, from_: int, to: int, *, request_options: RequestOptionsOrDict | None = None) -> ForexCandles</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get candlestick data for forex symbols.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.forex_candles(symbol, resolution, from_, to)
+    # TODO: Handle 'response' of type ForexCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.forex_candles(symbol, resolution, from_, to)
+    # TODO: Handle 'response' of type ForexCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Use symbol returned in <code>/forex/symbol</code> endpoint for this field. |
+| <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
+| <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
+| <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[ForexCandles](finnhub/models/forex_candles.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def forex_exchanges(*, request_options: RequestOptionsOrDict | None = None) -> list[str]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List supported forex exchanges
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.forex_exchanges()
+    # TODO: Handle 'response' of type list[str]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.forex_exchanges()
+    # TODO: Handle 'response' of type list[str]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;str&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def forex_rates(*, base: str | None = None, date: str | None = None, request_options: RequestOptionsOrDict | None = None) -> Forexrates</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get rates for all forex pairs. Ideal for currency conversion
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.forex_rates()
+    # TODO: Handle 'response' of type Forexrates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.forex_rates()
+    # TODO: Handle 'response' of type Forexrates
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>base</code> | <code>str \| None</code> | Base currency. Default to EUR.<br>**Default**: <code>None</code> |
+| <code>date</code> | <code>str \| None</code> | Date. Leave blank to get the latest data.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[Forexrates](finnhub/models/forexrates.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def forex_symbols(exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> list[ForexSymbol]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List supported forex symbols.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.forex_symbols(exchange)
+    # TODO: Handle 'response' of type list[ForexSymbol]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.forex_symbols(exchange)
+    # TODO: Handle 'response' of type list[ForexSymbol]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>exchange</code> | <code>str</code> | Exchange you want to get the list of symbols from. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[ForexSymbol](finnhub/models/forex_symbol.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def fund_ownership(symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None) -> FundOwnership</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a full list fund and institutional investors of a company in descending order of the number of shares held. Data is sourced from <code>13F form</code>, <code>Schedule 13D</code> and <code>13G</code> for US market, <code>UK Share Register</code> for UK market, <code>SEDI</code> for Canadian market and equivalent filings for other international markets.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.fund_ownership(symbol)
+    # TODO: Handle 'response' of type FundOwnership
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.fund_ownership(symbol)
+    # TODO: Handle 'response' of type FundOwnership
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>limit</code> | <code>int \| None</code> | Limit number of results. Leave empty to get the full list.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[FundOwnership](finnhub/models/fund_ownership.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def global_filings_download(document_id: str, *, request_options: RequestOptionsOrDict | None = None) -> None</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Download filings using document ids.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    client.global_filings_download(document_id)
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    await async_client.global_filings_download(document_id)
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>document_id</code> | <code>str</code> | Document's id. Note that this is different from filingId as 1 filing can contain multiple documents. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: No content
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def global_filings_search(*, search: SearchBody | SearchBodyDict | None = None, request_options: RequestOptionsOrDict | None = None) -> SearchResponse</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Search for best-matched filings across global companies' filings, transcripts and press releases. You can filter by anything from symbol, ISIN to form type, and document sources.</p><p>This endpoint will return a list of documents that match your search criteria. If you would like to get the excerpts as well, please set <code>highlighted</code> to <code>true</code>. Once you have the list of documents, you can get a list of excerpts and positions to highlight the document using the <code>/search-in-filing</code> endpoint</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.global_filings_search()
+    # TODO: Handle 'response' of type SearchResponse
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.global_filings_search()
+    # TODO: Handle 'response' of type SearchResponse
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>search</code> | <code>[SearchBody](finnhub/models/search_body.py) \| [SearchBodyDict](finnhub/models/search_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SearchResponse](finnhub/models/search_response.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def global_filings_search_filter(field: str, *, source: str | None = None, request_options: RequestOptionsOrDict | None = None) -> SearchFilter</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get available values for each filter in search body.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.global_filings_search_filter(field)
+    # TODO: Handle 'response' of type SearchFilter
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.global_filings_search_filter(field)
+    # TODO: Handle 'response' of type SearchFilter
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>field</code> | <code>str</code> | Field to get available filters. Available filters are "countries", "exchanges", "exhibits", "forms", "gics", "naics", "caps", "acts", and "sort". |
+| <code>source</code> | <code>str \| None</code> | Get available forms for each source.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SearchFilter](finnhub/models/search_filter.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def historical_employee_count(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> HistoricalEmployeeCount</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get historical employee count for global companies.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.historical_employee_count(symbol, from_, to)
+    # TODO: Handle 'response' of type HistoricalEmployeeCount
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.historical_employee_count(symbol, from_, to)
+    # TODO: Handle 'response' of type HistoricalEmployeeCount
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[HistoricalEmployeeCount](finnhub/models/historical_employee_count.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def historical_market_cap(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> HistoricalMarketCapData</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get historical market cap data for global companies.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.historical_market_cap(symbol, from_, to)
+    # TODO: Handle 'response' of type HistoricalMarketCapData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.historical_market_cap(symbol, from_, to)
+    # TODO: Handle 'response' of type HistoricalMarketCapData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[HistoricalMarketCapData](finnhub/models/historical_market_cap_data.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def indices_constituents(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> IndicesConstituents</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href="/api/v1/index/list?token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.indices_constituents(symbol)
+    # TODO: Handle 'response' of type IndicesConstituents
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.indices_constituents(symbol)
+    # TODO: Handle 'response' of type IndicesConstituents
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | symbol |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[IndicesConstituents](finnhub/models/indices_constituents.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def indices_historical_constituents(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> IndicesHistoricalConstituents</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get full history of index's constituents including symbols and dates of joining and leaving the Index. A list of supported indices for this endpoint can be found <a href="/api/v1/index/historical-list?token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.indices_historical_constituents(symbol)
+    # TODO: Handle 'response' of type IndicesHistoricalConstituents
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.indices_historical_constituents(symbol)
+    # TODO: Handle 'response' of type IndicesHistoricalConstituents
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | symbol |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[IndicesHistoricalConstituents](finnhub/models/indices_historical_constituents.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def insider_sentiment(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> InsiderSentiments</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get insider sentiment data for US companies calculated using method discussed <a href="https://medium.com/@stock-api/finnhub-insiders-sentiment-analysis-cc43f9f64b3a" target="_blank">here</a>. The MSPR ranges from -100 for the most negative to 100 for the most positive which can signal price changes in the coming 30-90 days.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.insider_sentiment(symbol, from_, to)
+    # TODO: Handle 'response' of type InsiderSentiments
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.insider_sentiment(symbol, from_, to)
+    # TODO: Handle 'response' of type InsiderSentiments
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>from_</code> | <code>Date</code> | From date: 2020-03-15. |
+| <code>to</code> | <code>Date</code> | To date: 2020-03-16. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[InsiderSentiments](finnhub/models/insider_sentiments.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def insider_transactions(symbol: str, *, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> InsiderTransactions</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, UK, Canada, Australia, India, and all major EU markets. Limit to 100 transactions per API call.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.insider_transactions(symbol)
+    # TODO: Handle 'response' of type InsiderTransactions
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.insider_transactions(symbol)
+    # TODO: Handle 'response' of type InsiderTransactions
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. Leave this param blank to get the latest transactions. |
+| <code>from_</code> | <code>Date \| None</code> | From date: 2020-03-15.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[InsiderTransactions](finnhub/models/insider_transactions.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def institutional_ownership(symbol: str, cusip: str, from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None) -> InstitutionalOwnership</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list institutional investors' positions for a particular stock overtime. Data from 13-F filings. Limit to 1 year of data at a time.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.institutional_ownership(symbol, cusip, from_, to)
+    # TODO: Handle 'response' of type InstitutionalOwnership
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.institutional_ownership(symbol, cusip, from_, to)
+    # TODO: Handle 'response' of type InstitutionalOwnership
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Filter by symbol. |
+| <code>cusip</code> | <code>str</code> | Filter by CUSIP. |
+| <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[InstitutionalOwnership](finnhub/models/institutional_ownership.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def institutional_portfolio(cik: str, from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None) -> InstitutionalPortfolio</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time. You can get a list of supported CIK <a href="/api/v1/institutional/list?token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.institutional_portfolio(cik, from_, to)
+    # TODO: Handle 'response' of type InstitutionalPortfolio
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.institutional_portfolio(cik, from_, to)
+    # TODO: Handle 'response' of type InstitutionalPortfolio
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>cik</code> | <code>str</code> | Fund's CIK. |
+| <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[InstitutionalPortfolio](finnhub/models/institutional_portfolio.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def institutional_profile(*, cik: str | None = None, request_options: RequestOptionsOrDict | None = None) -> InstitutionalProfile</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of well-known institutional investors. Currently support 60+ profiles.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.institutional_profile()
+    # TODO: Handle 'response' of type InstitutionalProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.institutional_profile()
+    # TODO: Handle 'response' of type InstitutionalProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>cik</code> | <code>str \| None</code> | Filter by CIK. Leave blank to get the full list.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[InstitutionalProfile](finnhub/models/institutional_profile.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def international_filings(*, symbol: str | None = None, country: str | None = None, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> list[InternationalFiling]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List filings for international companies. Limit to 500 documents at a time. These are the documents we use to source our fundamental data. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.international_filings()
+    # TODO: Handle 'response' of type list[InternationalFiling]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.international_filings()
+    # TODO: Handle 'response' of type list[InternationalFiling]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol. Leave empty to list latest filings.<br>**Default**: <code>None</code> |
+| <code>country</code> | <code>str \| None</code> | Filter by country using country's 2-letter code.<br>**Default**: <code>None</code> |
+| <code>from_</code> | <code>Date \| None</code> | From date: 2023-01-15.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date: 2023-12-16.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[InternationalFiling](finnhub/models/international_filing.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def investment_themes(theme: str, *, request_options: RequestOptionsOrDict | None = None) -> InvestmentThemes</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Thematic investing involves creating a portfolio (or portion of a portfolio) by gathering together a collection of companies involved in certain areas that you predict will generate above-market returns over the long term. Themes can be based on a concept such as ageing populations or a sub-sector such as robotics, and drones. Thematic investing focuses on predicted long-term trends rather than specific companies or sectors, enabling investors to access structural, one-off shifts that can change an entire industry.</p><p>This endpoint will help you get portfolios of different investment themes that are changing our life and are the way of the future.</p><p>A full list of themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>. The theme coverage and portfolios are updated bi-weekly by our analysts. Our approach excludes penny, super-small cap and illiquid stocks.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.investment_themes(theme)
+    # TODO: Handle 'response' of type InvestmentThemes
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.investment_themes(theme)
+    # TODO: Handle 'response' of type InvestmentThemes
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>theme</code> | <code>str</code> | Investment theme. A full list of themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[InvestmentThemes](finnhub/models/investment_themes.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def ipo_calendar(from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> Ipocalendar</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get recent and upcoming IPO.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.ipo_calendar(from_, to)
+    # TODO: Handle 'response' of type Ipocalendar
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.ipo_calendar(from_, to)
+    # TODO: Handle 'response' of type Ipocalendar
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>from_</code> | <code>Date</code> | From date: 2020-03-15. |
+| <code>to</code> | <code>Date</code> | To date: 2020-03-16. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[Ipocalendar](finnhub/models/ipocalendar.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def isin_change(from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None) -> IsinChange</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a time.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.isin_change(from_, to)
+    # TODO: Handle 'response' of type IsinChange
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.isin_change(from_, to)
+    # TODO: Handle 'response' of type IsinChange
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[IsinChange](finnhub/models/isin_change.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def market_holiday(exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> MarketHoliday</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of holidays for global exchanges.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.market_holiday(exchange)
+    # TODO: Handle 'response' of type MarketHoliday
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.market_holiday(exchange)
+    # TODO: Handle 'response' of type MarketHoliday
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>exchange</code> | <code>str</code> | Exchange code. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MarketHoliday](finnhub/models/market_holiday.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def market_news(category: str, *, min_id: int | None = None, request_options: RequestOptionsOrDict | None = None) -> list[MarketNews]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get latest market news.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.market_news(category)
+    # TODO: Handle 'response' of type list[MarketNews]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.market_news(category)
+    # TODO: Handle 'response' of type list[MarketNews]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>category</code> | <code>str</code> | This parameter can be 1 of the following values <code>general, forex, crypto, merger</code>. |
+| <code>min_id</code> | <code>int \| None</code> | Use this field to get only news after this ID. Default to 0<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[MarketNews](finnhub/models/market_news.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def market_status(exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> MarketStatus</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get current market status for global exchanges (whether exchanges are open or close).
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.market_status(exchange)
+    # TODO: Handle 'response' of type MarketStatus
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.market_status(exchange)
+    # TODO: Handle 'response' of type MarketStatus
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>exchange</code> | <code>str</code> | Exchange code. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MarketStatus](finnhub/models/market_status.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def mutual_fund_country_exposure(*, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None) -> MutualFundCountryExposure</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get Mutual Funds country exposure data.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.mutual_fund_country_exposure()
+    # TODO: Handle 'response' of type MutualFundCountryExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.mutual_fund_country_exposure()
+    # TODO: Handle 'response' of type MutualFundCountryExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MutualFundCountryExposure](finnhub/models/mutual_fund_country_exposure.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def mutual_fund_eet(isin: str, *, request_options: RequestOptionsOrDict | None = None) -> MutualFundEet</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.mutual_fund_eet(isin)
+    # TODO: Handle 'response' of type MutualFundEet
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.mutual_fund_eet(isin)
+    # TODO: Handle 'response' of type MutualFundEet
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>isin</code> | <code>str</code> | ISIN. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MutualFundEet](finnhub/models/mutual_fund_eet.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def mutual_fund_eet_pai(isin: str, *, request_options: RequestOptionsOrDict | None = None) -> MutualFundEetPai</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get EET PAI data for EU funds.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.mutual_fund_eet_pai(isin)
+    # TODO: Handle 'response' of type MutualFundEetPai
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.mutual_fund_eet_pai(isin)
+    # TODO: Handle 'response' of type MutualFundEetPai
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>isin</code> | <code>str</code> | ISIN. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MutualFundEetPai](finnhub/models/mutual_fund_eet_pai.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def mutual_fund_holdings(*, symbol: str | None = None, isin: str | None = None, skip: int | None = None, request_options: RequestOptionsOrDict | None = None) -> MutualFundHoldings</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href="/api/v1/mutual-fund/list?token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.mutual_fund_holdings()
+    # TODO: Handle 'response' of type MutualFundHoldings
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.mutual_fund_holdings()
+    # TODO: Handle 'response' of type MutualFundHoldings
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Fund's symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
+| <code>skip</code> | <code>int \| None</code> | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MutualFundHoldings](finnhub/models/mutual_fund_holdings.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def mutual_fund_profile(*, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None) -> MutualFundProfile</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href="/api/v1/mutual-fund/list?type=csv&token=" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.mutual_fund_profile()
+    # TODO: Handle 'response' of type MutualFundProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.mutual_fund_profile()
+    # TODO: Handle 'response' of type MutualFundProfile
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Fund's symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MutualFundProfile](finnhub/models/mutual_fund_profile.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def mutual_fund_sector_exposure(*, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None) -> MutualFundSectorExposure</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get Mutual Funds sector exposure data.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.mutual_fund_sector_exposure()
+    # TODO: Handle 'response' of type MutualFundSectorExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.mutual_fund_sector_exposure()
+    # TODO: Handle 'response' of type MutualFundSectorExposure
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Mutual Fund symbol.<br>**Default**: <code>None</code> |
+| <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[MutualFundSectorExposure](finnhub/models/mutual_fund_sector_exposure.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def news_sentiment(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> NewsSentiment</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company's news sentiment and statistics. This endpoint is only available for US companies.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.news_sentiment(symbol)
+    # TODO: Handle 'response' of type NewsSentiment
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.news_sentiment(symbol)
+    # TODO: Handle 'response' of type NewsSentiment
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[NewsSentiment](finnhub/models/news_sentiment.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def newsroom(symbol: str, *, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> Newsroom</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get latest articles posted directly on the companies' newsroom and investor relations page. Newsroom API along with the Press Releases API provide a comprehensive text-based dataset directly from the company. We currently cover 1,250 US Companies with this dataset.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.newsroom(symbol)
+    # TODO: Handle 'response' of type Newsroom
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.newsroom(symbol)
+    # TODO: Handle 'response' of type Newsroom
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>from_</code> | <code>Date \| None</code> | From time: 2025-01-01.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To time: 2026-01-05.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[Newsroom](finnhub/models/newsroom.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def ownership(symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None) -> Ownership</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a full list of shareholders of a company in descending order of the number of shares held. Data is sourced from <code>13F form</code>, <code>Schedule 13D</code> and <code>13G</code> for US market, <code>UK Share Register</code> for UK market, <code>SEDI</code> for Canadian market and equivalent filings for other international markets.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.ownership(symbol)
+    # TODO: Handle 'response' of type Ownership
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.ownership(symbol)
+    # TODO: Handle 'response' of type Ownership
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>limit</code> | <code>int \| None</code> | Limit number of results. Leave empty to get the full list.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[Ownership](finnhub/models/ownership.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def pattern_recognition(symbol: str, resolution: str, *, request_options: RequestOptionsOrDict | None = None) -> PatternRecognition</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Run pattern recognition algorithm on a symbol. Support double top/bottom, triple top/bottom, head and shoulders, triangle, wedge, channel, flag, and candlestick patterns.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.pattern_recognition(symbol, resolution)
+    # TODO: Handle 'response' of type PatternRecognition
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.pattern_recognition(symbol, resolution)
+    # TODO: Handle 'response' of type PatternRecognition
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol |
+| <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[PatternRecognition](finnhub/models/pattern_recognition.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def press_releases(symbol: str, *, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> PressRelease</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.</p><p>Full-text press releases data is available for Enterprise clients. <a href="mailto:support@finnhub.io">Contact Us</a> to learn more.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.press_releases(symbol)
+    # TODO: Handle 'response' of type PressRelease
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.press_releases(symbol)
+    # TODO: Handle 'response' of type PressRelease
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>from_</code> | <code>Date \| None</code> | From time: 2020-01-01.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To time: 2020-01-05.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[PressRelease](finnhub/models/press_release.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def price_metrics(symbol: str, *, date: str | None = None, request_options: RequestOptionsOrDict | None = None) -> PriceMetrics</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get company price performance statistics such as 52-week high/low, YTD return and much more.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.price_metrics(symbol)
+    # TODO: Handle 'response' of type PriceMetrics
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.price_metrics(symbol)
+    # TODO: Handle 'response' of type PriceMetrics
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>date</code> | <code>str \| None</code> | Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[PriceMetrics](finnhub/models/price_metrics.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def price_target(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> PriceTarget</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get latest price target consensus.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.price_target(symbol)
+    # TODO: Handle 'response' of type PriceTarget
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.price_target(symbol)
+    # TODO: Handle 'response' of type PriceTarget
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[PriceTarget](finnhub/models/price_target.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def quote(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> Quote</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time updates.</p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a> to learn more.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.quote(symbol)
+    # TODO: Handle 'response' of type Quote
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.quote(symbol)
+    # TODO: Handle 'response' of type Quote
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[Quote](finnhub/models/quote.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def recommendation_trends(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> list[RecommendationTrend]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get latest analyst recommendation trends for a company.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.recommendation_trends(symbol)
+    # TODO: Handle 'response' of type list[RecommendationTrend]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.recommendation_trends(symbol)
+    # TODO: Handle 'response' of type list[RecommendationTrend]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[RecommendationTrend](finnhub/models/recommendation_trend.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def revenue_breakdown(*, symbol: str | None = None, cik: str | None = None, request_options: RequestOptionsOrDict | None = None) -> RevenueBreakdown</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get revenue breakdown as-reporetd by product and geography. Users on personal plans can access data for US companies which disclose their revenue breakdown in the annual or quarterly reports.</p><p>Global standardized revenue breakdown/segments data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact us</a> to inquire about the access for Global standardized data.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.revenue_breakdown()
+    # TODO: Handle 'response' of type RevenueBreakdown
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.revenue_breakdown()
+    # TODO: Handle 'response' of type RevenueBreakdown
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol.<br>**Default**: <code>None</code> |
+| <code>cik</code> | <code>str \| None</code> | CIK.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[RevenueBreakdown](finnhub/models/revenue_breakdown.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def revenue_breakdown2(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> RevenueBreakdown2</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get standardized revenue breakdown and KPIs data for 30,000+ global companies.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.revenue_breakdown2(symbol)
+    # TODO: Handle 'response' of type RevenueBreakdown2
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.revenue_breakdown2(symbol)
+    # TODO: Handle 'response' of type RevenueBreakdown2
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[RevenueBreakdown2](finnhub/models/revenue_breakdown2.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def search_in_filing(*, search: InFilingSearchBody | InFilingSearchBodyDict | None = None, request_options: RequestOptionsOrDict | None = None) -> InFilingResponse</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get a list of excerpts and highlight positions within a document using your query.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.search_in_filing()
+    # TODO: Handle 'response' of type InFilingResponse
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.search_in_filing()
+    # TODO: Handle 'response' of type InFilingResponse
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>search</code> | <code>[InFilingSearchBody](finnhub/models/in_filing_search_body.py) \| [InFilingSearchBodyDict](finnhub/models/in_filing_search_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[InFilingResponse](finnhub/models/in_filing_response.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def sector_metric(region: str, *, request_options: RequestOptionsOrDict | None = None) -> SectorMetric</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get ratios for different sectors and regions/indices.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.sector_metric(region)
+    # TODO: Handle 'response' of type SectorMetric
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.sector_metric(region)
+    # TODO: Handle 'response' of type SectorMetric
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>region</code> | <code>str</code> | Region. A list of supported values for this field can be found <a href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing" target="_blank">here</a>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SectorMetric](finnhub/models/sector_metric.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def similarity_index(*, symbol: str | None = None, cik: str | None = None, freq: str | None = None, request_options: RequestOptionsOrDict | None = None) -> SimilarityIndex</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Calculate the textual difference between a company's 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019's 10-K with 2018's 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company's stock price in the upcoming 4 quarters.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.similarity_index()
+    # TODO: Handle 'response' of type SimilarityIndex
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.similarity_index()
+    # TODO: Handle 'response' of type SimilarityIndex
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol. Required if cik is empty<br>**Default**: <code>None</code> |
+| <code>cik</code> | <code>str \| None</code> | CIK. Required if symbol is empty<br>**Default**: <code>None</code> |
+| <code>freq</code> | <code>str \| None</code> | <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code><br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SimilarityIndex](finnhub/models/similarity_index.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def social_sentiment(symbol: str, *, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> SocialSentiment</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get social sentiment for stocks on Reddit and Twitter.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.social_sentiment(symbol)
+    # TODO: Handle 'response' of type SocialSentiment
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.social_sentiment(symbol)
+    # TODO: Handle 'response' of type SocialSentiment
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SocialSentiment](finnhub/models/social_sentiment.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_basic_dividends(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> Dividends2</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get global dividends data.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_basic_dividends(symbol)
+    # TODO: Handle 'response' of type Dividends2
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_basic_dividends(symbol)
+    # TODO: Handle 'response' of type Dividends2
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[Dividends2](finnhub/models/dividends2.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_bidask(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> LastBidAsk</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get last bid/ask data for US stocks.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_bidask(symbol)
+    # TODO: Handle 'response' of type LastBidAsk
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_bidask(symbol)
+    # TODO: Handle 'response' of type LastBidAsk
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[LastBidAsk](finnhub/models/last_bid_ask.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_candles(symbol: str, resolution: str, from_: int, to: int, *, request_options: RequestOptionsOrDict | None = None) -> StockCandles</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted. Only 1 month of intraday will be returned at a time. If you need more historical intraday data, please use the from and to params iteratively to request more data.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_candles(symbol, resolution, from_, to)
+    # TODO: Handle 'response' of type StockCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_candles(symbol, resolution, from_, to)
+    # TODO: Handle 'response' of type StockCandles
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
+| <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
+| <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[StockCandles](finnhub/models/stock_candles.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_dividends(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> list[Dividends]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get dividends data for common stocks going back 30 years.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_dividends(symbol, from_, to)
+    # TODO: Handle 'response' of type list[Dividends]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_dividends(symbol, from_, to)
+    # TODO: Handle 'response' of type list[Dividends]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>from_</code> | <code>Date</code> | YYYY-MM-DD. |
+| <code>to</code> | <code>Date</code> | YYYY-MM-DD. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[Dividends](finnhub/models/dividends.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_lobbying(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> LobbyingResult</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of reported lobbying activities in the Senate and the House.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_lobbying(symbol, from_, to)
+    # TODO: Handle 'response' of type LobbyingResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_lobbying(symbol, from_, to)
+    # TODO: Handle 'response' of type LobbyingResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[LobbyingResult](finnhub/models/lobbying_result.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_nbbo(symbol: str, date: Date, limit: int, skip: int, *, request_options: RequestOptionsOrDict | None = None) -> HistoricalNbbo</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get historical best bid and offer for US stocks, LSE, TSX, Euronext and Deutsche Borse.</p><p>For US market, this endpoint only serves historical NBBO from the beginning of 2023. To download more historical data, please visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a>.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_nbbo(symbol, date, limit, skip)
+    # TODO: Handle 'response' of type HistoricalNbbo
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_nbbo(symbol, date, limit, skip)
+    # TODO: Handle 'response' of type HistoricalNbbo
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>date</code> | <code>Date</code> | Date: 2020-04-02. |
+| <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
+| <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[HistoricalNbbo](finnhub/models/historical_nbbo.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_presentation(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> StockPresentation</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get presentations/slides data in PDF format that are usually used during earnings calls. You can get a list of supported symbols <a target="_blank" href="/api/v1/stock/presentation/symbol?token=">here</a></p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_presentation(symbol)
+    # TODO: Handle 'response' of type StockPresentation
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_presentation(symbol)
+    # TODO: Handle 'response' of type StockPresentation
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[StockPresentation](finnhub/models/stock_presentation.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_splits(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> list[Split]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get splits data for stocks.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_splits(symbol, from_, to)
+    # TODO: Handle 'response' of type list[Split]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_splits(symbol, from_, to)
+    # TODO: Handle 'response' of type list[Split]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>from_</code> | <code>Date</code> | YYYY-MM-DD. |
+| <code>to</code> | <code>Date</code> | YYYY-MM-DD. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[Split](finnhub/models/split.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_symbols(exchange: str, *, mic: str | None = None, security_type: str | None = None, currency: str | None = None, request_options: RequestOptionsOrDict | None = None) -> list[StockSymbol]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List supported stocks. We use the following symbology to identify stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported exchange codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_symbols(exchange)
+    # TODO: Handle 'response' of type list[StockSymbol]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_symbols(exchange)
+    # TODO: Handle 'response' of type list[StockSymbol]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>exchange</code> | <code>str</code> | Exchange you want to get the list of symbols from. List of exchange codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing" target="_blank">here</a>. |
+| <code>mic</code> | <code>str \| None</code> | Filter by MIC code.<br>**Default**: <code>None</code> |
+| <code>security_type</code> | <code>str \| None</code> | Filter by security type used by OpenFigi standard.<br>**Default**: <code>None</code> |
+| <code>currency</code> | <code>str \| None</code> | Filter by currency.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[StockSymbol](finnhub/models/stock_symbol.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_tick(symbol: str, date: Date, limit: int, skip: int, *, request_options: RequestOptionsOrDict | None = None) -> TickData</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get historical tick data for global exchanges.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Exchange</th>
+      <th>Segment</th>
+      <th>Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="text-blue">US CTA/UTP</th>
+      <td>Full SIP</td>
+      <td>End-of-day</td>
+    </tr>
+    <tr>
+      <td class="text-blue">TSX</th>
+      <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>
+      <td>End-of-day</td>
+    </tr>
+    <tr>
+      <td class="text-blue">LSE</th>
+      <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>
+      <td>15 minute</td>
+    </tr>
+    <tr>
+      <td class="text-blue">Euronext</th>
+      <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>
+      <td>End-of-day</td>
+    </tr>
+    <tr>
+      <td class="text-blue">Deutsche Börse</th>
+      <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>
+      <td>End-of-day</td>
+    </tr>
+  </tbody>
+</table>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_tick(symbol, date, limit, skip)
+    # TODO: Handle 'response' of type TickData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_tick(symbol, date, limit, skip)
+    # TODO: Handle 'response' of type TickData
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>date</code> | <code>Date</code> | Date: 2020-04-02. |
+| <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
+| <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[TickData](finnhub/models/tick_data.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_usa_spending(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> UsaSpendingResult</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get a list of government's spending activities from USASpending dataset for public companies. This dataset can help you identify companies that win big government contracts which is extremely important for industries such as Defense, Aerospace, and Education. Only recent data is available via the API.</p><p>For historical data, you can download it here: <a href="/api/v1/stock/usa-spending?fileId=before_2021&token=" target="_blank">Pre-2021</a>, <a href="/api/v1/stock/usa-spending?fileId=2021&token=" target="_blank">2021</a>, <a href="/api/v1/stock/usa-spending?fileId=2022&token=" target="_blank">2022</a>, <a href="/api/v1/stock/usa-spending?fileId=2023&token=" target="_blank">2023</a>, <a href="/api/v1/stock/usa-spending?fileId=2024&token=" target="_blank">2024</a></p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_usa_spending(symbol, from_, to)
+    # TODO: Handle 'response' of type UsaSpendingResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_usa_spending(symbol, from_, to)
+    # TODO: Handle 'response' of type UsaSpendingResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code> |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[UsaSpendingResult](finnhub/models/usa_spending_result.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_uspto_patent(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> UsptoPatentResult</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List USPTO patents for companies. Limit to 250 records per API call.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_uspto_patent(symbol, from_, to)
+    # TODO: Handle 'response' of type UsptoPatentResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_uspto_patent(symbol, from_, to)
+    # TODO: Handle 'response' of type UsptoPatentResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[UsptoPatentResult](finnhub/models/uspto_patent_result.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def stock_visa_application(symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None) -> VisaApplicationResult</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of H1-B and Permanent visa applications for companies from the DOL. The data is updated quarterly.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.stock_visa_application(symbol, from_, to)
+    # TODO: Handle 'response' of type VisaApplicationResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.stock_visa_application(symbol, from_, to)
+    # TODO: Handle 'response' of type VisaApplicationResult
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column. |
+| <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[VisaApplicationResult](finnhub/models/visa_application_result.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def supply_chain_relationships(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> SupplyChainRelationships</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>This endpoint provides an overall map of public companies' key customers and suppliers. The data offers a deeper look into a company's supply chain and how products are created. The data will help investors manage risk, limit exposure or generate alpha-generating ideas and trading insights.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.supply_chain_relationships(symbol)
+    # TODO: Handle 'response' of type SupplyChainRelationships
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.supply_chain_relationships(symbol)
+    # TODO: Handle 'response' of type SupplyChainRelationships
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SupplyChainRelationships](finnhub/models/supply_chain_relationships.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def support_resistance(symbol: str, resolution: str, *, request_options: RequestOptionsOrDict | None = None) -> SupportResistance</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get support and resistance levels for a symbol.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.support_resistance(symbol, resolution)
+    # TODO: Handle 'response' of type SupportResistance
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.support_resistance(symbol, resolution)
+    # TODO: Handle 'response' of type SupportResistance
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Symbol |
+| <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SupportResistance](finnhub/models/support_resistance.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def symbol_change(from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None) -> SymbolChange</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get a list of symbol changes for US-listed, EU-listed, NSE and ASX securities. Limit to 2000 events at a time.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.symbol_change(from_, to)
+    # TODO: Handle 'response' of type SymbolChange
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.symbol_change(from_, to)
+    # TODO: Handle 'response' of type SymbolChange
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
+| <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SymbolChange](finnhub/models/symbol_change.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def symbol_search(q: str, *, exchange: str | None = None, request_options: RequestOptionsOrDict | None = None) -> SymbolLookup</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Search for best-matching symbols based on your query. You can input anything from symbol, security's name to ISIN and Cusip.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.symbol_search(q)
+    # TODO: Handle 'response' of type SymbolLookup
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.symbol_search(q)
+    # TODO: Handle 'response' of type SymbolLookup
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>q</code> | <code>str</code> | Query text can be symbol, name, isin, or cusip. |
+| <code>exchange</code> | <code>str \| None</code> | Exchange limit.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[SymbolLookup](finnhub/models/symbol_lookup.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def technical_indicator(symbol: str, resolution: str, from_: int, to: int, indicator: str, *, request_options: RequestOptionsOrDict | None = None) -> Any</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Return technical indicator with price data. List of supported indicators can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing" target="_blank">here</a>.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.technical_indicator(symbol, resolution, from_, to, indicator)
+    # TODO: Handle 'response' of type Any
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.technical_indicator(symbol, resolution, from_, to, indicator)
+    # TODO: Handle 'response' of type Any
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | symbol |
+| <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
+| <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
+| <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
+| <code>indicator</code> | <code>str</code> | Indicator name. Full list can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing" target="_blank">here</a>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>Any</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def transcripts(id: str, *, request_options: RequestOptionsOrDict | None = None) -> EarningsCallTranscripts</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+<p>Get earnings call transcripts, audio and participants' list. Data is available for US, UK, European, Australian and Canadian companies.<p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.transcripts(id)
+    # TODO: Handle 'response' of type EarningsCallTranscripts
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.transcripts(id)
+    # TODO: Handle 'response' of type EarningsCallTranscripts
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>id</code> | <code>str</code> | Transcript's id obtained with <a href="#transcripts-list">Transcripts List endpoint</a>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EarningsCallTranscripts](finnhub/models/earnings_call_transcripts.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def transcripts_list(symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> EarningsCallTranscriptsList</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+List earnings call transcripts' metadata. This endpoint is available for Global companies. You can get a list of supported symbols <a target="_blank" href="/api/v1/stock/transcripts/symbol?token=">here</a>
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.transcripts_list(symbol)
+    # TODO: Handle 'response' of type EarningsCallTranscriptsList
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.transcripts_list(symbol)
+    # TODO: Handle 'response' of type EarningsCallTranscriptsList
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str</code> | Company symbol: AAPL. Leave empty to list the latest transcripts |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>[EarningsCallTranscriptsList](finnhub/models/earnings_call_transcripts_list.py)</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
+<details>
+<summary><code>def upgrade_downgrade(*, symbol: str | None = None, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None) -> list[UpgradeDowngrade]</code></summary>
+
+<dl>
+<dd>
+
+### Description
+
+<dl>
+<dd>
+
+Get latest stock upgrade and downgrade.
+
+</dd>
+</dl>
+
+### Usage
+
+<dl>
+<dd>
+
+**Sync**
+
+```python
+try:
+    response = client.upgrade_downgrade()
+    # TODO: Handle 'response' of type list[UpgradeDowngrade]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+**Async**
+
+```python
+try:
+    response = await async_client.upgrade_downgrade()
+    # TODO: Handle 'response' of type list[UpgradeDowngrade]
+except ApiError as e:
+    ...  # TODO: Handle 'e.error' of type RawError
+```
+
+</dd>
+</dl>
+
+### Parameters
+
+<dl>
+<dd>
+
+| Name | Type | Description |
+| --- | --- | --- |
+| <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.<br>**Default**: <code>None</code> |
+| <code>from_</code> | <code>Date \| None</code> | From date: 2000-03-15.<br>**Default**: <code>None</code> |
+| <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+
+</dd>
+</dl>
+
+### Response
+
+<dl>
+<dd>
+
+**OnSuccess**: <code>list&#91;[UpgradeDowngrade](finnhub/models/upgrade_downgrade.py)&#93;</code> -- successful operation
+
+**OnError**: <code>[ApiError](finnhub/core/exceptions.py)&#91;[RawError](finnhub/core/results.py)&#93;</code>
+
+</dd>
+</dl>
+
+</dd>
+</dl>
+
+</details>
+
