@@ -1,5 +1,5 @@
 [project]
-name = "finnhub"
+name = "finnhub-api"
 version = "1.0.0"
 maintainers = [
     { name = "APIMatic", email = "support@apimatic.io" },
@@ -73,7 +73,7 @@ ignore = [
 
 [tool.mypy]
 python_version = "3.10"         # the supported floor, not whichever interpreter is local
-files = ["finnhub"]
+files = ["finnhub_api"]
 strict = true
 warn_unreachable = true
 enable_error_code = ["redundant-expr", "truthy-bool", "ignore-without-code", "possibly-undefined"]
