@@ -15,5 +15,5 @@ class SymbolLookup(SdkBaseModel):
 
 
 class SymbolLookupDict(TypedDict):
-    result: NotRequired[list[SymbolLookupInfo | SymbolLookupInfoDict]]
+    result: NotRequired[list[SymbolLookupInfoDict]]
     count: NotRequired[int]

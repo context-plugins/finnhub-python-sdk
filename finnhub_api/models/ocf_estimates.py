@@ -18,6 +18,6 @@ class OcfEstimates(SdkBaseModel):
 
 
 class OcfEstimatesDict(TypedDict):
-    data: NotRequired[list[OcfEstimatesInfo | OcfEstimatesInfoDict]]
+    data: NotRequired[list[OcfEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

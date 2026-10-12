@@ -13,4 +13,4 @@ class EconomicCalendar(SdkBaseModel):
 
 
 class EconomicCalendarDict(TypedDict):
-    economic_calendar: NotRequired[list[EconomicEvent | EconomicEventDict]]
+    economic_calendar: NotRequired[list[EconomicEventDict]]

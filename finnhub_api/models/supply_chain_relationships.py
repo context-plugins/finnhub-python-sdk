@@ -16,4 +16,4 @@ class SupplyChainRelationships(SdkBaseModel):
 
 class SupplyChainRelationshipsDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[KeyCustomersSuppliers | KeyCustomersSuppliersDict]]
+    data: NotRequired[list[KeyCustomersSuppliersDict]]

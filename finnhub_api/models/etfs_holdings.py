@@ -25,4 +25,4 @@ class EtfsHoldingsDict(TypedDict):
     symbol: NotRequired[str]
     at_date: NotRequired[Date]
     number_of_holdings: NotRequired[int]
-    holdings: NotRequired[list[EtfholdingsData | EtfholdingsDataDict]]
+    holdings: NotRequired[list[EtfholdingsDataDict]]

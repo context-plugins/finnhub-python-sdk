@@ -8,9 +8,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.isin_change import IsinChange
 from ..models.symbol_change import SymbolChange
@@ -27,14 +29,15 @@ class CorporateActions:
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.isin_change(from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.isin_change(from_, to, request_options=request_options))
 
     def symbol_change(
         self, from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None
@@ -45,14 +48,15 @@ class CorporateActions:
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.symbol_change(from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.symbol_change(from_, to, request_options=request_options))
 
     @property
     def with_raw_response(self) -> CorporateActionsWithRawResponse:
@@ -71,14 +75,15 @@ class AsyncCorporateActions:
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.isin_change(from_, to, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.isin_change(from_, to, request_options=request_options))
 
     async def symbol_change(
         self, from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None
@@ -89,14 +94,15 @@ class AsyncCorporateActions:
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.symbol_change(from_, to, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.symbol_change(from_, to, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncCorporateActionsWithRawResponse:
@@ -112,7 +118,8 @@ class CorporateActionsWithRawResponse(SecuredRawResponse[RawClient, Server, Auth
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -135,7 +142,8 @@ class CorporateActionsWithRawResponse(SecuredRawResponse[RawClient, Server, Auth
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -159,7 +167,8 @@ class AsyncCorporateActionsWithRawResponse(SecuredRawResponse[AsyncRawClient, Se
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -168,7 +177,7 @@ class AsyncCorporateActionsWithRawResponse(SecuredRawResponse[AsyncRawClient, Se
             url_template=self._server.default("/ca/isin-change"),
             query_params=[param[str]("from", from_), param[str]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[IsinChange],
+            decoder=async_json_decoder[IsinChange],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -182,7 +191,8 @@ class AsyncCorporateActionsWithRawResponse(SecuredRawResponse[AsyncRawClient, Se
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -191,7 +201,7 @@ class AsyncCorporateActionsWithRawResponse(SecuredRawResponse[AsyncRawClient, Se
             url_template=self._server.default("/ca/symbol-change"),
             query_params=[param[str]("from", from_), param[str]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SymbolChange],
+            decoder=async_json_decoder[SymbolChange],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

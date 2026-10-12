@@ -15,4 +15,4 @@ class MutualFundProfile(SdkBaseModel):
 
 class MutualFundProfileDict(TypedDict):
     symbol: NotRequired[str]
-    profile: NotRequired[MutualFundProfileData | MutualFundProfileDataDict]
+    profile: NotRequired[MutualFundProfileDataDict]

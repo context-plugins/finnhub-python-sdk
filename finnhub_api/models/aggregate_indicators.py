@@ -14,5 +14,5 @@ class AggregateIndicators(SdkBaseModel):
 
 
 class AggregateIndicatorsDict(TypedDict):
-    technical_analysis: NotRequired[TechnicalAnalysis | TechnicalAnalysisDict]
-    trend: NotRequired[Trend | TrendDict]
+    technical_analysis: NotRequired[TechnicalAnalysisDict]
+    trend: NotRequired[TrendDict]

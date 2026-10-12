@@ -15,5 +15,5 @@ class HistoricalEmployeeCount(SdkBaseModel):
 
 
 class HistoricalEmployeeCountDict(TypedDict):
-    data: NotRequired[list[EmployeeCount | EmployeeCountDict]]
+    data: NotRequired[list[EmployeeCountDict]]
     symbol: NotRequired[str]

@@ -16,4 +16,4 @@ class InsiderSentiments(SdkBaseModel):
 
 class InsiderSentimentsDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[InsiderSentimentsData | InsiderSentimentsDataDict]]
+    data: NotRequired[list[InsiderSentimentsDataDict]]

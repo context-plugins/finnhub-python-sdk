@@ -21,4 +21,4 @@ class InstitutionalPortfolioGroup(SdkBaseModel):
 class InstitutionalPortfolioGroupDict(TypedDict):
     report_date: NotRequired[str]
     filing_date: NotRequired[str]
-    portfolio: NotRequired[list[InstitutionalPortfolioInfo | InstitutionalPortfolioInfoDict]]
+    portfolio: NotRequired[list[InstitutionalPortfolioInfoDict]]

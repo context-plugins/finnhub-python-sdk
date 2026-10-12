@@ -13,4 +13,4 @@ class Ipocalendar(SdkBaseModel):
 
 
 class IpocalendarDict(TypedDict):
-    ipo_calendar: NotRequired[list[Ipoevent | IpoeventDict]]
+    ipo_calendar: NotRequired[list[IpoeventDict]]

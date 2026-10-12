@@ -18,6 +18,6 @@ class DpsEstimates(SdkBaseModel):
 
 
 class DpsEstimatesDict(TypedDict):
-    data: NotRequired[list[DpsEstimatesInfo | DpsEstimatesInfoDict]]
+    data: NotRequired[list[DpsEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

@@ -33,4 +33,4 @@ class DocumentResponseDict(TypedDict):
     hits: NotRequired[str]
     url: NotRequired[str]
     format: NotRequired[str]
-    excerpts: NotRequired[list[ExcerptResponse | ExcerptResponseDict]]
+    excerpts: NotRequired[list[ExcerptResponseDict]]

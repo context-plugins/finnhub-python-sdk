@@ -16,4 +16,4 @@ class CompanyExecutive(SdkBaseModel):
 
 class CompanyExecutiveDict(TypedDict):
     symbol: NotRequired[str]
-    executive: NotRequired[list[Company | CompanyDict]]
+    executive: NotRequired[list[CompanyDict]]

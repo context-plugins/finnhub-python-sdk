@@ -16,4 +16,4 @@ class CongressionalTrading(SdkBaseModel):
 
 class CongressionalTradingDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[CongressionalTransaction | CongressionalTransactionDict]]
+    data: NotRequired[list[CongressionalTransactionDict]]

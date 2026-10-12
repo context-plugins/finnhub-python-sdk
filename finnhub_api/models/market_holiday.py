@@ -20,4 +20,4 @@ class MarketHoliday(SdkBaseModel):
 class MarketHolidayDict(TypedDict):
     timezone: NotRequired[str]
     exchange: NotRequired[str]
-    data: NotRequired[list[MarketHolidayData | MarketHolidayDataDict]]
+    data: NotRequired[list[MarketHolidayDataDict]]

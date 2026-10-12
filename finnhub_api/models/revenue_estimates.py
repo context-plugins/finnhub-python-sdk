@@ -18,6 +18,6 @@ class RevenueEstimates(SdkBaseModel):
 
 
 class RevenueEstimatesDict(TypedDict):
-    data: NotRequired[list[RevenueEstimatesInfo | RevenueEstimatesInfoDict]]
+    data: NotRequired[list[RevenueEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

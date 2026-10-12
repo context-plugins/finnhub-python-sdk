@@ -20,4 +20,4 @@ class CompanyEarningsQualityScore(SdkBaseModel):
 class CompanyEarningsQualityScoreDict(TypedDict):
     symbol: NotRequired[str]
     freq: NotRequired[str]
-    data: NotRequired[list[CompanyEarningsQualityScoreData | CompanyEarningsQualityScoreDataDict]]
+    data: NotRequired[list[CompanyEarningsQualityScoreDataDict]]

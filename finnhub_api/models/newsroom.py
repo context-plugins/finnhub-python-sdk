@@ -16,4 +16,4 @@ class Newsroom(SdkBaseModel):
 
 class NewsroomDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[NewsroomArticle | NewsroomArticleDict]]
+    data: NotRequired[list[NewsroomArticleDict]]

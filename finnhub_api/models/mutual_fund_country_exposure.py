@@ -17,4 +17,4 @@ class MutualFundCountryExposure(SdkBaseModel):
 
 class MutualFundCountryExposureDict(TypedDict):
     symbol: NotRequired[str]
-    country_exposure: NotRequired[list[MutualFundCountryExposureData | MutualFundCountryExposureDataDict]]
+    country_exposure: NotRequired[list[MutualFundCountryExposureDataDict]]

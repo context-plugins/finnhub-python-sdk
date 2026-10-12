@@ -15,5 +15,5 @@ class EconomicData(SdkBaseModel):
 
 
 class EconomicDataDict(TypedDict):
-    data: NotRequired[list[EconomicDataInfo | EconomicDataInfoDict]]
+    data: NotRequired[list[EconomicDataInfoDict]]
     code: NotRequired[str]

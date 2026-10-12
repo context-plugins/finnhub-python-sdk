@@ -67,4 +67,4 @@ class InFilingResponseDict(TypedDict):
     source: NotRequired[str]
     page_count: NotRequired[int]
     document_count: NotRequired[int]
-    documents: NotRequired[list[DocumentResponse | DocumentResponseDict]]
+    documents: NotRequired[list[DocumentResponseDict]]

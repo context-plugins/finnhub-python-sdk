@@ -23,4 +23,4 @@ class IndicesConstituents(SdkBaseModel):
 class IndicesConstituentsDict(TypedDict):
     symbol: NotRequired[str]
     constituents: NotRequired[list[str]]
-    constituents_breakdown: NotRequired[list[IndicesConstituentsBreakdown | IndicesConstituentsBreakdownDict]]
+    constituents_breakdown: NotRequired[list[IndicesConstituentsBreakdownDict]]

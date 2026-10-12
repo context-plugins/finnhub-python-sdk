@@ -18,6 +18,6 @@ class EarningsEstimates(SdkBaseModel):
 
 
 class EarningsEstimatesDict(TypedDict):
-    data: NotRequired[list[EarningsEstimatesInfo | EarningsEstimatesInfoDict]]
+    data: NotRequired[list[EarningsEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

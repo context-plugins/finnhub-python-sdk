@@ -38,8 +38,8 @@ class EarningsCallTranscripts(SdkBaseModel):
 
 class EarningsCallTranscriptsDict(TypedDict):
     symbol: NotRequired[str]
-    transcript: NotRequired[list[TranscriptContent | TranscriptContentDict]]
-    participant: NotRequired[list[TranscriptParticipant | TranscriptParticipantDict]]
+    transcript: NotRequired[list[TranscriptContentDict]]
+    participant: NotRequired[list[TranscriptParticipantDict]]
     audio: NotRequired[str]
     id: NotRequired[str]
     title: NotRequired[str]

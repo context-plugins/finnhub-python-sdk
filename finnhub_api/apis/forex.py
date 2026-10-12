@@ -8,9 +8,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.forex_candles import ForexCandles
 from ..models.forex_symbol import ForexSymbol
@@ -33,29 +35,31 @@ class Forex:
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.forex_candles(
-            symbol, resolution, from_, to, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.forex_candles(symbol, resolution, from_, to, request_options=request_options)
+        )
 
     def forex_exchanges(self, *, request_options: RequestOptionsOrDict | None = None) -> list[str]:
         """List supported forex exchanges
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.forex_exchanges(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.forex_exchanges(request_options=request_options))
 
     def forex_rates(
         self, *, base: str | None = None, date: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -65,28 +69,30 @@ class Forex:
         Args:
             base: Base currency. Default to EUR.
             date: Date. Leave blank to get the latest data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.forex_rates(base=base, date=date, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.forex_rates(base=base, date=date, request_options=request_options))
 
     def forex_symbols(self, exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> list[ForexSymbol]:
         """List supported forex symbols.
 
         Args:
             exchange: Exchange you want to get the list of symbols from.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.forex_symbols(exchange, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.forex_symbols(exchange, request_options=request_options))
 
     @property
     def with_raw_response(self) -> ForexWithRawResponse:
@@ -108,29 +114,31 @@ class AsyncForex:
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.forex_candles(symbol, resolution, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def forex_exchanges(self, *, request_options: RequestOptionsOrDict | None = None) -> list[str]:
         """List supported forex exchanges
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.forex_exchanges(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.forex_exchanges(request_options=request_options))
 
     async def forex_rates(
         self, *, base: str | None = None, date: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -140,16 +148,15 @@ class AsyncForex:
         Args:
             base: Base currency. Default to EUR.
             date: Date. Leave blank to get the latest data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.forex_rates(base=base, date=date, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.forex_rates(base=base, date=date, request_options=request_options))
 
     async def forex_symbols(
         self, exchange: str, *, request_options: RequestOptionsOrDict | None = None
@@ -158,14 +165,15 @@ class AsyncForex:
 
         Args:
             exchange: Exchange you want to get the list of symbols from.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.forex_symbols(exchange, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.forex_symbols(exchange, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncForexWithRawResponse:
@@ -184,7 +192,8 @@ class ForexWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -207,7 +216,8 @@ class ForexWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """List supported forex exchanges
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -228,7 +238,8 @@ class ForexWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             base: Base currency. Default to EUR.
             date: Date. Leave blank to get the latest data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -249,7 +260,8 @@ class ForexWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             exchange: Exchange you want to get the list of symbols from.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -276,7 +288,8 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -290,7 +303,7 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
                 param[int]("to", to),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[ForexCandles],
+            decoder=async_json_decoder[ForexCandles],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -301,7 +314,8 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
         """List supported forex exchanges
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -309,7 +323,7 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             http_method="GET",
             url_template=self._server.default("/forex/exchange"),
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[str]],
+            decoder=async_json_decoder[list[str]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -322,7 +336,8 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
         Args:
             base: Base currency. Default to EUR.
             date: Date. Leave blank to get the latest data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -331,7 +346,7 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             url_template=self._server.default("/forex/rates"),
             query_params=[param[str | None]("base", base), param[str | None]("date", date)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[Forexrates],
+            decoder=async_json_decoder[Forexrates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -343,7 +358,8 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
 
         Args:
             exchange: Exchange you want to get the list of symbols from.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -352,7 +368,7 @@ class AsyncForexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             url_template=self._server.default("/forex/symbol"),
             query_params=[param[str]("exchange", exchange)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[ForexSymbol]],
+            decoder=async_json_decoder[list[ForexSymbol]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

@@ -18,6 +18,6 @@ class HistoricalMarketCapData(SdkBaseModel):
 
 
 class HistoricalMarketCapDataDict(TypedDict):
-    data: NotRequired[list[MarketCapData | MarketCapDataDict]]
+    data: NotRequired[list[MarketCapDataDict]]
     symbol: NotRequired[str]
     currency: NotRequired[str]

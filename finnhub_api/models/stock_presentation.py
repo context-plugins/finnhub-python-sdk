@@ -16,4 +16,4 @@ class StockPresentation(SdkBaseModel):
 
 class StockPresentationDict(TypedDict):
     symbol: NotRequired[str]
-    res: NotRequired[list[PresentationData | PresentationDataDict]]
+    res: NotRequired[list[PresentationDataDict]]

@@ -10,11 +10,14 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_empty_response,
+    async_json_decoder,
     empty_response,
     json_body,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.in_filing_response import InFilingResponse
 from ..models.in_filing_search_body import InFilingSearchBody, InFilingSearchBodyDict
@@ -34,11 +37,12 @@ class GlobalFilings:
         Args:
             document_id: Document's id. Note that this is different from filingId as 1 filing can contain multiple
                 documents.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.global_filings_download(document_id, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.global_filings_download(document_id, request_options=request_options))
 
     def global_filings_search(
         self, *, search: SearchBody | SearchBodyDict | None = None, request_options: RequestOptionsOrDict | None = None
@@ -51,14 +55,15 @@ class GlobalFilings:
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.global_filings_search(search=search, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.global_filings_search(search=search, request_options=request_options))
 
     def global_filings_search_filter(
         self, field: str, *, source: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -69,16 +74,17 @@ class GlobalFilings:
             field: Field to get available filters. Available filters are "countries", "exchanges", "exhibits", "forms",
                 "gics", "naics", "caps", "acts", and "sort".
             source: Get available forms for each source.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.global_filings_search_filter(
-            field, source=source, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.global_filings_search_filter(field, source=source, request_options=request_options)
+        )
 
     def search_in_filing(
         self,
@@ -90,14 +96,15 @@ class GlobalFilings:
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.search_in_filing(search=search, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.search_in_filing(search=search, request_options=request_options))
 
     @property
     def with_raw_response(self) -> GlobalFilingsWithRawResponse:
@@ -116,13 +123,14 @@ class AsyncGlobalFilings:
         Args:
             document_id: Document's id. Note that this is different from filingId as 1 filing can contain multiple
                 documents.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.global_filings_download(document_id, request_options=request_options)
-        ).unwrap()
+        )
 
     async def global_filings_search(
         self, *, search: SearchBody | SearchBodyDict | None = None, request_options: RequestOptionsOrDict | None = None
@@ -135,16 +143,17 @@ class AsyncGlobalFilings:
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.global_filings_search(search=search, request_options=request_options)
-        ).unwrap()
+        )
 
     async def global_filings_search_filter(
         self, field: str, *, source: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -155,18 +164,19 @@ class AsyncGlobalFilings:
             field: Field to get available filters. Available filters are "countries", "exchanges", "exhibits", "forms",
                 "gics", "naics", "caps", "acts", and "sort".
             source: Get available forms for each source.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.global_filings_search_filter(
                 field, source=source, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def search_in_filing(
         self,
@@ -178,14 +188,15 @@ class AsyncGlobalFilings:
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.search_in_filing(search=search, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.search_in_filing(search=search, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncGlobalFilingsWithRawResponse:
@@ -201,7 +212,8 @@ class GlobalFilingsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSch
         Args:
             document_id: Document's id. Note that this is different from filingId as 1 filing can contain multiple
                 documents.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -226,7 +238,8 @@ class GlobalFilingsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSch
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -250,7 +263,8 @@ class GlobalFilingsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSch
             field: Field to get available filters. Available filters are "countries", "exchanges", "exhibits", "forms",
                 "gics", "naics", "caps", "acts", and "sort".
             source: Get available forms for each source.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -274,7 +288,8 @@ class GlobalFilingsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSch
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -299,7 +314,8 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
         Args:
             document_id: Document's id. Note that this is different from filingId as 1 filing can contain multiple
                 documents.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -308,7 +324,7 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             url_template=self._server.default("/global-filings/download"),
             query_params=[param[str]("documentId", document_id)],
             auth_scheme=self._auth.api_key,
-            decoder=empty_response,
+            decoder=async_empty_response,
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -324,7 +340,8 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -334,7 +351,7 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[SearchBody | SearchBodyDict | None](search),
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SearchResponse],
+            decoder=async_json_decoder[SearchResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -348,7 +365,8 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             field: Field to get available filters. Available filters are "countries", "exchanges", "exhibits", "forms",
                 "gics", "naics", "caps", "acts", and "sort".
             source: Get available forms for each source.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -357,7 +375,7 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             url_template=self._server.default("/global-filings/filter"),
             query_params=[param[str]("field", field), param[str | None]("source", source)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SearchFilter],
+            decoder=async_json_decoder[SearchFilter],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -372,7 +390,8 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -382,7 +401,7 @@ class AsyncGlobalFilingsWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[InFilingSearchBody | InFilingSearchBodyDict | None](search),
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[InFilingResponse],
+            decoder=async_json_decoder[InFilingResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

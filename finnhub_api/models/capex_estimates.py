@@ -18,6 +18,6 @@ class CapexEstimates(SdkBaseModel):
 
 
 class CapexEstimatesDict(TypedDict):
-    data: NotRequired[list[CapexEstimatesInfo | CapexEstimatesInfoDict]]
+    data: NotRequired[list[CapexEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

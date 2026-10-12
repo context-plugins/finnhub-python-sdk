@@ -8,9 +8,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.mutual_fund_country_exposure import MutualFundCountryExposure
 from ..models.mutual_fund_eet import MutualFundEet
@@ -33,30 +35,34 @@ class MutualFund:
         Args:
             symbol: Symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.mutual_fund_country_exposure(
-            symbol=symbol, isin=isin, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mutual_fund_country_exposure(
+                symbol=symbol, isin=isin, request_options=request_options
+            ),
+        )
 
     def mutual_fund_eet(self, isin: str, *, request_options: RequestOptionsOrDict | None = None) -> MutualFundEet:
         """Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.mutual_fund_eet(isin, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.mutual_fund_eet(isin, request_options=request_options))
 
     def mutual_fund_eet_pai(
         self, isin: str, *, request_options: RequestOptionsOrDict | None = None
@@ -65,14 +71,15 @@ class MutualFund:
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.mutual_fund_eet_pai(isin, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.mutual_fund_eet_pai(isin, request_options=request_options))
 
     def mutual_fund_holdings(
         self,
@@ -91,16 +98,19 @@ class MutualFund:
             isin: Fund's isin.
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.mutual_fund_holdings(
-            symbol=symbol, isin=isin, skip=skip, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mutual_fund_holdings(
+                symbol=symbol, isin=isin, skip=skip, request_options=request_options
+            ),
+        )
 
     def mutual_fund_profile(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -112,16 +122,17 @@ class MutualFund:
         Args:
             symbol: Fund's symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.mutual_fund_profile(
-            symbol=symbol, isin=isin, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mutual_fund_profile(symbol=symbol, isin=isin, request_options=request_options)
+        )
 
     def mutual_fund_sector_exposure(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -131,16 +142,19 @@ class MutualFund:
         Args:
             symbol: Mutual Fund symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.mutual_fund_sector_exposure(
-            symbol=symbol, isin=isin, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mutual_fund_sector_exposure(
+                symbol=symbol, isin=isin, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> MutualFundWithRawResponse:
@@ -159,32 +173,34 @@ class AsyncMutualFund:
         Args:
             symbol: Symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mutual_fund_country_exposure(
                 symbol=symbol, isin=isin, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def mutual_fund_eet(self, isin: str, *, request_options: RequestOptionsOrDict | None = None) -> MutualFundEet:
         """Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.mutual_fund_eet(isin, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.mutual_fund_eet(isin, request_options=request_options))
 
     async def mutual_fund_eet_pai(
         self, isin: str, *, request_options: RequestOptionsOrDict | None = None
@@ -193,14 +209,15 @@ class AsyncMutualFund:
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.mutual_fund_eet_pai(isin, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.mutual_fund_eet_pai(isin, request_options=request_options))
 
     async def mutual_fund_holdings(
         self,
@@ -219,18 +236,19 @@ class AsyncMutualFund:
             isin: Fund's isin.
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mutual_fund_holdings(
                 symbol=symbol, isin=isin, skip=skip, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def mutual_fund_profile(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -242,16 +260,17 @@ class AsyncMutualFund:
         Args:
             symbol: Fund's symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mutual_fund_profile(symbol=symbol, isin=isin, request_options=request_options)
-        ).unwrap()
+        )
 
     async def mutual_fund_sector_exposure(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -261,18 +280,19 @@ class AsyncMutualFund:
         Args:
             symbol: Mutual Fund symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mutual_fund_sector_exposure(
                 symbol=symbol, isin=isin, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncMutualFundWithRawResponse:
@@ -288,7 +308,8 @@ class MutualFundWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         Args:
             symbol: Symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -309,7 +330,8 @@ class MutualFundWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -330,7 +352,8 @@ class MutualFundWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -361,7 +384,8 @@ class MutualFundWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
             isin: Fund's isin.
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -387,7 +411,8 @@ class MutualFundWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         Args:
             symbol: Fund's symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -409,7 +434,8 @@ class MutualFundWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         Args:
             symbol: Mutual Fund symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -433,7 +459,8 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
         Args:
             symbol: Symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -442,7 +469,7 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
             url_template=self._server.default("/mutual-fund/country"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MutualFundCountryExposure],
+            decoder=async_json_decoder[MutualFundCountryExposure],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -454,7 +481,8 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -463,7 +491,7 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
             url_template=self._server.default("/mutual-fund/eet"),
             query_params=[param[str]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MutualFundEet],
+            decoder=async_json_decoder[MutualFundEet],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -475,7 +503,8 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
 
         Args:
             isin: ISIN.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -484,7 +513,7 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
             url_template=self._server.default("/mutual-fund/eet-pai"),
             query_params=[param[str]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MutualFundEetPai],
+            decoder=async_json_decoder[MutualFundEetPai],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -506,7 +535,8 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
             isin: Fund's isin.
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -517,7 +547,7 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
                 param[str | None]("symbol", symbol), param[str | None]("isin", isin), param[int | None]("skip", skip)
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MutualFundHoldings],
+            decoder=async_json_decoder[MutualFundHoldings],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -532,7 +562,8 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
         Args:
             symbol: Fund's symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -541,7 +572,7 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
             url_template=self._server.default("/mutual-fund/profile"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MutualFundProfile],
+            decoder=async_json_decoder[MutualFundProfile],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -554,7 +585,8 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
         Args:
             symbol: Mutual Fund symbol.
             isin: Fund's isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -563,7 +595,7 @@ class AsyncMutualFundWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
             url_template=self._server.default("/mutual-fund/sector"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MutualFundSectorExposure],
+            decoder=async_json_decoder[MutualFundSectorExposure],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

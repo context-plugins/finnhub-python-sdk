@@ -63,7 +63,7 @@
 
 ```python
 try:
-    response = client.bond.bond_price(isin, from_, to)
+    response = client.bond.bond_price("some example string", 1, 1)
     # TODO: Handle 'response' of type BondCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -73,7 +73,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.bond.bond_price(isin, from_, to)
+    response = await async_client.bond.bond_price("some example string", 1, 1)
     # TODO: Handle 'response' of type BondCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -92,7 +92,7 @@ except ApiError as e:
 | <code>isin</code> | <code>str</code> | ISIN. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -168,7 +168,7 @@ except ApiError as e:
 | <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
 | <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
 | <code>figi</code> | <code>str \| None</code> | FIGI<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -235,7 +235,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.bond.bond_tick(isin, date, limit, skip, exchange)
+    response = client.bond.bond_tick("some example string", date(2024, 1, 15), 1, 1, "some example string")
     # TODO: Handle 'response' of type BondTickData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -245,7 +245,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.bond.bond_tick(isin, date, limit, skip, exchange)
+    response = await async_client.bond.bond_tick("some example string", date(2024, 1, 15), 1, 1, "some example string")
     # TODO: Handle 'response' of type BondTickData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -266,7 +266,7 @@ except ApiError as e:
 | <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
 | <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
 | <code>exchange</code> | <code>str</code> | Currently support the following values: <code>trace</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -313,7 +313,7 @@ Get yield curve data for Treasury bonds.
 
 ```python
 try:
-    response = client.bond.bond_yield_curve(code)
+    response = client.bond.bond_yield_curve("some example string")
     # TODO: Handle 'response' of type BondYieldCurve
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -323,7 +323,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.bond.bond_yield_curve(code)
+    response = await async_client.bond.bond_yield_curve("some example string")
     # TODO: Handle 'response' of type BondYieldCurve
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -340,7 +340,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>code</code> | <code>str</code> | Bond's code. You can find the list of supported code <a href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing" target="_blank" rel="noopener">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -421,7 +421,7 @@ except ApiError as e:
 | <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
 | <code>symbol</code> | <code>str \| None</code> | Filter by symbol: AAPL.<br>**Default**: <code>None</code> |
 | <code>international</code> | <code>bool \| None</code> | Set to <code>true</code> to include international markets. Default value is <code>false</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -496,7 +496,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -543,7 +543,7 @@ Get recent and upcoming IPO.
 
 ```python
 try:
-    response = client.calendar.ipo_calendar(from_, to)
+    response = client.calendar.ipo_calendar(date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type Ipocalendar
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -553,7 +553,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.calendar.ipo_calendar(from_, to)
+    response = await async_client.calendar.ipo_calendar(date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type Ipocalendar
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -571,7 +571,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>from_</code> | <code>Date</code> | From date: 2020-03-15. |
 | <code>to</code> | <code>Date</code> | To date: 2020-03-16. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -622,7 +622,7 @@ Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a t
 
 ```python
 try:
-    response = client.corporate_actions.isin_change(from_, to)
+    response = client.corporate_actions.isin_change("some example string", "some example string")
     # TODO: Handle 'response' of type IsinChange
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -632,7 +632,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.corporate_actions.isin_change(from_, to)
+    response = await async_client.corporate_actions.isin_change("some example string", "some example string")
     # TODO: Handle 'response' of type IsinChange
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -650,7 +650,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -697,7 +697,7 @@ Get a list of symbol changes for US-listed, EU-listed, NSE and ASX securities. L
 
 ```python
 try:
-    response = client.corporate_actions.symbol_change(from_, to)
+    response = client.corporate_actions.symbol_change("some example string", "some example string")
     # TODO: Handle 'response' of type SymbolChange
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -707,7 +707,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.corporate_actions.symbol_change(from_, to)
+    response = await async_client.corporate_actions.symbol_change("some example string", "some example string")
     # TODO: Handle 'response' of type SymbolChange
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -725,7 +725,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -776,7 +776,7 @@ Get candlestick data for crypto symbols.
 
 ```python
 try:
-    response = client.crypto.crypto_candles(symbol, resolution, from_, to)
+    response = client.crypto.crypto_candles("some example string", "some example string", 1, 1)
     # TODO: Handle 'response' of type CryptoCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -786,7 +786,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.crypto.crypto_candles(symbol, resolution, from_, to)
+    response = await async_client.crypto.crypto_candles("some example string", "some example string", 1, 1)
     # TODO: Handle 'response' of type CryptoCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -806,7 +806,7 @@ except ApiError as e:
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -879,7 +879,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -926,7 +926,7 @@ Get crypto's profile.
 
 ```python
 try:
-    response = client.crypto.crypto_profile(symbol)
+    response = client.crypto.crypto_profile("some example string")
     # TODO: Handle 'response' of type CryptoProfile
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -936,7 +936,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.crypto.crypto_profile(symbol)
+    response = await async_client.crypto.crypto_profile("some example string")
     # TODO: Handle 'response' of type CryptoProfile
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -953,7 +953,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Crypto symbol such as BTC or ETH. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1000,7 +1000,7 @@ List supported crypto symbols by exchange
 
 ```python
 try:
-    response = client.crypto.crypto_symbols(exchange)
+    response = client.crypto.crypto_symbols("some example string")
     # TODO: Handle 'response' of type list[CryptoSymbol]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1010,7 +1010,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.crypto.crypto_symbols(exchange)
+    response = await async_client.crypto.crypto_symbols("some example string")
     # TODO: Handle 'response' of type list[CryptoSymbol]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1027,7 +1027,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange you want to get the list of symbols from. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1104,7 +1104,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1151,7 +1151,7 @@ Get economic data.
 
 ```python
 try:
-    response = client.economic.economic_data(code)
+    response = client.economic.economic_data("some example string")
     # TODO: Handle 'response' of type EconomicData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1161,7 +1161,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.economic.economic_data(code)
+    response = await async_client.economic.economic_data("some example string")
     # TODO: Handle 'response' of type EconomicData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1178,7 +1178,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>code</code> | <code>str</code> | Economic code. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1257,7 +1257,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1332,7 +1332,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1409,7 +1409,7 @@ except ApiError as e:
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
 | <code>skip</code> | <code>int \| None</code> | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.<br>**Default**: <code>None</code> |
 | <code>date</code> | <code>str \| None</code> | Query holdings by date. You can use either this param or <code>skip</code> param, not both.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1484,7 +1484,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1559,7 +1559,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1610,7 +1610,7 @@ Get candlestick data for forex symbols.
 
 ```python
 try:
-    response = client.forex.forex_candles(symbol, resolution, from_, to)
+    response = client.forex.forex_candles("some example string", "some example string", 1, 1)
     # TODO: Handle 'response' of type ForexCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1620,7 +1620,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.forex.forex_candles(symbol, resolution, from_, to)
+    response = await async_client.forex.forex_candles("some example string", "some example string", 1, 1)
     # TODO: Handle 'response' of type ForexCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1640,7 +1640,7 @@ except ApiError as e:
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1713,7 +1713,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1788,7 +1788,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>base</code> | <code>str \| None</code> | Base currency. Default to EUR.<br>**Default**: <code>None</code> |
 | <code>date</code> | <code>str \| None</code> | Date. Leave blank to get the latest data.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1835,7 +1835,7 @@ List supported forex symbols.
 
 ```python
 try:
-    response = client.forex.forex_symbols(exchange)
+    response = client.forex.forex_symbols("some example string")
     # TODO: Handle 'response' of type list[ForexSymbol]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1845,7 +1845,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.forex.forex_symbols(exchange)
+    response = await async_client.forex.forex_symbols("some example string")
     # TODO: Handle 'response' of type list[ForexSymbol]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -1862,7 +1862,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange you want to get the list of symbols from. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1913,7 +1913,7 @@ except ApiError as e:
 
 ```python
 try:
-    client.global_filings.global_filings_download(document_id)
+    client.global_filings.global_filings_download("some example string")
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
 ```
@@ -1922,7 +1922,7 @@ except ApiError as e:
 
 ```python
 try:
-    await async_client.global_filings.global_filings_download(document_id)
+    await async_client.global_filings.global_filings_download("some example string")
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
 ```
@@ -1938,7 +1938,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>document_id</code> | <code>str</code> | Document's id. Note that this is different from filingId as 1 filing can contain multiple documents. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2012,7 +2012,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>search</code> | <code>[SearchBody](finnhub_api/models/search_body.py) \| [SearchBodyDict](finnhub_api/models/search_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2059,7 +2059,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.global_filings.global_filings_search_filter(field)
+    response = client.global_filings.global_filings_search_filter("some example string")
     # TODO: Handle 'response' of type SearchFilter
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2069,7 +2069,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.global_filings.global_filings_search_filter(field)
+    response = await async_client.global_filings.global_filings_search_filter("some example string")
     # TODO: Handle 'response' of type SearchFilter
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2087,7 +2087,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>field</code> | <code>str</code> | Field to get available filters. Available filters are "countries", "exchanges", "exhibits", "forms", "gics", "naics", "caps", "acts", and "sort". |
 | <code>source</code> | <code>str \| None</code> | Get available forms for each source.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2161,7 +2161,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>search</code> | <code>[InFilingSearchBody](finnhub_api/models/in_filing_search_body.py) \| [InFilingSearchBodyDict](finnhub_api/models/in_filing_search_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2212,7 +2212,7 @@ Get a list of index's constituents. A list of supported indices for this endpoin
 
 ```python
 try:
-    response = client.index.indices_constituents(symbol)
+    response = client.index.indices_constituents("some example string")
     # TODO: Handle 'response' of type IndicesConstituents
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2222,7 +2222,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.index.indices_constituents(symbol)
+    response = await async_client.index.indices_constituents("some example string")
     # TODO: Handle 'response' of type IndicesConstituents
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2239,7 +2239,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | symbol |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2286,7 +2286,7 @@ Get full history of index's constituents including symbols and dates of joining 
 
 ```python
 try:
-    response = client.index.indices_historical_constituents(symbol)
+    response = client.index.indices_historical_constituents("some example string")
     # TODO: Handle 'response' of type IndicesHistoricalConstituents
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2296,7 +2296,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.index.indices_historical_constituents(symbol)
+    response = await async_client.index.indices_historical_constituents("some example string")
     # TODO: Handle 'response' of type IndicesHistoricalConstituents
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2313,7 +2313,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | symbol |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2364,7 +2364,9 @@ Get a list institutional investors' positions for a particular stock overtime. D
 
 ```python
 try:
-    response = client.institutional.institutional_ownership(symbol, cusip, from_, to)
+    response = client.institutional.institutional_ownership(
+        "some example string", "some example string", "some example string", "some example string"
+    )
     # TODO: Handle 'response' of type InstitutionalOwnership
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2374,7 +2376,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.institutional.institutional_ownership(symbol, cusip, from_, to)
+    response = await async_client.institutional.institutional_ownership(
+        "some example string", "some example string", "some example string", "some example string"
+    )
     # TODO: Handle 'response' of type InstitutionalOwnership
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2394,7 +2398,7 @@ except ApiError as e:
 | <code>cusip</code> | <code>str</code> | Filter by CUSIP. |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2441,7 +2445,9 @@ Get the holdings/portfolio data of institutional investors from 13-F filings. Li
 
 ```python
 try:
-    response = client.institutional.institutional_portfolio(cik, from_, to)
+    response = client.institutional.institutional_portfolio(
+        "some example string", "some example string", "some example string"
+    )
     # TODO: Handle 'response' of type InstitutionalPortfolio
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2451,7 +2457,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.institutional.institutional_portfolio(cik, from_, to)
+    response = await async_client.institutional.institutional_portfolio(
+        "some example string", "some example string", "some example string"
+    )
     # TODO: Handle 'response' of type InstitutionalPortfolio
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2470,7 +2478,7 @@ except ApiError as e:
 | <code>cik</code> | <code>str</code> | Fund's CIK. |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2544,7 +2552,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>cik</code> | <code>str \| None</code> | Filter by CIK. Leave blank to get the full list.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2622,7 +2630,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>search</code> | <code>[AichatBody](finnhub_api/models/aichat_body.py) \| [AichatBodyDict](finnhub_api/models/aichat_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2669,7 +2677,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.misc.airline_price_index(airline, from_, to)
+    response = client.misc.airline_price_index("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type AirlinePriceIndexData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2679,7 +2687,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.misc.airline_price_index(airline, from_, to)
+    response = await async_client.misc.airline_price_index("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type AirlinePriceIndexData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2698,7 +2706,7 @@ except ApiError as e:
 | <code>airline</code> | <code>str</code> | Filter data by airline. Accepted values: <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code> |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2745,7 +2753,7 @@ Retrieve list of US bank branches information for a given symbol.
 
 ```python
 try:
-    response = client.misc.bank_branch(symbol)
+    response = client.misc.bank_branch({})
     # TODO: Handle 'response' of type BankBranchRes
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2755,7 +2763,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.misc.bank_branch(symbol)
+    response = await async_client.misc.bank_branch({})
     # TODO: Handle 'response' of type BankBranchRes
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -2772,7 +2780,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>Any</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2845,7 +2853,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2918,7 +2926,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2991,7 +2999,7 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3038,7 +3046,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.misc.quote(symbol)
+    response = client.misc.quote("some example string")
     # TODO: Handle 'response' of type Quote
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3048,7 +3056,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.misc.quote(symbol)
+    response = await async_client.misc.quote("some example string")
     # TODO: Handle 'response' of type Quote
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3065,7 +3073,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3112,7 +3120,7 @@ Get ratios for different sectors and regions/indices.
 
 ```python
 try:
-    response = client.misc.sector_metric(region)
+    response = client.misc.sector_metric("some example string")
     # TODO: Handle 'response' of type SectorMetric
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3122,7 +3130,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.misc.sector_metric(region)
+    response = await async_client.misc.sector_metric("some example string")
     # TODO: Handle 'response' of type SectorMetric
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3139,7 +3147,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>region</code> | <code>str</code> | Region. A list of supported values for this field can be found <a href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing" target="_blank">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3186,7 +3194,7 @@ Search for best-matching symbols based on your query. You can input anything fro
 
 ```python
 try:
-    response = client.misc.symbol_search(q)
+    response = client.misc.symbol_search("some example string")
     # TODO: Handle 'response' of type SymbolLookup
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3196,7 +3204,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.misc.symbol_search(q)
+    response = await async_client.misc.symbol_search("some example string")
     # TODO: Handle 'response' of type SymbolLookup
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3214,7 +3222,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>q</code> | <code>str</code> | Query text can be symbol, name, isin, or cusip. |
 | <code>exchange</code> | <code>str \| None</code> | Exchange limit.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3261,7 +3269,9 @@ Return technical indicator with price data. List of supported indicators can be 
 
 ```python
 try:
-    response = client.misc.technical_indicator(symbol, resolution, from_, to, indicator)
+    response = client.misc.technical_indicator(
+        "some example string", "some example string", 1, 1, "some example string"
+    )
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3271,7 +3281,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.misc.technical_indicator(symbol, resolution, from_, to, indicator)
+    response = await async_client.misc.technical_indicator(
+        "some example string", "some example string", 1, 1, "some example string"
+    )
     # TODO: Handle 'response' of type Any
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3292,7 +3304,7 @@ except ApiError as e:
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
 | <code>indicator</code> | <code>str</code> | Indicator name. Full list can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing" target="_blank">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3371,7 +3383,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3418,7 +3430,7 @@ Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
 
 ```python
 try:
-    response = client.mutual_fund.mutual_fund_eet(isin)
+    response = client.mutual_fund.mutual_fund_eet("some example string")
     # TODO: Handle 'response' of type MutualFundEet
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3428,7 +3440,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.mutual_fund.mutual_fund_eet(isin)
+    response = await async_client.mutual_fund.mutual_fund_eet("some example string")
     # TODO: Handle 'response' of type MutualFundEet
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3445,7 +3457,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>isin</code> | <code>str</code> | ISIN. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3492,7 +3504,7 @@ Get EET PAI data for EU funds.
 
 ```python
 try:
-    response = client.mutual_fund.mutual_fund_eet_pai(isin)
+    response = client.mutual_fund.mutual_fund_eet_pai("some example string")
     # TODO: Handle 'response' of type MutualFundEetPai
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3502,7 +3514,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.mutual_fund.mutual_fund_eet_pai(isin)
+    response = await async_client.mutual_fund.mutual_fund_eet_pai("some example string")
     # TODO: Handle 'response' of type MutualFundEetPai
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3519,7 +3531,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>isin</code> | <code>str</code> | ISIN. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3595,7 +3607,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str \| None</code> | Fund's symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
 | <code>skip</code> | <code>int \| None</code> | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3670,7 +3682,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Fund's symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3745,7 +3757,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Mutual Fund symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3796,7 +3808,7 @@ List latest company news by symbol. This endpoint is only available for North Am
 
 ```python
 try:
-    response = client.news.company_news(symbol, from_, to)
+    response = client.news.company_news("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type list[CompanyNews]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3806,7 +3818,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.news.company_news(symbol, from_, to)
+    response = await async_client.news.company_news("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type list[CompanyNews]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3825,7 +3837,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3872,7 +3884,7 @@ Get latest market news.
 
 ```python
 try:
-    response = client.news.market_news(category)
+    response = client.news.market_news("some example string")
     # TODO: Handle 'response' of type list[MarketNews]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3882,7 +3894,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.news.market_news(category)
+    response = await async_client.news.market_news("some example string")
     # TODO: Handle 'response' of type list[MarketNews]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3900,7 +3912,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>category</code> | <code>str</code> | This parameter can be 1 of the following values <code>general, forex, crypto, merger</code>. |
 | <code>min_id</code> | <code>int \| None</code> | Use this field to get only news after this ID. Default to 0<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3947,7 +3959,7 @@ Get company's news sentiment and statistics. This endpoint is only available for
 
 ```python
 try:
-    response = client.news.news_sentiment(symbol)
+    response = client.news.news_sentiment("some example string")
     # TODO: Handle 'response' of type NewsSentiment
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3957,7 +3969,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.news.news_sentiment(symbol)
+    response = await async_client.news.news_sentiment("some example string")
     # TODO: Handle 'response' of type NewsSentiment
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -3974,7 +3986,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Company symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4021,7 +4033,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.news.press_releases(symbol)
+    response = client.news.press_releases("some example string")
     # TODO: Handle 'response' of type PressRelease
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4031,7 +4043,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.news.press_releases(symbol)
+    response = await async_client.news.press_releases("some example string")
     # TODO: Handle 'response' of type PressRelease
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4050,7 +4062,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date \| None</code> | From time: 2020-01-01.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To time: 2020-01-05.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4101,7 +4113,7 @@ Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving 
 
 ```python
 try:
-    response = client.scan.aggregate_indicator(symbol, resolution)
+    response = client.scan.aggregate_indicator("some example string", "some example string")
     # TODO: Handle 'response' of type AggregateIndicators
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4111,7 +4123,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.scan.aggregate_indicator(symbol, resolution)
+    response = await async_client.scan.aggregate_indicator("some example string", "some example string")
     # TODO: Handle 'response' of type AggregateIndicators
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4129,7 +4141,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | symbol |
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4176,7 +4188,7 @@ Run pattern recognition algorithm on a symbol. Support double top/bottom, triple
 
 ```python
 try:
-    response = client.scan.pattern_recognition(symbol, resolution)
+    response = client.scan.pattern_recognition("some example string", "some example string")
     # TODO: Handle 'response' of type PatternRecognition
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4186,7 +4198,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.scan.pattern_recognition(symbol, resolution)
+    response = await async_client.scan.pattern_recognition("some example string", "some example string")
     # TODO: Handle 'response' of type PatternRecognition
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4204,7 +4216,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol |
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4251,7 +4263,7 @@ Get support and resistance levels for a symbol.
 
 ```python
 try:
-    response = client.scan.support_resistance(symbol, resolution)
+    response = client.scan.support_resistance("some example string", "some example string")
     # TODO: Handle 'response' of type SupportResistance
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4261,7 +4273,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.scan.support_resistance(symbol, resolution)
+    response = await async_client.scan.support_resistance("some example string", "some example string")
     # TODO: Handle 'response' of type SupportResistance
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4279,7 +4291,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol |
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4330,7 +4342,7 @@ Get company's capital expenditure estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_capex_estimates(symbol)
+    response = client.stock_estimates.company_capex_estimates("some example string")
     # TODO: Handle 'response' of type CapexEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4340,7 +4352,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_capex_estimates(symbol)
+    response = await async_client.stock_estimates.company_capex_estimates("some example string")
     # TODO: Handle 'response' of type CapexEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4358,7 +4370,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4405,7 +4417,7 @@ Get company's Dividend per Share estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_dps_estimates(symbol)
+    response = client.stock_estimates.company_dps_estimates("some example string")
     # TODO: Handle 'response' of type DpsEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4415,7 +4427,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_dps_estimates(symbol)
+    response = await async_client.stock_estimates.company_dps_estimates("some example string")
     # TODO: Handle 'response' of type DpsEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4433,7 +4445,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4480,7 +4492,7 @@ Get company historical quarterly earnings surprise going back to 2000.
 
 ```python
 try:
-    response = client.stock_estimates.company_earnings(symbol)
+    response = client.stock_estimates.company_earnings("some example string")
     # TODO: Handle 'response' of type list[EarningResult]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4490,7 +4502,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_earnings(symbol)
+    response = await async_client.stock_estimates.company_earnings("some example string")
     # TODO: Handle 'response' of type list[EarningResult]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4508,7 +4520,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>limit</code> | <code>int \| None</code> | Limit number of period returned. Leave blank to get the full history.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4555,7 +4567,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_estimates.company_earnings_quality_score(symbol, freq)
+    response = client.stock_estimates.company_earnings_quality_score("some example string", "some example string")
     # TODO: Handle 'response' of type CompanyEarningsQualityScore
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4565,7 +4577,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_earnings_quality_score(symbol, freq)
+    response = await async_client.stock_estimates.company_earnings_quality_score(
+        "some example string", "some example string"
+    )
     # TODO: Handle 'response' of type CompanyEarningsQualityScore
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4583,7 +4597,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>freq</code> | <code>str</code> | Frequency. Currently support <code>annual</code> and <code>quarterly</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4630,7 +4644,7 @@ Get company's ebit estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_ebit_estimates(symbol)
+    response = client.stock_estimates.company_ebit_estimates("some example string")
     # TODO: Handle 'response' of type EbitEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4640,7 +4654,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_ebit_estimates(symbol)
+    response = await async_client.stock_estimates.company_ebit_estimates("some example string")
     # TODO: Handle 'response' of type EbitEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4658,7 +4672,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4705,7 +4719,7 @@ Get company's ebitda estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_ebitda_estimates(symbol)
+    response = client.stock_estimates.company_ebitda_estimates("some example string")
     # TODO: Handle 'response' of type EbitdaEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4715,7 +4729,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_ebitda_estimates(symbol)
+    response = await async_client.stock_estimates.company_ebitda_estimates("some example string")
     # TODO: Handle 'response' of type EbitdaEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4733,7 +4747,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4780,7 +4794,7 @@ Get company's EPS estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_eps_estimates(symbol)
+    response = client.stock_estimates.company_eps_estimates("some example string")
     # TODO: Handle 'response' of type EarningsEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4790,7 +4804,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_eps_estimates(symbol)
+    response = await async_client.stock_estimates.company_eps_estimates("some example string")
     # TODO: Handle 'response' of type EarningsEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4808,7 +4822,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4855,7 +4869,7 @@ Get company's free cash flow estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_fcf_estimates(symbol)
+    response = client.stock_estimates.company_fcf_estimates("some example string")
     # TODO: Handle 'response' of type FcfEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4865,7 +4879,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_fcf_estimates(symbol)
+    response = await async_client.stock_estimates.company_fcf_estimates("some example string")
     # TODO: Handle 'response' of type FcfEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4883,7 +4897,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4930,7 +4944,7 @@ Get company's gross income estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_gross_income_estimates(symbol)
+    response = client.stock_estimates.company_gross_income_estimates("some example string")
     # TODO: Handle 'response' of type GrossIncomeEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4940,7 +4954,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_gross_income_estimates(symbol)
+    response = await async_client.stock_estimates.company_gross_income_estimates("some example string")
     # TODO: Handle 'response' of type GrossIncomeEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -4958,7 +4972,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5005,7 +5019,7 @@ Get company's net income estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_net_income_estimates(symbol)
+    response = client.stock_estimates.company_net_income_estimates("some example string")
     # TODO: Handle 'response' of type NetIncomeEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5015,7 +5029,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_net_income_estimates(symbol)
+    response = await async_client.stock_estimates.company_net_income_estimates("some example string")
     # TODO: Handle 'response' of type NetIncomeEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5033,7 +5047,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5080,7 +5094,7 @@ Get company's operating cash flow estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_ocf_estimates(symbol)
+    response = client.stock_estimates.company_ocf_estimates("some example string")
     # TODO: Handle 'response' of type OcfEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5090,7 +5104,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_ocf_estimates(symbol)
+    response = await async_client.stock_estimates.company_ocf_estimates("some example string")
     # TODO: Handle 'response' of type OcfEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5108,7 +5122,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5155,7 +5169,7 @@ Get company's pretax income estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_pretax_income_estimates(symbol)
+    response = client.stock_estimates.company_pretax_income_estimates("some example string")
     # TODO: Handle 'response' of type PretaxIncomeEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5165,7 +5179,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_pretax_income_estimates(symbol)
+    response = await async_client.stock_estimates.company_pretax_income_estimates("some example string")
     # TODO: Handle 'response' of type PretaxIncomeEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5183,7 +5197,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5230,7 +5244,7 @@ Get company's revenue estimates.
 
 ```python
 try:
-    response = client.stock_estimates.company_revenue_estimates(symbol)
+    response = client.stock_estimates.company_revenue_estimates("some example string")
     # TODO: Handle 'response' of type RevenueEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5240,7 +5254,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.company_revenue_estimates(symbol)
+    response = await async_client.stock_estimates.company_revenue_estimates("some example string")
     # TODO: Handle 'response' of type RevenueEstimates
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5258,7 +5272,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5305,7 +5319,7 @@ Get latest price target consensus.
 
 ```python
 try:
-    response = client.stock_estimates.price_target(symbol)
+    response = client.stock_estimates.price_target("some example string")
     # TODO: Handle 'response' of type PriceTarget
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5315,7 +5329,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.price_target(symbol)
+    response = await async_client.stock_estimates.price_target("some example string")
     # TODO: Handle 'response' of type PriceTarget
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5332,7 +5346,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5379,7 +5393,7 @@ Get latest analyst recommendation trends for a company.
 
 ```python
 try:
-    response = client.stock_estimates.recommendation_trends(symbol)
+    response = client.stock_estimates.recommendation_trends("some example string")
     # TODO: Handle 'response' of type list[RecommendationTrend]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5389,7 +5403,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.recommendation_trends(symbol)
+    response = await async_client.stock_estimates.recommendation_trends("some example string")
     # TODO: Handle 'response' of type list[RecommendationTrend]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5406,7 +5420,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5481,7 +5495,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Symbol.<br>**Default**: <code>None</code> |
 | <code>cik</code> | <code>str \| None</code> | CIK.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5528,7 +5542,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_estimates.revenue_breakdown2(symbol)
+    response = client.stock_estimates.revenue_breakdown2("some example string")
     # TODO: Handle 'response' of type RevenueBreakdown2
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5538,7 +5552,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_estimates.revenue_breakdown2(symbol)
+    response = await async_client.stock_estimates.revenue_breakdown2("some example string")
     # TODO: Handle 'response' of type RevenueBreakdown2
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5555,7 +5569,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5631,7 +5645,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2000-03-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5682,7 +5696,7 @@ Get company basic financials such as margin, P/E ratio, 52-week high/low etc.
 
 ```python
 try:
-    response = client.stock_fundamentals.company_basic_financials(symbol, metric)
+    response = client.stock_fundamentals.company_basic_financials("some example string", "some example string")
     # TODO: Handle 'response' of type BasicFinancials
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5692,7 +5706,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.company_basic_financials(symbol, metric)
+    response = await async_client.stock_fundamentals.company_basic_financials(
+        "some example string", "some example string"
+    )
     # TODO: Handle 'response' of type BasicFinancials
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5710,7 +5726,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>metric</code> | <code>str</code> | Metric type. Can be 1 of the following values <code>all</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5757,7 +5773,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_fundamentals.company_esg_score(symbol)
+    response = client.stock_fundamentals.company_esg_score("some example string")
     # TODO: Handle 'response' of type CompanyEsg
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5767,7 +5783,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.company_esg_score(symbol)
+    response = await async_client.stock_fundamentals.company_esg_score("some example string")
     # TODO: Handle 'response' of type CompanyEsg
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5784,7 +5800,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5831,7 +5847,7 @@ Get a list of company's executives and members of the Board.
 
 ```python
 try:
-    response = client.stock_fundamentals.company_executive(symbol)
+    response = client.stock_fundamentals.company_executive("some example string")
     # TODO: Handle 'response' of type CompanyExecutive
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5841,7 +5857,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.company_executive(symbol)
+    response = await async_client.stock_fundamentals.company_executive("some example string")
     # TODO: Handle 'response' of type CompanyExecutive
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5858,7 +5874,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5905,7 +5921,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_fundamentals.company_historical_esg_score(symbol)
+    response = client.stock_fundamentals.company_historical_esg_score("some example string")
     # TODO: Handle 'response' of type HistoricalCompanyEsg
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5915,7 +5931,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.company_historical_esg_score(symbol)
+    response = await async_client.stock_fundamentals.company_historical_esg_score("some example string")
     # TODO: Handle 'response' of type HistoricalCompanyEsg
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -5932,7 +5948,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6008,7 +6024,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL e.g.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
 | <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6084,7 +6100,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL e.g.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
 | <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6160,7 +6176,7 @@ except ApiError as e:
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>symbol</code> | <code>str \| None</code> | Filter by symbol: AAPL.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6239,7 +6255,7 @@ except ApiError as e:
 | <code>form</code> | <code>str \| None</code> | Filter by form. You can use this value <code>NT 10-K</code> to find non-timely filings for a company.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2023-03-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2023-03-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6286,7 +6302,7 @@ Get sentiment analysis of 10-K and 10-Q filings from SEC. An abnormal increase i
 
 ```python
 try:
-    response = client.stock_fundamentals.filings_sentiment(access_number)
+    response = client.stock_fundamentals.filings_sentiment("some example string")
     # TODO: Handle 'response' of type SecsentimentAnalysis
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6296,7 +6312,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.filings_sentiment(access_number)
+    response = await async_client.stock_fundamentals.filings_sentiment("some example string")
     # TODO: Handle 'response' of type SecsentimentAnalysis
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6313,7 +6329,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>access_number</code> | <code>str</code> | Access number of a specific report you want to retrieve data from. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6360,7 +6376,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_fundamentals.financials(symbol, statement, freq)
+    response = client.stock_fundamentals.financials("some example string", "some example string", "some example string")
     # TODO: Handle 'response' of type FinancialStatements
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6370,7 +6386,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.financials(symbol, statement, freq)
+    response = await async_client.stock_fundamentals.financials(
+        "some example string", "some example string", "some example string"
+    )
     # TODO: Handle 'response' of type FinancialStatements
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6390,7 +6408,7 @@ except ApiError as e:
 | <code>statement</code> | <code>str</code> | Statement can take 1 of these values <code>bs, ic, cf</code> for Balance Sheet, Income Statement, Cash Flow respectively. |
 | <code>freq</code> | <code>str</code> | Frequency can take 1 of these values <code>annual, quarterly, ttm, ytd</code>.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow. |
 | <code>preliminary</code> | <code>str \| None</code> | If set to <code>true</code>, it will return Preliminary financial statements for the latest period which are usually available within an hour of the earnings announcement if finalized data is not available yet. This preliminary data is currently available for US companies. You will see <code>"preliminary": true</code> in the data if that period is using preliminary data.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6469,7 +6487,7 @@ except ApiError as e:
 | <code>freq</code> | <code>str \| None</code> | Frequency. Can be either <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>. Filter for endDate.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>. Filter for endDate.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6516,7 +6534,9 @@ Get historical employee count for global companies.
 
 ```python
 try:
-    response = client.stock_fundamentals.historical_employee_count(symbol, from_, to)
+    response = client.stock_fundamentals.historical_employee_count(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type HistoricalEmployeeCount
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6526,7 +6546,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.historical_employee_count(symbol, from_, to)
+    response = await async_client.stock_fundamentals.historical_employee_count(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type HistoricalEmployeeCount
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6545,7 +6567,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6622,7 +6644,7 @@ except ApiError as e:
 | <code>country</code> | <code>str \| None</code> | Filter by country using country's 2-letter code.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2023-01-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2023-12-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6669,7 +6691,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_fundamentals.newsroom(symbol)
+    response = client.stock_fundamentals.newsroom("some example string")
     # TODO: Handle 'response' of type Newsroom
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6679,7 +6701,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.newsroom(symbol)
+    response = await async_client.stock_fundamentals.newsroom("some example string")
     # TODO: Handle 'response' of type Newsroom
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6698,7 +6720,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date \| None</code> | From time: 2025-01-01.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To time: 2026-01-05.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6774,7 +6796,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str \| None</code> | Symbol. Required if cik is empty<br>**Default**: <code>None</code> |
 | <code>cik</code> | <code>str \| None</code> | CIK. Required if symbol is empty<br>**Default**: <code>None</code> |
 | <code>freq</code> | <code>str \| None</code> | <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6821,7 +6843,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_fundamentals.stock_presentation(symbol)
+    response = client.stock_fundamentals.stock_presentation("some example string")
     # TODO: Handle 'response' of type StockPresentation
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6831,7 +6853,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.stock_presentation(symbol)
+    response = await async_client.stock_fundamentals.stock_presentation("some example string")
     # TODO: Handle 'response' of type StockPresentation
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6848,7 +6870,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Company symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6871,7 +6893,7 @@ except ApiError as e:
 </details>
 
 <details>
-<summary><code>def transcripts(id: str, *, request_options: RequestOptionsOrDict | None = None) -> EarningsCallTranscripts</code></summary>
+<summary><code>def transcripts(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> EarningsCallTranscripts</code></summary>
 
 <dl>
 <dd>
@@ -6895,7 +6917,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_fundamentals.transcripts(id)
+    response = client.stock_fundamentals.transcripts("some example string")
     # TODO: Handle 'response' of type EarningsCallTranscripts
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6905,7 +6927,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.transcripts(id)
+    response = await async_client.stock_fundamentals.transcripts("some example string")
     # TODO: Handle 'response' of type EarningsCallTranscripts
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6921,8 +6943,8 @@ except ApiError as e:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | Transcript's id obtained with <a href="#transcripts-list">Transcripts List endpoint</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | Transcript's id obtained with <a href="#transcripts-list">Transcripts List endpoint</a>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6969,7 +6991,7 @@ List earnings call transcripts' metadata. This endpoint is available for Global 
 
 ```python
 try:
-    response = client.stock_fundamentals.transcripts_list(symbol)
+    response = client.stock_fundamentals.transcripts_list("some example string")
     # TODO: Handle 'response' of type EarningsCallTranscriptsList
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6979,7 +7001,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_fundamentals.transcripts_list(symbol)
+    response = await async_client.stock_fundamentals.transcripts_list("some example string")
     # TODO: Handle 'response' of type EarningsCallTranscriptsList
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -6996,7 +7018,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Company symbol: AAPL. Leave empty to list the latest transcripts |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7047,7 +7069,7 @@ Get stock trades data disclosed by members of congress.
 
 ```python
 try:
-    response = client.stock_ownership.congressional_trading(symbol, from_, to)
+    response = client.stock_ownership.congressional_trading("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type CongressionalTrading
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7057,7 +7079,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.congressional_trading(symbol, from_, to)
+    response = await async_client.stock_ownership.congressional_trading(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type CongressionalTrading
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7076,7 +7100,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7123,7 +7147,7 @@ Get a full list fund and institutional investors of a company in descending orde
 
 ```python
 try:
-    response = client.stock_ownership.fund_ownership(symbol)
+    response = client.stock_ownership.fund_ownership("some example string")
     # TODO: Handle 'response' of type FundOwnership
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7133,7 +7157,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.fund_ownership(symbol)
+    response = await async_client.stock_ownership.fund_ownership("some example string")
     # TODO: Handle 'response' of type FundOwnership
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7151,7 +7175,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>limit</code> | <code>int \| None</code> | Limit number of results. Leave empty to get the full list.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7198,7 +7222,7 @@ Get insider sentiment data for US companies calculated using method discussed <a
 
 ```python
 try:
-    response = client.stock_ownership.insider_sentiment(symbol, from_, to)
+    response = client.stock_ownership.insider_sentiment("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type InsiderSentiments
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7208,7 +7232,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.insider_sentiment(symbol, from_, to)
+    response = await async_client.stock_ownership.insider_sentiment(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type InsiderSentiments
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7227,7 +7253,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>from_</code> | <code>Date</code> | From date: 2020-03-15. |
 | <code>to</code> | <code>Date</code> | To date: 2020-03-16. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7274,7 +7300,7 @@ Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and
 
 ```python
 try:
-    response = client.stock_ownership.insider_transactions(symbol)
+    response = client.stock_ownership.insider_transactions("some example string")
     # TODO: Handle 'response' of type InsiderTransactions
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7284,7 +7310,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.insider_transactions(symbol)
+    response = await async_client.stock_ownership.insider_transactions("some example string")
     # TODO: Handle 'response' of type InsiderTransactions
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7303,7 +7329,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. Leave this param blank to get the latest transactions. |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2020-03-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7350,7 +7376,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_ownership.investment_themes(theme)
+    response = client.stock_ownership.investment_themes("some example string")
     # TODO: Handle 'response' of type InvestmentThemes
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7360,7 +7386,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.investment_themes(theme)
+    response = await async_client.stock_ownership.investment_themes("some example string")
     # TODO: Handle 'response' of type InvestmentThemes
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7377,7 +7403,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>theme</code> | <code>str</code> | Investment theme. A full list of themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7424,7 +7450,7 @@ Get a full list of shareholders of a company in descending order of the number o
 
 ```python
 try:
-    response = client.stock_ownership.ownership(symbol)
+    response = client.stock_ownership.ownership("some example string")
     # TODO: Handle 'response' of type Ownership
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7434,7 +7460,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.ownership(symbol)
+    response = await async_client.stock_ownership.ownership("some example string")
     # TODO: Handle 'response' of type Ownership
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7452,7 +7478,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>limit</code> | <code>int \| None</code> | Limit number of results. Leave empty to get the full list.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7499,7 +7525,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_ownership.social_sentiment(symbol)
+    response = client.stock_ownership.social_sentiment("some example string")
     # TODO: Handle 'response' of type SocialSentiment
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7509,7 +7535,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.social_sentiment(symbol)
+    response = await async_client.stock_ownership.social_sentiment("some example string")
     # TODO: Handle 'response' of type SocialSentiment
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7528,7 +7554,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7575,7 +7601,7 @@ Get a list of reported lobbying activities in the Senate and the House.
 
 ```python
 try:
-    response = client.stock_ownership.stock_lobbying(symbol, from_, to)
+    response = client.stock_ownership.stock_lobbying("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type LobbyingResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7585,7 +7611,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.stock_lobbying(symbol, from_, to)
+    response = await async_client.stock_ownership.stock_lobbying(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type LobbyingResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7604,7 +7632,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7651,7 +7679,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_ownership.stock_usa_spending(symbol, from_, to)
+    response = client.stock_ownership.stock_usa_spending("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type UsaSpendingResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7661,7 +7689,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.stock_usa_spending(symbol, from_, to)
+    response = await async_client.stock_ownership.stock_usa_spending(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type UsaSpendingResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7680,7 +7710,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code> |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7727,7 +7757,7 @@ List USPTO patents for companies. Limit to 250 records per API call.
 
 ```python
 try:
-    response = client.stock_ownership.stock_uspto_patent(symbol, from_, to)
+    response = client.stock_ownership.stock_uspto_patent("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type UsptoPatentResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7737,7 +7767,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.stock_uspto_patent(symbol, from_, to)
+    response = await async_client.stock_ownership.stock_uspto_patent(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type UsptoPatentResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7756,7 +7788,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7803,7 +7835,9 @@ Get a list of H1-B and Permanent visa applications for companies from the DOL. T
 
 ```python
 try:
-    response = client.stock_ownership.stock_visa_application(symbol, from_, to)
+    response = client.stock_ownership.stock_visa_application(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type VisaApplicationResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7813,7 +7847,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.stock_visa_application(symbol, from_, to)
+    response = await async_client.stock_ownership.stock_visa_application(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type VisaApplicationResult
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7832,7 +7868,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7879,7 +7915,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_ownership.supply_chain_relationships(symbol)
+    response = client.stock_ownership.supply_chain_relationships("some example string")
     # TODO: Handle 'response' of type SupplyChainRelationships
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7889,7 +7925,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_ownership.supply_chain_relationships(symbol)
+    response = await async_client.stock_ownership.supply_chain_relationships("some example string")
     # TODO: Handle 'response' of type SupplyChainRelationships
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7906,7 +7942,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7957,7 +7993,7 @@ Get company peers. Return a list of peers operating in the same country and sect
 
 ```python
 try:
-    response = client.stock_prices.company_peers(symbol)
+    response = client.stock_prices.company_peers("some example string")
     # TODO: Handle 'response' of type list[str]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7967,7 +8003,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.company_peers(symbol)
+    response = await async_client.stock_prices.company_peers("some example string")
     # TODO: Handle 'response' of type list[str]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -7985,7 +8021,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>grouping</code> | <code>str \| None</code> | Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>, <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8032,7 +8068,7 @@ Get historical market cap data for global companies.
 
 ```python
 try:
-    response = client.stock_prices.historical_market_cap(symbol, from_, to)
+    response = client.stock_prices.historical_market_cap("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type HistoricalMarketCapData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8042,7 +8078,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.historical_market_cap(symbol, from_, to)
+    response = await async_client.stock_prices.historical_market_cap(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type HistoricalMarketCapData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8061,7 +8099,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8108,7 +8146,7 @@ Get a list of holidays for global exchanges.
 
 ```python
 try:
-    response = client.stock_prices.market_holiday(exchange)
+    response = client.stock_prices.market_holiday("some example string")
     # TODO: Handle 'response' of type MarketHoliday
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8118,7 +8156,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.market_holiday(exchange)
+    response = await async_client.stock_prices.market_holiday("some example string")
     # TODO: Handle 'response' of type MarketHoliday
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8135,7 +8173,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange code. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8182,7 +8220,7 @@ Get current market status for global exchanges (whether exchanges are open or cl
 
 ```python
 try:
-    response = client.stock_prices.market_status(exchange)
+    response = client.stock_prices.market_status("some example string")
     # TODO: Handle 'response' of type MarketStatus
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8192,7 +8230,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.market_status(exchange)
+    response = await async_client.stock_prices.market_status("some example string")
     # TODO: Handle 'response' of type MarketStatus
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8209,7 +8247,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange code. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8256,7 +8294,7 @@ Get company price performance statistics such as 52-week high/low, YTD return an
 
 ```python
 try:
-    response = client.stock_prices.price_metrics(symbol)
+    response = client.stock_prices.price_metrics("some example string")
     # TODO: Handle 'response' of type PriceMetrics
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8266,7 +8304,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.price_metrics(symbol)
+    response = await async_client.stock_prices.price_metrics("some example string")
     # TODO: Handle 'response' of type PriceMetrics
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8284,7 +8322,7 @@ except ApiError as e:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>date</code> | <code>str \| None</code> | Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8331,7 +8369,7 @@ Get global dividends data.
 
 ```python
 try:
-    response = client.stock_prices.stock_basic_dividends(symbol)
+    response = client.stock_prices.stock_basic_dividends("some example string")
     # TODO: Handle 'response' of type Dividends2
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8341,7 +8379,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_basic_dividends(symbol)
+    response = await async_client.stock_prices.stock_basic_dividends("some example string")
     # TODO: Handle 'response' of type Dividends2
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8358,7 +8396,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8405,7 +8443,7 @@ Get last bid/ask data for US stocks.
 
 ```python
 try:
-    response = client.stock_prices.stock_bidask(symbol)
+    response = client.stock_prices.stock_bidask("some example string")
     # TODO: Handle 'response' of type LastBidAsk
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8415,7 +8453,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_bidask(symbol)
+    response = await async_client.stock_prices.stock_bidask("some example string")
     # TODO: Handle 'response' of type LastBidAsk
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8432,7 +8470,7 @@ except ApiError as e:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8479,7 +8517,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_prices.stock_candles(symbol, resolution, from_, to)
+    response = client.stock_prices.stock_candles("some example string", "some example string", 1, 1)
     # TODO: Handle 'response' of type StockCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8489,7 +8527,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_candles(symbol, resolution, from_, to)
+    response = await async_client.stock_prices.stock_candles("some example string", "some example string", 1, 1)
     # TODO: Handle 'response' of type StockCandles
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8509,7 +8547,7 @@ except ApiError as e:
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8556,7 +8594,7 @@ Get dividends data for common stocks going back 30 years.
 
 ```python
 try:
-    response = client.stock_prices.stock_dividends(symbol, from_, to)
+    response = client.stock_prices.stock_dividends("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type list[Dividends]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8566,7 +8604,9 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_dividends(symbol, from_, to)
+    response = await async_client.stock_prices.stock_dividends(
+        "some example string", date(2024, 1, 15), date(2024, 1, 15)
+    )
     # TODO: Handle 'response' of type list[Dividends]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8585,7 +8625,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | YYYY-MM-DD. |
 | <code>to</code> | <code>Date</code> | YYYY-MM-DD. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8632,7 +8672,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_prices.stock_nbbo(symbol, date, limit, skip)
+    response = client.stock_prices.stock_nbbo("some example string", date(2024, 1, 15), 1, 1)
     # TODO: Handle 'response' of type HistoricalNbbo
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8642,7 +8682,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_nbbo(symbol, date, limit, skip)
+    response = await async_client.stock_prices.stock_nbbo("some example string", date(2024, 1, 15), 1, 1)
     # TODO: Handle 'response' of type HistoricalNbbo
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8662,7 +8702,7 @@ except ApiError as e:
 | <code>date</code> | <code>Date</code> | Date: 2020-04-02. |
 | <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
 | <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8709,7 +8749,7 @@ Get splits data for stocks.
 
 ```python
 try:
-    response = client.stock_prices.stock_splits(symbol, from_, to)
+    response = client.stock_prices.stock_splits("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type list[Split]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8719,7 +8759,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_splits(symbol, from_, to)
+    response = await async_client.stock_prices.stock_splits("some example string", date(2024, 1, 15), date(2024, 1, 15))
     # TODO: Handle 'response' of type list[Split]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8738,7 +8778,7 @@ except ApiError as e:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | YYYY-MM-DD. |
 | <code>to</code> | <code>Date</code> | YYYY-MM-DD. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8785,7 +8825,7 @@ List supported stocks. We use the following symbology to identify stocks on Finn
 
 ```python
 try:
-    response = client.stock_prices.stock_symbols(exchange)
+    response = client.stock_prices.stock_symbols("some example string")
     # TODO: Handle 'response' of type list[StockSymbol]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8795,7 +8835,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_symbols(exchange)
+    response = await async_client.stock_prices.stock_symbols("some example string")
     # TODO: Handle 'response' of type list[StockSymbol]
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8815,7 +8855,7 @@ except ApiError as e:
 | <code>mic</code> | <code>str \| None</code> | Filter by MIC code.<br>**Default**: <code>None</code> |
 | <code>security_type</code> | <code>str \| None</code> | Filter by security type used by OpenFigi standard.<br>**Default**: <code>None</code> |
 | <code>currency</code> | <code>str \| None</code> | Filter by currency.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8897,7 +8937,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = client.stock_prices.stock_tick(symbol, date, limit, skip)
+    response = client.stock_prices.stock_tick("some example string", date(2024, 1, 15), 1, 1)
     # TODO: Handle 'response' of type TickData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8907,7 +8947,7 @@ except ApiError as e:
 
 ```python
 try:
-    response = await async_client.stock_prices.stock_tick(symbol, date, limit, skip)
+    response = await async_client.stock_prices.stock_tick("some example string", date(2024, 1, 15), 1, 1)
     # TODO: Handle 'response' of type TickData
 except ApiError as e:
     ...  # TODO: Handle 'e.error' of type RawError
@@ -8927,7 +8967,7 @@ except ApiError as e:
 | <code>date</code> | <code>Date</code> | Date: 2020-04-02. |
 | <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
 | <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>

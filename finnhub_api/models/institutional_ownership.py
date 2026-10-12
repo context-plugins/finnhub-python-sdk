@@ -20,4 +20,4 @@ class InstitutionalOwnership(SdkBaseModel):
 class InstitutionalOwnershipDict(TypedDict):
     symbol: NotRequired[str]
     cusip: NotRequired[str]
-    data: NotRequired[list[InstitutionalOwnershipGroup | InstitutionalOwnershipGroupDict]]
+    data: NotRequired[list[InstitutionalOwnershipGroupDict]]

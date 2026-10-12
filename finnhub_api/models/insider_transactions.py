@@ -16,4 +16,4 @@ class InsiderTransactions(SdkBaseModel):
 
 class InsiderTransactionsDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[Transactions | TransactionsDict]]
+    data: NotRequired[list[TransactionsDict]]

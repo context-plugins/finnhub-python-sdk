@@ -8,9 +8,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.aggregate_indicators import AggregateIndicators
 from ..models.pattern_recognition import PatternRecognition
@@ -34,14 +36,15 @@ class Scan:
             symbol: symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.aggregate_indicator(symbol, resolution, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.aggregate_indicator(symbol, resolution, request_options=request_options))
 
     def pattern_recognition(
         self, symbol: str, resolution: str, *, request_options: RequestOptionsOrDict | None = None
@@ -53,14 +56,15 @@ class Scan:
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.pattern_recognition(symbol, resolution, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.pattern_recognition(symbol, resolution, request_options=request_options))
 
     def support_resistance(
         self, symbol: str, resolution: str, *, request_options: RequestOptionsOrDict | None = None
@@ -71,14 +75,15 @@ class Scan:
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.support_resistance(symbol, resolution, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.support_resistance(symbol, resolution, request_options=request_options))
 
     @property
     def with_raw_response(self) -> ScanWithRawResponse:
@@ -101,16 +106,17 @@ class AsyncScan:
             symbol: symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.aggregate_indicator(symbol, resolution, request_options=request_options)
-        ).unwrap()
+        )
 
     async def pattern_recognition(
         self, symbol: str, resolution: str, *, request_options: RequestOptionsOrDict | None = None
@@ -122,16 +128,17 @@ class AsyncScan:
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.pattern_recognition(symbol, resolution, request_options=request_options)
-        ).unwrap()
+        )
 
     async def support_resistance(
         self, symbol: str, resolution: str, *, request_options: RequestOptionsOrDict | None = None
@@ -142,16 +149,17 @@ class AsyncScan:
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.support_resistance(symbol, resolution, request_options=request_options)
-        ).unwrap()
+        )
 
     @property
     def with_raw_response(self) -> AsyncScanWithRawResponse:
@@ -171,7 +179,8 @@ class ScanWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             symbol: symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -195,7 +204,8 @@ class ScanWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -218,7 +228,8 @@ class ScanWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -246,7 +257,8 @@ class AsyncScanWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             symbol: symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -255,7 +267,7 @@ class AsyncScanWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/scan/technical-indicator"),
             query_params=[param[str]("symbol", symbol), param[str]("resolution", resolution)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[AggregateIndicators],
+            decoder=async_json_decoder[AggregateIndicators],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -270,7 +282,8 @@ class AsyncScanWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -279,7 +292,7 @@ class AsyncScanWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/scan/pattern"),
             query_params=[param[str]("symbol", symbol), param[str]("resolution", resolution)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[PatternRecognition],
+            decoder=async_json_decoder[PatternRecognition],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -293,7 +306,8 @@ class AsyncScanWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             symbol: Symbol
             resolution: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not
                 be available depending on the exchange.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -302,7 +316,7 @@ class AsyncScanWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/scan/support-resistance"),
             query_params=[param[str]("symbol", symbol), param[str]("resolution", resolution)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SupportResistance],
+            decoder=async_json_decoder[SupportResistance],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

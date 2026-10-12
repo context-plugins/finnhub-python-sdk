@@ -21,4 +21,4 @@ class SymbolChange(SdkBaseModel):
 class SymbolChangeDict(TypedDict):
     from_date: NotRequired[str]
     to_date: NotRequired[str]
-    data: NotRequired[list[SymbolChangeInfo | SymbolChangeInfoDict]]
+    data: NotRequired[list[SymbolChangeInfoDict]]

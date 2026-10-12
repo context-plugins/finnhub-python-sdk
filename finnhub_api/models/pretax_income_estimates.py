@@ -18,6 +18,6 @@ class PretaxIncomeEstimates(SdkBaseModel):
 
 
 class PretaxIncomeEstimatesDict(TypedDict):
-    data: NotRequired[list[PretaxIncomeEstimatesInfo | PretaxIncomeEstimatesInfoDict]]
+    data: NotRequired[list[PretaxIncomeEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

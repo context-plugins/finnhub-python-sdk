@@ -16,4 +16,4 @@ class SectorMetric(SdkBaseModel):
 
 class SectorMetricDict(TypedDict):
     region: NotRequired[str]
-    data: NotRequired[list[SectorMetricData | SectorMetricDataDict]]
+    data: NotRequired[list[SectorMetricDataDict]]

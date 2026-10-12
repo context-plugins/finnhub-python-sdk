@@ -9,9 +9,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.bond_candles import BondCandles
 from ..models.bond_profile import BondProfile
@@ -62,14 +64,15 @@ class Bond:
             isin: ISIN.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.bond_price(isin, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.bond_price(isin, from_, to, request_options=request_options))
 
     def bond_profile(
         self,
@@ -86,16 +89,17 @@ class Bond:
             isin: ISIN
             cusip: CUSIP
             figi: FIGI
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.bond_profile(
-            isin=isin, cusip=cusip, figi=figi, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.bond_profile(isin=isin, cusip=cusip, figi=figi, request_options=request_options)
+        )
 
     def bond_tick(
         self,
@@ -135,16 +139,17 @@ class Bond:
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
             exchange: Currently support the following values: <code>trace</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.bond_tick(
-            isin, date, limit, skip, exchange, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.bond_tick(isin, date, limit, skip, exchange, request_options=request_options)
+        )
 
     def bond_yield_curve(self, code: str, *, request_options: RequestOptionsOrDict | None = None) -> BondYieldCurve:
         """Get yield curve data for Treasury bonds.
@@ -153,14 +158,15 @@ class Bond:
             code: Bond's code. You can find the list of supported code <a
                 href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing"
                 target="_blank" rel="noopener">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.bond_yield_curve(code, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.bond_yield_curve(code, request_options=request_options))
 
     @property
     def with_raw_response(self) -> BondWithRawResponse:
@@ -209,14 +215,15 @@ class AsyncBond:
             isin: ISIN.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.bond_price(isin, from_, to, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.bond_price(isin, from_, to, request_options=request_options))
 
     async def bond_profile(
         self,
@@ -233,18 +240,19 @@ class AsyncBond:
             isin: ISIN
             cusip: CUSIP
             figi: FIGI
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.bond_profile(
                 isin=isin, cusip=cusip, figi=figi, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def bond_tick(
         self,
@@ -284,16 +292,17 @@ class AsyncBond:
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
             exchange: Currently support the following values: <code>trace</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.bond_tick(isin, date, limit, skip, exchange, request_options=request_options)
-        ).unwrap()
+        )
 
     async def bond_yield_curve(
         self, code: str, *, request_options: RequestOptionsOrDict | None = None
@@ -304,14 +313,15 @@ class AsyncBond:
             code: Bond's code. You can find the list of supported code <a
                 href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing"
                 target="_blank" rel="noopener">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.bond_yield_curve(code, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.bond_yield_curve(code, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncBondWithRawResponse:
@@ -357,7 +367,8 @@ class BondWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             isin: ISIN.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -386,7 +397,8 @@ class BondWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             isin: ISIN
             cusip: CUSIP
             figi: FIGI
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -440,7 +452,8 @@ class BondWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
             exchange: Currently support the following values: <code>trace</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -469,7 +482,8 @@ class BondWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             code: Bond's code. You can find the list of supported code <a
                 href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing"
                 target="_blank" rel="noopener">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -523,7 +537,8 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             isin: ISIN.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -532,7 +547,7 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/bond/price"),
             query_params=[param[str]("isin", isin), param[int]("from", from_), param[int]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[BondCandles],
+            decoder=async_json_decoder[BondCandles],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -552,7 +567,8 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             isin: ISIN
             cusip: CUSIP
             figi: FIGI
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -563,7 +579,7 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
                 param[str | None]("isin", isin), param[str | None]("cusip", cusip), param[str | None]("figi", figi)
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[BondProfile],
+            decoder=async_json_decoder[BondProfile],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -606,7 +622,8 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
             exchange: Currently support the following values: <code>trace</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -621,7 +638,7 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
                 param[str]("exchange", exchange),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[BondTickData],
+            decoder=async_json_decoder[BondTickData],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -635,7 +652,8 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             code: Bond's code. You can find the list of supported code <a
                 href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing"
                 target="_blank" rel="noopener">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -644,7 +662,7 @@ class AsyncBondWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/bond/yield-curve"),
             query_params=[param[str]("code", code)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[BondYieldCurve],
+            decoder=async_json_decoder[BondYieldCurve],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

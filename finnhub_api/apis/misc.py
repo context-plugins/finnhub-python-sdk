@@ -12,10 +12,12 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_body,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.aichat_body import AichatBody, AichatBodyDict
 from ..models.aichat_response import AichatResponse
@@ -42,14 +44,15 @@ class Misc:
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.ai_chat(search=search, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.ai_chat(search=search, request_options=request_options))
 
     def airline_price_index(
         self, airline: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -67,41 +70,44 @@ class Misc:
                 <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code>
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.airline_price_index(airline, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.airline_price_index(airline, from_, to, request_options=request_options))
 
     def bank_branch(self, symbol: Any, *, request_options: RequestOptionsOrDict | None = None) -> BankBranchRes:
         """Retrieve list of US bank branches information for a given symbol.
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.bank_branch(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.bank_branch(symbol, request_options=request_options))
 
     def country(self, *, request_options: RequestOptionsOrDict | None = None) -> list[CountryMetadata]:
         """List all countries and metadata.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.country(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.country(request_options=request_options))
 
     def covid_19(self, *, request_options: RequestOptionsOrDict | None = None) -> list[CovidInfo]:
         """Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state
@@ -109,14 +115,15 @@ class Misc:
         href="https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19" target="_blank" rel="nofollow">here</a>
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.covid_19(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.covid_19(request_options=request_options))
 
     def fda_committee_meeting_calendar(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -128,14 +135,15 @@ class Misc:
         charter states otherwise.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.fda_committee_meeting_calendar(request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.fda_committee_meeting_calendar(request_options=request_options))
 
     def quote(self, symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> Quote:
         """<p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need
@@ -144,14 +152,15 @@ class Misc:
 
         Args:
             symbol: Symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.quote(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.quote(symbol, request_options=request_options))
 
     def sector_metric(self, region: str, *, request_options: RequestOptionsOrDict | None = None) -> SectorMetric:
         """Get ratios for different sectors and regions/indices.
@@ -160,14 +169,15 @@ class Misc:
             region: Region. A list of supported values for this field can be found <a
                 href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.sector_metric(region, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.sector_metric(region, request_options=request_options))
 
     def symbol_search(
         self, q: str, *, exchange: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -178,14 +188,15 @@ class Misc:
         Args:
             q: Query text can be symbol, name, isin, or cusip.
             exchange: Exchange limit.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.symbol_search(q, exchange=exchange, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.symbol_search(q, exchange=exchange, request_options=request_options))
 
     def technical_indicator(
         self,
@@ -210,16 +221,19 @@ class Misc:
             indicator: Indicator name. Full list can be found <a
                 href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.technical_indicator(
-            symbol, resolution, from_, to, indicator, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.technical_indicator(
+                symbol, resolution, from_, to, indicator, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> MiscWithRawResponse:
@@ -238,14 +252,15 @@ class AsyncMisc:
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.ai_chat(search=search, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.ai_chat(search=search, request_options=request_options))
 
     async def airline_price_index(
         self, airline: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -263,43 +278,46 @@ class AsyncMisc:
                 <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code>
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.airline_price_index(airline, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def bank_branch(self, symbol: Any, *, request_options: RequestOptionsOrDict | None = None) -> BankBranchRes:
         """Retrieve list of US bank branches information for a given symbol.
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.bank_branch(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.bank_branch(symbol, request_options=request_options))
 
     async def country(self, *, request_options: RequestOptionsOrDict | None = None) -> list[CountryMetadata]:
         """List all countries and metadata.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.country(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.country(request_options=request_options))
 
     async def covid_19(self, *, request_options: RequestOptionsOrDict | None = None) -> list[CovidInfo]:
         """Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state
@@ -307,14 +325,15 @@ class AsyncMisc:
         href="https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19" target="_blank" rel="nofollow">here</a>
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.covid_19(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.covid_19(request_options=request_options))
 
     async def fda_committee_meeting_calendar(
         self, *, request_options: RequestOptionsOrDict | None = None
@@ -326,14 +345,15 @@ class AsyncMisc:
         charter states otherwise.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.fda_committee_meeting_calendar(request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.fda_committee_meeting_calendar(request_options=request_options))
 
     async def quote(self, symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> Quote:
         """<p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need
@@ -342,14 +362,15 @@ class AsyncMisc:
 
         Args:
             symbol: Symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.quote(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.quote(symbol, request_options=request_options))
 
     async def sector_metric(self, region: str, *, request_options: RequestOptionsOrDict | None = None) -> SectorMetric:
         """Get ratios for different sectors and regions/indices.
@@ -358,14 +379,15 @@ class AsyncMisc:
             region: Region. A list of supported values for this field can be found <a
                 href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.sector_metric(region, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.sector_metric(region, request_options=request_options))
 
     async def symbol_search(
         self, q: str, *, exchange: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -376,16 +398,17 @@ class AsyncMisc:
         Args:
             q: Query text can be symbol, name, isin, or cusip.
             exchange: Exchange limit.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.symbol_search(q, exchange=exchange, request_options=request_options)
-        ).unwrap()
+        )
 
     async def technical_indicator(
         self,
@@ -410,18 +433,19 @@ class AsyncMisc:
             indicator: Indicator name. Full list can be found <a
                 href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.technical_indicator(
                 symbol, resolution, from_, to, indicator, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncMiscWithRawResponse:
@@ -437,7 +461,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -468,7 +493,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
                 <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code>
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -489,7 +515,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -509,7 +536,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         """List all countries and metadata.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -528,7 +556,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         href="https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19" target="_blank" rel="nofollow">here</a>
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -551,7 +580,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         charter states otherwise.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -571,7 +601,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             symbol: Symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -594,7 +625,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             region: Region. A list of supported values for this field can be found <a
                 href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -617,7 +649,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             q: Query text can be symbol, name, isin, or cusip.
             exchange: Exchange limit.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -654,7 +687,8 @@ class MiscWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             indicator: Indicator name. Full list can be found <a
                 href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -684,7 +718,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
 
         Args:
             search: Search body
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -694,7 +729,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             headers=[param[UUID]("Idempotency-Key", uuid4())],
             body=json_body[AichatBody | AichatBodyDict | None](search),
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[AichatResponse],
+            decoder=async_json_decoder[AichatResponse],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -715,7 +750,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
                 <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code>
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -724,7 +760,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/airline/price-index"),
             query_params=[param[str]("airline", airline), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[AirlinePriceIndexData],
+            decoder=async_json_decoder[AirlinePriceIndexData],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -736,7 +772,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -745,7 +782,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/bank-branch"),
             query_params=[param[Any]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[BankBranchRes],
+            decoder=async_json_decoder[BankBranchRes],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -756,7 +793,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         """List all countries and metadata.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -764,7 +802,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             http_method="GET",
             url_template=self._server.default("/country"),
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[CountryMetadata]],
+            decoder=async_json_decoder[list[CountryMetadata]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -777,7 +815,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         href="https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19" target="_blank" rel="nofollow">here</a>
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -785,7 +824,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             http_method="GET",
             url_template=self._server.default("/covid19/us"),
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[CovidInfo]],
+            decoder=async_json_decoder[list[CovidInfo]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -800,7 +839,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         charter states otherwise.
 
         Args:
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -808,7 +848,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             http_method="GET",
             url_template=self._server.default("/fda-advisory-committee-calendar"),
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[FdacomitteeMeeting]],
+            decoder=async_json_decoder[list[FdacomitteeMeeting]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -822,7 +862,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
 
         Args:
             symbol: Symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -831,7 +872,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/quote"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[Quote],
+            decoder=async_json_decoder[Quote],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -845,7 +886,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             region: Region. A list of supported values for this field can be found <a
                 href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -854,7 +896,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/sector/metrics"),
             query_params=[param[str]("region", region)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SectorMetric],
+            decoder=async_json_decoder[SectorMetric],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -868,7 +910,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
         Args:
             q: Query text can be symbol, name, isin, or cusip.
             exchange: Exchange limit.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -877,7 +920,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             url_template=self._server.default("/search"),
             query_params=[param[str]("q", q), param[str | None]("exchange", exchange)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SymbolLookup],
+            decoder=async_json_decoder[SymbolLookup],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -905,7 +948,8 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
             indicator: Indicator name. Full list can be found <a
                 href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
                 target="_blank">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -920,7 +964,7 @@ class AsyncMiscWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncA
                 param[str]("indicator", indicator),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[Any],
+            decoder=async_json_decoder[Any],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

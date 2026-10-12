@@ -9,9 +9,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.earnings_calendar import EarningsCalendar
 from ..models.economic_calendar import EconomicCalendar
@@ -42,16 +44,19 @@ class Calendar:
             symbol: Filter by symbol: AAPL.
             international: Set to <code>true</code> to include international markets. Default value is
                 <code>false</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.earnings_calendar(
-            from_=from_, to=to, symbol=symbol, international=international, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.earnings_calendar(
+                from_=from_, to=to, symbol=symbol, international=international, request_options=request_options
+            ),
+        )
 
     def economic_calendar(
         self, *, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None
@@ -62,14 +67,15 @@ class Calendar:
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.economic_calendar(from_=from_, to=to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.economic_calendar(from_=from_, to=to, request_options=request_options))
 
     def ipo_calendar(
         self, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -79,14 +85,15 @@ class Calendar:
         Args:
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.ipo_calendar(from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.ipo_calendar(from_, to, request_options=request_options))
 
     @property
     def with_raw_response(self) -> CalendarWithRawResponse:
@@ -116,18 +123,19 @@ class AsyncCalendar:
             symbol: Filter by symbol: AAPL.
             international: Set to <code>true</code> to include international markets. Default value is
                 <code>false</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.earnings_calendar(
                 from_=from_, to=to, symbol=symbol, international=international, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def economic_calendar(
         self, *, from_: Date | None = None, to: Date | None = None, request_options: RequestOptionsOrDict | None = None
@@ -138,16 +146,17 @@ class AsyncCalendar:
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.economic_calendar(from_=from_, to=to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def ipo_calendar(
         self, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -157,14 +166,15 @@ class AsyncCalendar:
         Args:
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.ipo_calendar(from_, to, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.ipo_calendar(from_, to, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncCalendarWithRawResponse:
@@ -191,7 +201,8 @@ class CalendarWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
             symbol: Filter by symbol: AAPL.
             international: Set to <code>true</code> to include international markets. Default value is
                 <code>false</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -219,7 +230,8 @@ class CalendarWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -241,7 +253,8 @@ class CalendarWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]
         Args:
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -276,7 +289,8 @@ class AsyncCalendarWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             symbol: Filter by symbol: AAPL.
             international: Set to <code>true</code> to include international markets. Default value is
                 <code>false</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -290,7 +304,7 @@ class AsyncCalendarWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
                 param[bool | None]("international", international),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EarningsCalendar],
+            decoder=async_json_decoder[EarningsCalendar],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -304,7 +318,8 @@ class AsyncCalendarWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         Args:
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -313,7 +328,7 @@ class AsyncCalendarWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             url_template=self._server.default("/calendar/economic"),
             query_params=[param[Date | None]("from", from_), param[Date | None]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EconomicCalendar],
+            decoder=async_json_decoder[EconomicCalendar],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -326,7 +341,8 @@ class AsyncCalendarWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
         Args:
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -335,7 +351,7 @@ class AsyncCalendarWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, As
             url_template=self._server.default("/calendar/ipo"),
             query_params=[param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[Ipocalendar],
+            decoder=async_json_decoder[Ipocalendar],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

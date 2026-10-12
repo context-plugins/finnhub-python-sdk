@@ -9,9 +9,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.capex_estimates import CapexEstimates
 from ..models.company_earnings_quality_score import CompanyEarningsQualityScore
@@ -46,16 +48,17 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_capex_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_capex_estimates(symbol, freq=freq, request_options=request_options)
+        )
 
     def company_dps_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -65,16 +68,15 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_dps_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.company_dps_estimates(symbol, freq=freq, request_options=request_options))
 
     def company_earnings(
         self, symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None
@@ -84,14 +86,15 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of period returned. Leave blank to get the full history.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_earnings(symbol, limit=limit, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.company_earnings(symbol, limit=limit, request_options=request_options))
 
     def company_earnings_quality_score(
         self, symbol: str, freq: str, *, request_options: RequestOptionsOrDict | None = None
@@ -107,16 +110,17 @@ class StockEstimates:
         Args:
             symbol: Symbol.
             freq: Frequency. Currently support <code>annual</code> and <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_earnings_quality_score(
-            symbol, freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_earnings_quality_score(symbol, freq, request_options=request_options)
+        )
 
     def company_ebit_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -126,16 +130,17 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_ebit_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_ebit_estimates(symbol, freq=freq, request_options=request_options)
+        )
 
     def company_ebitda_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -145,16 +150,17 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_ebitda_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_ebitda_estimates(symbol, freq=freq, request_options=request_options)
+        )
 
     def company_eps_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -164,16 +170,15 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_eps_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.company_eps_estimates(symbol, freq=freq, request_options=request_options))
 
     def company_fcf_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -183,16 +188,15 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_fcf_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.company_fcf_estimates(symbol, freq=freq, request_options=request_options))
 
     def company_gross_income_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -202,16 +206,17 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_gross_income_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_gross_income_estimates(symbol, freq=freq, request_options=request_options)
+        )
 
     def company_net_income_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -221,16 +226,17 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_net_income_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_net_income_estimates(symbol, freq=freq, request_options=request_options)
+        )
 
     def company_ocf_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -240,16 +246,15 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_ocf_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.company_ocf_estimates(symbol, freq=freq, request_options=request_options))
 
     def company_pretax_income_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -259,16 +264,17 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_pretax_income_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_pretax_income_estimates(symbol, freq=freq, request_options=request_options)
+        )
 
     def company_revenue_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -278,30 +284,32 @@ class StockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_revenue_estimates(
-            symbol, freq=freq, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.company_revenue_estimates(symbol, freq=freq, request_options=request_options)
+        )
 
     def price_target(self, symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> PriceTarget:
         """Get latest price target consensus.
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.price_target(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.price_target(symbol, request_options=request_options))
 
     def recommendation_trends(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -310,14 +318,15 @@ class StockEstimates:
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.recommendation_trends(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.recommendation_trends(symbol, request_options=request_options))
 
     def revenue_breakdown(
         self, *, symbol: str | None = None, cik: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -330,16 +339,17 @@ class StockEstimates:
         Args:
             symbol: Symbol.
             cik: CIK.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.revenue_breakdown(
-            symbol=symbol, cik=cik, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.revenue_breakdown(symbol=symbol, cik=cik, request_options=request_options)
+        )
 
     def revenue_breakdown2(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -348,14 +358,15 @@ class StockEstimates:
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.revenue_breakdown2(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.revenue_breakdown2(symbol, request_options=request_options))
 
     def upgrade_downgrade(
         self,
@@ -371,16 +382,19 @@ class StockEstimates:
             symbol: Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.
             from_: From date: 2000-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.upgrade_downgrade(
-            symbol=symbol, from_=from_, to=to, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.upgrade_downgrade(
+                symbol=symbol, from_=from_, to=to, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> StockEstimatesWithRawResponse:
@@ -399,16 +413,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_capex_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_dps_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -418,16 +433,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_dps_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_earnings(
         self, symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None
@@ -437,16 +453,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of period returned. Leave blank to get the full history.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_earnings(symbol, limit=limit, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_earnings_quality_score(
         self, symbol: str, freq: str, *, request_options: RequestOptionsOrDict | None = None
@@ -462,16 +479,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol.
             freq: Frequency. Currently support <code>annual</code> and <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_earnings_quality_score(symbol, freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_ebit_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -481,16 +499,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_ebit_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_ebitda_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -500,16 +519,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_ebitda_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_eps_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -519,16 +539,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_eps_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_fcf_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -538,16 +559,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_fcf_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_gross_income_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -557,18 +579,19 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_gross_income_estimates(
                 symbol, freq=freq, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def company_net_income_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -578,18 +601,19 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_net_income_estimates(
                 symbol, freq=freq, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def company_ocf_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -599,16 +623,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_ocf_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def company_pretax_income_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -618,18 +643,19 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_pretax_income_estimates(
                 symbol, freq=freq, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def company_revenue_estimates(
         self, symbol: str, *, freq: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -639,30 +665,32 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_revenue_estimates(symbol, freq=freq, request_options=request_options)
-        ).unwrap()
+        )
 
     async def price_target(self, symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> PriceTarget:
         """Get latest price target consensus.
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.price_target(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.price_target(symbol, request_options=request_options))
 
     async def recommendation_trends(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -671,14 +699,15 @@ class AsyncStockEstimates:
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.recommendation_trends(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.recommendation_trends(symbol, request_options=request_options))
 
     async def revenue_breakdown(
         self, *, symbol: str | None = None, cik: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -691,16 +720,17 @@ class AsyncStockEstimates:
         Args:
             symbol: Symbol.
             cik: CIK.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.revenue_breakdown(symbol=symbol, cik=cik, request_options=request_options)
-        ).unwrap()
+        )
 
     async def revenue_breakdown2(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -709,14 +739,15 @@ class AsyncStockEstimates:
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.revenue_breakdown2(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.revenue_breakdown2(symbol, request_options=request_options))
 
     async def upgrade_downgrade(
         self,
@@ -732,18 +763,19 @@ class AsyncStockEstimates:
             symbol: Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.
             from_: From date: 2000-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.upgrade_downgrade(
                 symbol=symbol, from_=from_, to=to, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncStockEstimatesWithRawResponse:
@@ -759,7 +791,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -781,7 +814,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -803,7 +837,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of period returned. Leave blank to get the full history.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -831,7 +866,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol.
             freq: Frequency. Currently support <code>annual</code> and <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -853,7 +889,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -875,7 +912,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -897,7 +935,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -919,7 +958,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -941,7 +981,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -963,7 +1004,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -985,7 +1027,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1007,7 +1050,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1029,7 +1073,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1050,7 +1095,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1071,7 +1117,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1096,7 +1143,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol.
             cik: CIK.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1117,7 +1165,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1145,7 +1194,8 @@ class StockEstimatesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.
             from_: From date: 2000-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1171,7 +1221,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1180,7 +1231,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/capex-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[CapexEstimates],
+            decoder=async_json_decoder[CapexEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1193,7 +1244,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1202,7 +1254,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/dps-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[DpsEstimates],
+            decoder=async_json_decoder[DpsEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1215,7 +1267,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of period returned. Leave blank to get the full history.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1224,7 +1277,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/earnings"),
             query_params=[param[str]("symbol", symbol), param[int | None]("limit", limit)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[EarningResult]],
+            decoder=async_json_decoder[list[EarningResult]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1243,7 +1296,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol.
             freq: Frequency. Currently support <code>annual</code> and <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1252,7 +1306,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/earnings-quality-score"),
             query_params=[param[str]("symbol", symbol), param[str]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[CompanyEarningsQualityScore],
+            decoder=async_json_decoder[CompanyEarningsQualityScore],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1265,7 +1319,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1274,7 +1329,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/ebit-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EbitEstimates],
+            decoder=async_json_decoder[EbitEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1287,7 +1342,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1296,7 +1352,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/ebitda-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EbitdaEstimates],
+            decoder=async_json_decoder[EbitdaEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1309,7 +1365,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1318,7 +1375,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/eps-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EarningsEstimates],
+            decoder=async_json_decoder[EarningsEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1331,7 +1388,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1340,7 +1398,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/fcf-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[FcfEstimates],
+            decoder=async_json_decoder[FcfEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1353,7 +1411,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1362,7 +1421,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/gross-income-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[GrossIncomeEstimates],
+            decoder=async_json_decoder[GrossIncomeEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1375,7 +1434,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1384,7 +1444,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/net-income-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[NetIncomeEstimates],
+            decoder=async_json_decoder[NetIncomeEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1397,7 +1457,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1406,7 +1467,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/ocf-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[OcfEstimates],
+            decoder=async_json_decoder[OcfEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1419,7 +1480,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1428,7 +1490,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/pretax-income-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[PretaxIncomeEstimates],
+            decoder=async_json_decoder[PretaxIncomeEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1441,7 +1503,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             freq: Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1450,7 +1513,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/revenue-estimate"),
             query_params=[param[str]("symbol", symbol), param[str | None]("freq", freq)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[RevenueEstimates],
+            decoder=async_json_decoder[RevenueEstimates],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1462,7 +1525,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1471,7 +1535,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/price-target"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[PriceTarget],
+            decoder=async_json_decoder[PriceTarget],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1483,7 +1547,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
 
         Args:
             symbol: Symbol of the company: AAPL.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1492,7 +1557,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/recommendation"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[RecommendationTrend]],
+            decoder=async_json_decoder[list[RecommendationTrend]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1508,7 +1573,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol.
             cik: CIK.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1517,7 +1583,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/revenue-breakdown"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("cik", cik)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[RevenueBreakdown],
+            decoder=async_json_decoder[RevenueBreakdown],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1529,7 +1595,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1538,7 +1605,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/revenue-breakdown2"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[RevenueBreakdown2],
+            decoder=async_json_decoder[RevenueBreakdown2],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1557,7 +1624,8 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.
             from_: From date: 2000-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1568,7 +1636,7 @@ class AsyncStockEstimatesWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
                 param[str | None]("symbol", symbol), param[Date | None]("from", from_), param[Date | None]("to", to)
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[UpgradeDowngrade]],
+            decoder=async_json_decoder[list[UpgradeDowngrade]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

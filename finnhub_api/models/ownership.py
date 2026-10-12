@@ -16,4 +16,4 @@ class Ownership(SdkBaseModel):
 
 class OwnershipDict(TypedDict):
     symbol: NotRequired[str]
-    ownership: NotRequired[list[OwnershipInfo | OwnershipInfoDict]]
+    ownership: NotRequired[list[OwnershipInfoDict]]

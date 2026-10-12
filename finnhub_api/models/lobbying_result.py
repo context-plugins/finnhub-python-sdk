@@ -16,4 +16,4 @@ class LobbyingResult(SdkBaseModel):
 
 class LobbyingResultDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[LobbyingData | LobbyingDataDict]]
+    data: NotRequired[list[LobbyingDataDict]]

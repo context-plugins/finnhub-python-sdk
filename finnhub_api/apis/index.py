@@ -8,9 +8,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.indices_constituents import IndicesConstituents
 from ..models.indices_historical_constituents import IndicesHistoricalConstituents
@@ -29,14 +31,15 @@ class Index:
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.indices_constituents(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.indices_constituents(symbol, request_options=request_options))
 
     def indices_historical_constituents(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -47,14 +50,15 @@ class Index:
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.indices_historical_constituents(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.indices_historical_constituents(symbol, request_options=request_options))
 
     @property
     def with_raw_response(self) -> IndexWithRawResponse:
@@ -73,14 +77,15 @@ class AsyncIndex:
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.indices_constituents(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.indices_constituents(symbol, request_options=request_options))
 
     async def indices_historical_constituents(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -91,16 +96,17 @@ class AsyncIndex:
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.indices_historical_constituents(symbol, request_options=request_options)
-        ).unwrap()
+        )
 
     @property
     def with_raw_response(self) -> AsyncIndexWithRawResponse:
@@ -116,7 +122,8 @@ class IndexWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -139,7 +146,8 @@ class IndexWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -163,7 +171,8 @@ class AsyncIndexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -172,7 +181,7 @@ class AsyncIndexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             url_template=self._server.default("/index/constituents"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[IndicesConstituents],
+            decoder=async_json_decoder[IndicesConstituents],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -186,7 +195,8 @@ class AsyncIndexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
 
         Args:
             symbol: symbol
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -195,7 +205,7 @@ class AsyncIndexWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, Async
             url_template=self._server.default("/index/historical-constituents"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[IndicesHistoricalConstituents],
+            decoder=async_json_decoder[IndicesHistoricalConstituents],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

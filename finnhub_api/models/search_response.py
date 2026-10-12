@@ -24,4 +24,4 @@ class SearchResponseDict(TypedDict):
     count: NotRequired[int]
     took: NotRequired[int]
     page: NotRequired[int]
-    filings: NotRequired[list[FilingResponse | FilingResponseDict]]
+    filings: NotRequired[list[FilingResponseDict]]

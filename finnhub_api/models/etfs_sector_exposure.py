@@ -17,4 +17,4 @@ class EtfsSectorExposure(SdkBaseModel):
 
 class EtfsSectorExposureDict(TypedDict):
     symbol: NotRequired[str]
-    sector_exposure: NotRequired[list[EtfsectorExposureData | EtfsectorExposureDataDict]]
+    sector_exposure: NotRequired[list[EtfsectorExposureDataDict]]

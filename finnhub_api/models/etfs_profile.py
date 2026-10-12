@@ -15,4 +15,4 @@ class EtfsProfile(SdkBaseModel):
 
 class EtfsProfileDict(TypedDict):
     symbol: NotRequired[str]
-    profile: NotRequired[EtfprofileData | EtfprofileDataDict]
+    profile: NotRequired[EtfprofileDataDict]

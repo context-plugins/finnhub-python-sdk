@@ -62,7 +62,7 @@
 **Sync**
 
 ```python
-result = client.bond.with_raw_response.bond_price(isin, from_, to)
+result = client.bond.with_raw_response.bond_price("some example string", 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BondCandles
@@ -73,7 +73,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.bond.with_raw_response.bond_price(isin, from_, to)
+result = await async_client.bond.with_raw_response.bond_price("some example string", 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BondCandles
@@ -94,7 +94,7 @@ match result:
 | <code>isin</code> | <code>str</code> | ISIN. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -174,7 +174,7 @@ match result:
 | <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
 | <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
 | <code>figi</code> | <code>str \| None</code> | FIGI<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -242,7 +242,7 @@ match result:
 **Sync**
 
 ```python
-result = client.bond.with_raw_response.bond_tick(isin, date, limit, skip, exchange)
+result = client.bond.with_raw_response.bond_tick("some example string", date(2024, 1, 15), 1, 1, "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BondTickData
@@ -253,7 +253,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.bond.with_raw_response.bond_tick(isin, date, limit, skip, exchange)
+result = await async_client.bond.with_raw_response.bond_tick(
+    "some example string", date(2024, 1, 15), 1, 1, "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BondTickData
@@ -276,7 +278,7 @@ match result:
 | <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
 | <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
 | <code>exchange</code> | <code>str</code> | Currently support the following values: <code>trace</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -324,7 +326,7 @@ Get yield curve data for Treasury bonds.
 **Sync**
 
 ```python
-result = client.bond.with_raw_response.bond_yield_curve(code)
+result = client.bond.with_raw_response.bond_yield_curve("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BondYieldCurve
@@ -335,7 +337,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.bond.with_raw_response.bond_yield_curve(code)
+result = await async_client.bond.with_raw_response.bond_yield_curve("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BondYieldCurve
@@ -354,7 +356,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>code</code> | <code>str</code> | Bond's code. You can find the list of supported code <a href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing" target="_blank" rel="noopener">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -439,7 +441,7 @@ match result:
 | <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
 | <code>symbol</code> | <code>str \| None</code> | Filter by symbol: AAPL.<br>**Default**: <code>None</code> |
 | <code>international</code> | <code>bool \| None</code> | Set to <code>true</code> to include international markets. Default value is <code>false</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -518,7 +520,7 @@ match result:
 | --- | --- | --- |
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -566,7 +568,7 @@ Get recent and upcoming IPO.
 **Sync**
 
 ```python
-result = client.calendar.with_raw_response.ipo_calendar(from_, to)
+result = client.calendar.with_raw_response.ipo_calendar(date(2024, 1, 15), date(2024, 1, 15))
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Ipocalendar
@@ -577,7 +579,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.calendar.with_raw_response.ipo_calendar(from_, to)
+result = await async_client.calendar.with_raw_response.ipo_calendar(date(2024, 1, 15), date(2024, 1, 15))
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Ipocalendar
@@ -597,7 +599,7 @@ match result:
 | --- | --- | --- |
 | <code>from_</code> | <code>Date</code> | From date: 2020-03-15. |
 | <code>to</code> | <code>Date</code> | To date: 2020-03-16. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -649,7 +651,7 @@ Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a t
 **Sync**
 
 ```python
-result = client.corporate_actions.with_raw_response.isin_change(from_, to)
+result = client.corporate_actions.with_raw_response.isin_change("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type IsinChange
@@ -660,7 +662,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.corporate_actions.with_raw_response.isin_change(from_, to)
+result = await async_client.corporate_actions.with_raw_response.isin_change(
+    "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type IsinChange
@@ -680,7 +684,7 @@ match result:
 | --- | --- | --- |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -728,7 +732,7 @@ Get a list of symbol changes for US-listed, EU-listed, NSE and ASX securities. L
 **Sync**
 
 ```python
-result = client.corporate_actions.with_raw_response.symbol_change(from_, to)
+result = client.corporate_actions.with_raw_response.symbol_change("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SymbolChange
@@ -739,7 +743,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.corporate_actions.with_raw_response.symbol_change(from_, to)
+result = await async_client.corporate_actions.with_raw_response.symbol_change(
+    "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SymbolChange
@@ -759,7 +765,7 @@ match result:
 | --- | --- | --- |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -811,7 +817,7 @@ Get candlestick data for crypto symbols.
 **Sync**
 
 ```python
-result = client.crypto.with_raw_response.crypto_candles(symbol, resolution, from_, to)
+result = client.crypto.with_raw_response.crypto_candles("some example string", "some example string", 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CryptoCandles
@@ -822,7 +828,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.crypto.with_raw_response.crypto_candles(symbol, resolution, from_, to)
+result = await async_client.crypto.with_raw_response.crypto_candles("some example string", "some example string", 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CryptoCandles
@@ -844,7 +850,7 @@ match result:
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -921,7 +927,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -969,7 +975,7 @@ Get crypto's profile.
 **Sync**
 
 ```python
-result = client.crypto.with_raw_response.crypto_profile(symbol)
+result = client.crypto.with_raw_response.crypto_profile("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CryptoProfile
@@ -980,7 +986,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.crypto.with_raw_response.crypto_profile(symbol)
+result = await async_client.crypto.with_raw_response.crypto_profile("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CryptoProfile
@@ -999,7 +1005,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Crypto symbol such as BTC or ETH. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1047,7 +1053,7 @@ List supported crypto symbols by exchange
 **Sync**
 
 ```python
-result = client.crypto.with_raw_response.crypto_symbols(exchange)
+result = client.crypto.with_raw_response.crypto_symbols("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[CryptoSymbol]
@@ -1058,7 +1064,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.crypto.with_raw_response.crypto_symbols(exchange)
+result = await async_client.crypto.with_raw_response.crypto_symbols("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[CryptoSymbol]
@@ -1077,7 +1083,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange you want to get the list of symbols from. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1158,7 +1164,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1206,7 +1212,7 @@ Get economic data.
 **Sync**
 
 ```python
-result = client.economic.with_raw_response.economic_data(code)
+result = client.economic.with_raw_response.economic_data("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EconomicData
@@ -1217,7 +1223,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.economic.with_raw_response.economic_data(code)
+result = await async_client.economic.with_raw_response.economic_data("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EconomicData
@@ -1236,7 +1242,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>code</code> | <code>str</code> | Economic code. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1319,7 +1325,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1398,7 +1404,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1479,7 +1485,7 @@ match result:
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
 | <code>skip</code> | <code>int \| None</code> | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.<br>**Default**: <code>None</code> |
 | <code>date</code> | <code>str \| None</code> | Query holdings by date. You can use either this param or <code>skip</code> param, not both.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1558,7 +1564,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1637,7 +1643,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | ETF symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ETF isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1689,7 +1695,7 @@ Get candlestick data for forex symbols.
 **Sync**
 
 ```python
-result = client.forex.with_raw_response.forex_candles(symbol, resolution, from_, to)
+result = client.forex.with_raw_response.forex_candles("some example string", "some example string", 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type ForexCandles
@@ -1700,7 +1706,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.forex.with_raw_response.forex_candles(symbol, resolution, from_, to)
+result = await async_client.forex.with_raw_response.forex_candles("some example string", "some example string", 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type ForexCandles
@@ -1722,7 +1728,7 @@ match result:
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1799,7 +1805,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1878,7 +1884,7 @@ match result:
 | --- | --- | --- |
 | <code>base</code> | <code>str \| None</code> | Base currency. Default to EUR.<br>**Default**: <code>None</code> |
 | <code>date</code> | <code>str \| None</code> | Date. Leave blank to get the latest data.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -1926,7 +1932,7 @@ List supported forex symbols.
 **Sync**
 
 ```python
-result = client.forex.with_raw_response.forex_symbols(exchange)
+result = client.forex.with_raw_response.forex_symbols("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[ForexSymbol]
@@ -1937,7 +1943,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.forex.with_raw_response.forex_symbols(exchange)
+result = await async_client.forex.with_raw_response.forex_symbols("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[ForexSymbol]
@@ -1956,7 +1962,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange you want to get the list of symbols from. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2008,7 +2014,7 @@ match result:
 **Sync**
 
 ```python
-result = client.global_filings.with_raw_response.global_filings_download(document_id)
+result = client.global_filings.with_raw_response.global_filings_download("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2019,7 +2025,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.global_filings.with_raw_response.global_filings_download(document_id)
+result = await async_client.global_filings.with_raw_response.global_filings_download("some example string")
 match result:
     case Success():
         ...  # 2xx, no content
@@ -2038,7 +2044,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>document_id</code> | <code>str</code> | Document's id. Note that this is different from filingId as 1 filing can contain multiple documents. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2116,7 +2122,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>search</code> | <code>[SearchBody](finnhub_api/models/search_body.py) \| [SearchBodyDict](finnhub_api/models/search_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2164,7 +2170,7 @@ match result:
 **Sync**
 
 ```python
-result = client.global_filings.with_raw_response.global_filings_search_filter(field)
+result = client.global_filings.with_raw_response.global_filings_search_filter("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SearchFilter
@@ -2175,7 +2181,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.global_filings.with_raw_response.global_filings_search_filter(field)
+result = await async_client.global_filings.with_raw_response.global_filings_search_filter("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SearchFilter
@@ -2195,7 +2201,7 @@ match result:
 | --- | --- | --- |
 | <code>field</code> | <code>str</code> | Field to get available filters. Available filters are "countries", "exchanges", "exhibits", "forms", "gics", "naics", "caps", "acts", and "sort". |
 | <code>source</code> | <code>str \| None</code> | Get available forms for each source.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2273,7 +2279,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>search</code> | <code>[InFilingSearchBody](finnhub_api/models/in_filing_search_body.py) \| [InFilingSearchBodyDict](finnhub_api/models/in_filing_search_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2325,7 +2331,7 @@ Get a list of index's constituents. A list of supported indices for this endpoin
 **Sync**
 
 ```python
-result = client.index.with_raw_response.indices_constituents(symbol)
+result = client.index.with_raw_response.indices_constituents("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type IndicesConstituents
@@ -2336,7 +2342,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.index.with_raw_response.indices_constituents(symbol)
+result = await async_client.index.with_raw_response.indices_constituents("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type IndicesConstituents
@@ -2355,7 +2361,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | symbol |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2403,7 +2409,7 @@ Get full history of index's constituents including symbols and dates of joining 
 **Sync**
 
 ```python
-result = client.index.with_raw_response.indices_historical_constituents(symbol)
+result = client.index.with_raw_response.indices_historical_constituents("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type IndicesHistoricalConstituents
@@ -2414,7 +2420,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.index.with_raw_response.indices_historical_constituents(symbol)
+result = await async_client.index.with_raw_response.indices_historical_constituents("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type IndicesHistoricalConstituents
@@ -2433,7 +2439,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | symbol |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2485,7 +2491,9 @@ Get a list institutional investors' positions for a particular stock overtime. D
 **Sync**
 
 ```python
-result = client.institutional.with_raw_response.institutional_ownership(symbol, cusip, from_, to)
+result = client.institutional.with_raw_response.institutional_ownership(
+    "some example string", "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InstitutionalOwnership
@@ -2496,7 +2504,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.institutional.with_raw_response.institutional_ownership(symbol, cusip, from_, to)
+result = await async_client.institutional.with_raw_response.institutional_ownership(
+    "some example string", "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InstitutionalOwnership
@@ -2518,7 +2528,7 @@ match result:
 | <code>cusip</code> | <code>str</code> | Filter by CUSIP. |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2566,7 +2576,9 @@ Get the holdings/portfolio data of institutional investors from 13-F filings. Li
 **Sync**
 
 ```python
-result = client.institutional.with_raw_response.institutional_portfolio(cik, from_, to)
+result = client.institutional.with_raw_response.institutional_portfolio(
+    "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InstitutionalPortfolio
@@ -2577,7 +2589,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.institutional.with_raw_response.institutional_portfolio(cik, from_, to)
+result = await async_client.institutional.with_raw_response.institutional_portfolio(
+    "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InstitutionalPortfolio
@@ -2598,7 +2612,7 @@ match result:
 | <code>cik</code> | <code>str</code> | Fund's CIK. |
 | <code>from_</code> | <code>str</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>str</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2676,7 +2690,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>cik</code> | <code>str \| None</code> | Filter by CIK. Leave blank to get the full list.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2758,7 +2772,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>search</code> | <code>[AichatBody](finnhub_api/models/aichat_body.py) \| [AichatBodyDict](finnhub_api/models/aichat_body.py) \| None</code> | Search body<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2806,7 +2820,7 @@ match result:
 **Sync**
 
 ```python
-result = client.misc.with_raw_response.airline_price_index(airline, from_, to)
+result = client.misc.with_raw_response.airline_price_index("some example string", date(2024, 1, 15), date(2024, 1, 15))
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type AirlinePriceIndexData
@@ -2817,7 +2831,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.misc.with_raw_response.airline_price_index(airline, from_, to)
+result = await async_client.misc.with_raw_response.airline_price_index(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type AirlinePriceIndexData
@@ -2838,7 +2854,7 @@ match result:
 | <code>airline</code> | <code>str</code> | Filter data by airline. Accepted values: <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code> |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2886,7 +2902,7 @@ Retrieve list of US bank branches information for a given symbol.
 **Sync**
 
 ```python
-result = client.misc.with_raw_response.bank_branch(symbol)
+result = client.misc.with_raw_response.bank_branch({})
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BankBranchRes
@@ -2897,7 +2913,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.misc.with_raw_response.bank_branch(symbol)
+result = await async_client.misc.with_raw_response.bank_branch({})
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BankBranchRes
@@ -2916,7 +2932,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>Any</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -2993,7 +3009,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3070,7 +3086,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3147,7 +3163,7 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3195,7 +3211,7 @@ match result:
 **Sync**
 
 ```python
-result = client.misc.with_raw_response.quote(symbol)
+result = client.misc.with_raw_response.quote("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Quote
@@ -3206,7 +3222,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.misc.with_raw_response.quote(symbol)
+result = await async_client.misc.with_raw_response.quote("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Quote
@@ -3225,7 +3241,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3273,7 +3289,7 @@ Get ratios for different sectors and regions/indices.
 **Sync**
 
 ```python
-result = client.misc.with_raw_response.sector_metric(region)
+result = client.misc.with_raw_response.sector_metric("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SectorMetric
@@ -3284,7 +3300,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.misc.with_raw_response.sector_metric(region)
+result = await async_client.misc.with_raw_response.sector_metric("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SectorMetric
@@ -3303,7 +3319,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>region</code> | <code>str</code> | Region. A list of supported values for this field can be found <a href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing" target="_blank">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3351,7 +3367,7 @@ Search for best-matching symbols based on your query. You can input anything fro
 **Sync**
 
 ```python
-result = client.misc.with_raw_response.symbol_search(q)
+result = client.misc.with_raw_response.symbol_search("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SymbolLookup
@@ -3362,7 +3378,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.misc.with_raw_response.symbol_search(q)
+result = await async_client.misc.with_raw_response.symbol_search("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SymbolLookup
@@ -3382,7 +3398,7 @@ match result:
 | --- | --- | --- |
 | <code>q</code> | <code>str</code> | Query text can be symbol, name, isin, or cusip. |
 | <code>exchange</code> | <code>str \| None</code> | Exchange limit.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3430,7 +3446,9 @@ Return technical indicator with price data. List of supported indicators can be 
 **Sync**
 
 ```python
-result = client.misc.with_raw_response.technical_indicator(symbol, resolution, from_, to, indicator)
+result = client.misc.with_raw_response.technical_indicator(
+    "some example string", "some example string", 1, 1, "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3441,7 +3459,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.misc.with_raw_response.technical_indicator(symbol, resolution, from_, to, indicator)
+result = await async_client.misc.with_raw_response.technical_indicator(
+    "some example string", "some example string", 1, 1, "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Any
@@ -3464,7 +3484,7 @@ match result:
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
 | <code>indicator</code> | <code>str</code> | Indicator name. Full list can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing" target="_blank">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3547,7 +3567,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3595,7 +3615,7 @@ Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
 **Sync**
 
 ```python
-result = client.mutual_fund.with_raw_response.mutual_fund_eet(isin)
+result = client.mutual_fund.with_raw_response.mutual_fund_eet("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MutualFundEet
@@ -3606,7 +3626,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.mutual_fund.with_raw_response.mutual_fund_eet(isin)
+result = await async_client.mutual_fund.with_raw_response.mutual_fund_eet("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MutualFundEet
@@ -3625,7 +3645,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>isin</code> | <code>str</code> | ISIN. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3673,7 +3693,7 @@ Get EET PAI data for EU funds.
 **Sync**
 
 ```python
-result = client.mutual_fund.with_raw_response.mutual_fund_eet_pai(isin)
+result = client.mutual_fund.with_raw_response.mutual_fund_eet_pai("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MutualFundEetPai
@@ -3684,7 +3704,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.mutual_fund.with_raw_response.mutual_fund_eet_pai(isin)
+result = await async_client.mutual_fund.with_raw_response.mutual_fund_eet_pai("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MutualFundEetPai
@@ -3703,7 +3723,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>isin</code> | <code>str</code> | ISIN. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3783,7 +3803,7 @@ match result:
 | <code>symbol</code> | <code>str \| None</code> | Fund's symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
 | <code>skip</code> | <code>int \| None</code> | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3862,7 +3882,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Fund's symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3941,7 +3961,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Mutual Fund symbol.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | Fund's isin.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -3993,7 +4013,7 @@ List latest company news by symbol. This endpoint is only available for North Am
 **Sync**
 
 ```python
-result = client.news.with_raw_response.company_news(symbol, from_, to)
+result = client.news.with_raw_response.company_news("some example string", date(2024, 1, 15), date(2024, 1, 15))
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[CompanyNews]
@@ -4004,7 +4024,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.news.with_raw_response.company_news(symbol, from_, to)
+result = await async_client.news.with_raw_response.company_news(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[CompanyNews]
@@ -4025,7 +4047,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4073,7 +4095,7 @@ Get latest market news.
 **Sync**
 
 ```python
-result = client.news.with_raw_response.market_news(category)
+result = client.news.with_raw_response.market_news("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[MarketNews]
@@ -4084,7 +4106,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.news.with_raw_response.market_news(category)
+result = await async_client.news.with_raw_response.market_news("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[MarketNews]
@@ -4104,7 +4126,7 @@ match result:
 | --- | --- | --- |
 | <code>category</code> | <code>str</code> | This parameter can be 1 of the following values <code>general, forex, crypto, merger</code>. |
 | <code>min_id</code> | <code>int \| None</code> | Use this field to get only news after this ID. Default to 0<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4152,7 +4174,7 @@ Get company's news sentiment and statistics. This endpoint is only available for
 **Sync**
 
 ```python
-result = client.news.with_raw_response.news_sentiment(symbol)
+result = client.news.with_raw_response.news_sentiment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type NewsSentiment
@@ -4163,7 +4185,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.news.with_raw_response.news_sentiment(symbol)
+result = await async_client.news.with_raw_response.news_sentiment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type NewsSentiment
@@ -4182,7 +4204,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Company symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4230,7 +4252,7 @@ match result:
 **Sync**
 
 ```python
-result = client.news.with_raw_response.press_releases(symbol)
+result = client.news.with_raw_response.press_releases("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PressRelease
@@ -4241,7 +4263,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.news.with_raw_response.press_releases(symbol)
+result = await async_client.news.with_raw_response.press_releases("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PressRelease
@@ -4262,7 +4284,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date \| None</code> | From time: 2020-01-01.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To time: 2020-01-05.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4314,7 +4336,7 @@ Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving 
 **Sync**
 
 ```python
-result = client.scan.with_raw_response.aggregate_indicator(symbol, resolution)
+result = client.scan.with_raw_response.aggregate_indicator("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type AggregateIndicators
@@ -4325,7 +4347,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.scan.with_raw_response.aggregate_indicator(symbol, resolution)
+result = await async_client.scan.with_raw_response.aggregate_indicator("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type AggregateIndicators
@@ -4345,7 +4367,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | symbol |
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4393,7 +4415,7 @@ Run pattern recognition algorithm on a symbol. Support double top/bottom, triple
 **Sync**
 
 ```python
-result = client.scan.with_raw_response.pattern_recognition(symbol, resolution)
+result = client.scan.with_raw_response.pattern_recognition("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PatternRecognition
@@ -4404,7 +4426,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.scan.with_raw_response.pattern_recognition(symbol, resolution)
+result = await async_client.scan.with_raw_response.pattern_recognition("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PatternRecognition
@@ -4424,7 +4446,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol |
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4472,7 +4494,7 @@ Get support and resistance levels for a symbol.
 **Sync**
 
 ```python
-result = client.scan.with_raw_response.support_resistance(symbol, resolution)
+result = client.scan.with_raw_response.support_resistance("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SupportResistance
@@ -4483,7 +4505,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.scan.with_raw_response.support_resistance(symbol, resolution)
+result = await async_client.scan.with_raw_response.support_resistance("some example string", "some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SupportResistance
@@ -4503,7 +4525,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol |
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4555,7 +4577,7 @@ Get company's capital expenditure estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_capex_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_capex_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CapexEstimates
@@ -4566,7 +4588,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_capex_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_capex_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CapexEstimates
@@ -4586,7 +4608,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4634,7 +4656,7 @@ Get company's Dividend per Share estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_dps_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_dps_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type DpsEstimates
@@ -4645,7 +4667,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_dps_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_dps_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type DpsEstimates
@@ -4665,7 +4687,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4713,7 +4735,7 @@ Get company historical quarterly earnings surprise going back to 2000.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_earnings(symbol)
+result = client.stock_estimates.with_raw_response.company_earnings("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[EarningResult]
@@ -4724,7 +4746,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_earnings(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_earnings("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[EarningResult]
@@ -4744,7 +4766,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>limit</code> | <code>int \| None</code> | Limit number of period returned. Leave blank to get the full history.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4792,7 +4814,9 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_earnings_quality_score(symbol, freq)
+result = client.stock_estimates.with_raw_response.company_earnings_quality_score(
+    "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CompanyEarningsQualityScore
@@ -4803,7 +4827,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_earnings_quality_score(symbol, freq)
+result = await async_client.stock_estimates.with_raw_response.company_earnings_quality_score(
+    "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CompanyEarningsQualityScore
@@ -4823,7 +4849,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>freq</code> | <code>str</code> | Frequency. Currently support <code>annual</code> and <code>quarterly</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4871,7 +4897,7 @@ Get company's ebit estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_ebit_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_ebit_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EbitEstimates
@@ -4882,7 +4908,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_ebit_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_ebit_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EbitEstimates
@@ -4902,7 +4928,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -4950,7 +4976,7 @@ Get company's ebitda estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_ebitda_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_ebitda_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EbitdaEstimates
@@ -4961,7 +4987,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_ebitda_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_ebitda_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EbitdaEstimates
@@ -4981,7 +5007,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5029,7 +5055,7 @@ Get company's EPS estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_eps_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_eps_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EarningsEstimates
@@ -5040,7 +5066,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_eps_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_eps_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EarningsEstimates
@@ -5060,7 +5086,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5108,7 +5134,7 @@ Get company's free cash flow estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_fcf_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_fcf_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type FcfEstimates
@@ -5119,7 +5145,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_fcf_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_fcf_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type FcfEstimates
@@ -5139,7 +5165,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5187,7 +5213,7 @@ Get company's gross income estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_gross_income_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_gross_income_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GrossIncomeEstimates
@@ -5198,7 +5224,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_gross_income_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_gross_income_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type GrossIncomeEstimates
@@ -5218,7 +5244,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5266,7 +5292,7 @@ Get company's net income estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_net_income_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_net_income_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type NetIncomeEstimates
@@ -5277,7 +5303,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_net_income_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_net_income_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type NetIncomeEstimates
@@ -5297,7 +5323,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5345,7 +5371,7 @@ Get company's operating cash flow estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_ocf_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_ocf_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type OcfEstimates
@@ -5356,7 +5382,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_ocf_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_ocf_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type OcfEstimates
@@ -5376,7 +5402,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5424,7 +5450,7 @@ Get company's pretax income estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_pretax_income_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_pretax_income_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PretaxIncomeEstimates
@@ -5435,7 +5461,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_pretax_income_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_pretax_income_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PretaxIncomeEstimates
@@ -5455,7 +5481,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5503,7 +5529,7 @@ Get company's revenue estimates.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.company_revenue_estimates(symbol)
+result = client.stock_estimates.with_raw_response.company_revenue_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type RevenueEstimates
@@ -5514,7 +5540,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.company_revenue_estimates(symbol)
+result = await async_client.stock_estimates.with_raw_response.company_revenue_estimates("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type RevenueEstimates
@@ -5534,7 +5560,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>freq</code> | <code>str \| None</code> | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5582,7 +5608,7 @@ Get latest price target consensus.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.price_target(symbol)
+result = client.stock_estimates.with_raw_response.price_target("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PriceTarget
@@ -5593,7 +5619,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.price_target(symbol)
+result = await async_client.stock_estimates.with_raw_response.price_target("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PriceTarget
@@ -5612,7 +5638,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5660,7 +5686,7 @@ Get latest analyst recommendation trends for a company.
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.recommendation_trends(symbol)
+result = client.stock_estimates.with_raw_response.recommendation_trends("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[RecommendationTrend]
@@ -5671,7 +5697,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.recommendation_trends(symbol)
+result = await async_client.stock_estimates.with_raw_response.recommendation_trends("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[RecommendationTrend]
@@ -5690,7 +5716,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5769,7 +5795,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str \| None</code> | Symbol.<br>**Default**: <code>None</code> |
 | <code>cik</code> | <code>str \| None</code> | CIK.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5817,7 +5843,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_estimates.with_raw_response.revenue_breakdown2(symbol)
+result = client.stock_estimates.with_raw_response.revenue_breakdown2("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type RevenueBreakdown2
@@ -5828,7 +5854,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_estimates.with_raw_response.revenue_breakdown2(symbol)
+result = await async_client.stock_estimates.with_raw_response.revenue_breakdown2("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type RevenueBreakdown2
@@ -5847,7 +5873,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5927,7 +5953,7 @@ match result:
 | <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2000-03-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -5979,7 +6005,9 @@ Get company basic financials such as margin, P/E ratio, 52-week high/low etc.
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.company_basic_financials(symbol, metric)
+result = client.stock_fundamentals.with_raw_response.company_basic_financials(
+    "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BasicFinancials
@@ -5990,7 +6018,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.company_basic_financials(symbol, metric)
+result = await async_client.stock_fundamentals.with_raw_response.company_basic_financials(
+    "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type BasicFinancials
@@ -6010,7 +6040,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>metric</code> | <code>str</code> | Metric type. Can be 1 of the following values <code>all</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6058,7 +6088,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.company_esg_score(symbol)
+result = client.stock_fundamentals.with_raw_response.company_esg_score("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CompanyEsg
@@ -6069,7 +6099,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.company_esg_score(symbol)
+result = await async_client.stock_fundamentals.with_raw_response.company_esg_score("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CompanyEsg
@@ -6088,7 +6118,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6136,7 +6166,7 @@ Get a list of company's executives and members of the Board.
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.company_executive(symbol)
+result = client.stock_fundamentals.with_raw_response.company_executive("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CompanyExecutive
@@ -6147,7 +6177,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.company_executive(symbol)
+result = await async_client.stock_fundamentals.with_raw_response.company_executive("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CompanyExecutive
@@ -6166,7 +6196,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6214,7 +6244,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.company_historical_esg_score(symbol)
+result = client.stock_fundamentals.with_raw_response.company_historical_esg_score("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalCompanyEsg
@@ -6225,7 +6255,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.company_historical_esg_score(symbol)
+result = await async_client.stock_fundamentals.with_raw_response.company_historical_esg_score("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalCompanyEsg
@@ -6244,7 +6274,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6324,7 +6354,7 @@ match result:
 | <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL e.g.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
 | <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6404,7 +6434,7 @@ match result:
 | <code>symbol</code> | <code>str \| None</code> | Symbol of the company: AAPL e.g.<br>**Default**: <code>None</code> |
 | <code>isin</code> | <code>str \| None</code> | ISIN<br>**Default**: <code>None</code> |
 | <code>cusip</code> | <code>str \| None</code> | CUSIP<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6484,7 +6514,7 @@ match result:
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>symbol</code> | <code>str \| None</code> | Filter by symbol: AAPL.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6567,7 +6597,7 @@ match result:
 | <code>form</code> | <code>str \| None</code> | Filter by form. You can use this value <code>NT 10-K</code> to find non-timely filings for a company.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2023-03-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2023-03-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6615,7 +6645,7 @@ Get sentiment analysis of 10-K and 10-Q filings from SEC. An abnormal increase i
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.filings_sentiment(access_number)
+result = client.stock_fundamentals.with_raw_response.filings_sentiment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SecsentimentAnalysis
@@ -6626,7 +6656,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.filings_sentiment(access_number)
+result = await async_client.stock_fundamentals.with_raw_response.filings_sentiment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SecsentimentAnalysis
@@ -6645,7 +6675,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>access_number</code> | <code>str</code> | Access number of a specific report you want to retrieve data from. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6693,7 +6723,9 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.financials(symbol, statement, freq)
+result = client.stock_fundamentals.with_raw_response.financials(
+    "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type FinancialStatements
@@ -6704,7 +6736,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.financials(symbol, statement, freq)
+result = await async_client.stock_fundamentals.with_raw_response.financials(
+    "some example string", "some example string", "some example string"
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type FinancialStatements
@@ -6726,7 +6760,7 @@ match result:
 | <code>statement</code> | <code>str</code> | Statement can take 1 of these values <code>bs, ic, cf</code> for Balance Sheet, Income Statement, Cash Flow respectively. |
 | <code>freq</code> | <code>str</code> | Frequency can take 1 of these values <code>annual, quarterly, ttm, ytd</code>.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow. |
 | <code>preliminary</code> | <code>str \| None</code> | If set to <code>true</code>, it will return Preliminary financial statements for the latest period which are usually available within an hour of the earnings announcement if finalized data is not available yet. This preliminary data is currently available for US companies. You will see <code>"preliminary": true</code> in the data if that period is using preliminary data.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6809,7 +6843,7 @@ match result:
 | <code>freq</code> | <code>str \| None</code> | Frequency. Can be either <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>. Filter for endDate.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>. Filter for endDate.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6857,7 +6891,9 @@ Get historical employee count for global companies.
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.historical_employee_count(symbol, from_, to)
+result = client.stock_fundamentals.with_raw_response.historical_employee_count(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalEmployeeCount
@@ -6868,7 +6904,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.historical_employee_count(symbol, from_, to)
+result = await async_client.stock_fundamentals.with_raw_response.historical_employee_count(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalEmployeeCount
@@ -6889,7 +6927,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -6970,7 +7008,7 @@ match result:
 | <code>country</code> | <code>str \| None</code> | Filter by country using country's 2-letter code.<br>**Default**: <code>None</code> |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2023-01-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2023-12-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7018,7 +7056,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.newsroom(symbol)
+result = client.stock_fundamentals.with_raw_response.newsroom("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Newsroom
@@ -7029,7 +7067,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.newsroom(symbol)
+result = await async_client.stock_fundamentals.with_raw_response.newsroom("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Newsroom
@@ -7050,7 +7088,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date \| None</code> | From time: 2025-01-01.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To time: 2026-01-05.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7130,7 +7168,7 @@ match result:
 | <code>symbol</code> | <code>str \| None</code> | Symbol. Required if cik is empty<br>**Default**: <code>None</code> |
 | <code>cik</code> | <code>str \| None</code> | CIK. Required if symbol is empty<br>**Default**: <code>None</code> |
 | <code>freq</code> | <code>str \| None</code> | <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code><br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7178,7 +7216,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.stock_presentation(symbol)
+result = client.stock_fundamentals.with_raw_response.stock_presentation("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type StockPresentation
@@ -7189,7 +7227,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.stock_presentation(symbol)
+result = await async_client.stock_fundamentals.with_raw_response.stock_presentation("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type StockPresentation
@@ -7208,7 +7246,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Company symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7233,7 +7271,7 @@ match result:
 </details>
 
 <details>
-<summary><code>def transcripts(id: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[EarningsCallTranscripts, RawError]</code></summary>
+<summary><code>def transcripts(id_: str, *, request_options: RequestOptionsOrDict | None = None) -> ApiResult[EarningsCallTranscripts, RawError]</code></summary>
 
 <dl>
 <dd>
@@ -7256,7 +7294,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.transcripts(id)
+result = client.stock_fundamentals.with_raw_response.transcripts("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EarningsCallTranscripts
@@ -7267,7 +7305,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.transcripts(id)
+result = await async_client.stock_fundamentals.with_raw_response.transcripts("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EarningsCallTranscripts
@@ -7285,8 +7323,8 @@ match result:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>id</code> | <code>str</code> | Transcript's id obtained with <a href="#transcripts-list">Transcripts List endpoint</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>id_</code> | <code>str</code> | Transcript's id obtained with <a href="#transcripts-list">Transcripts List endpoint</a>. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7334,7 +7372,7 @@ List earnings call transcripts' metadata. This endpoint is available for Global 
 **Sync**
 
 ```python
-result = client.stock_fundamentals.with_raw_response.transcripts_list(symbol)
+result = client.stock_fundamentals.with_raw_response.transcripts_list("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EarningsCallTranscriptsList
@@ -7345,7 +7383,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_fundamentals.with_raw_response.transcripts_list(symbol)
+result = await async_client.stock_fundamentals.with_raw_response.transcripts_list("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type EarningsCallTranscriptsList
@@ -7364,7 +7402,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Company symbol: AAPL. Leave empty to list the latest transcripts |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7416,7 +7454,9 @@ Get stock trades data disclosed by members of congress.
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.congressional_trading(symbol, from_, to)
+result = client.stock_ownership.with_raw_response.congressional_trading(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CongressionalTrading
@@ -7427,7 +7467,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.congressional_trading(symbol, from_, to)
+result = await async_client.stock_ownership.with_raw_response.congressional_trading(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type CongressionalTrading
@@ -7448,7 +7490,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7496,7 +7538,7 @@ Get a full list fund and institutional investors of a company in descending orde
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.fund_ownership(symbol)
+result = client.stock_ownership.with_raw_response.fund_ownership("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type FundOwnership
@@ -7507,7 +7549,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.fund_ownership(symbol)
+result = await async_client.stock_ownership.with_raw_response.fund_ownership("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type FundOwnership
@@ -7527,7 +7569,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>limit</code> | <code>int \| None</code> | Limit number of results. Leave empty to get the full list.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7575,7 +7617,9 @@ Get insider sentiment data for US companies calculated using method discussed <a
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.insider_sentiment(symbol, from_, to)
+result = client.stock_ownership.with_raw_response.insider_sentiment(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InsiderSentiments
@@ -7586,7 +7630,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.insider_sentiment(symbol, from_, to)
+result = await async_client.stock_ownership.with_raw_response.insider_sentiment(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InsiderSentiments
@@ -7607,7 +7653,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>from_</code> | <code>Date</code> | From date: 2020-03-15. |
 | <code>to</code> | <code>Date</code> | To date: 2020-03-16. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7655,7 +7701,7 @@ Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.insider_transactions(symbol)
+result = client.stock_ownership.with_raw_response.insider_transactions("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InsiderTransactions
@@ -7666,7 +7712,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.insider_transactions(symbol)
+result = await async_client.stock_ownership.with_raw_response.insider_transactions("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InsiderTransactions
@@ -7687,7 +7733,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. Leave this param blank to get the latest transactions. |
 | <code>from_</code> | <code>Date \| None</code> | From date: 2020-03-15.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date: 2020-03-16.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7735,7 +7781,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.investment_themes(theme)
+result = client.stock_ownership.with_raw_response.investment_themes("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InvestmentThemes
@@ -7746,7 +7792,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.investment_themes(theme)
+result = await async_client.stock_ownership.with_raw_response.investment_themes("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type InvestmentThemes
@@ -7765,7 +7811,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>theme</code> | <code>str</code> | Investment theme. A full list of themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7813,7 +7859,7 @@ Get a full list of shareholders of a company in descending order of the number o
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.ownership(symbol)
+result = client.stock_ownership.with_raw_response.ownership("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Ownership
@@ -7824,7 +7870,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.ownership(symbol)
+result = await async_client.stock_ownership.with_raw_response.ownership("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Ownership
@@ -7844,7 +7890,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>limit</code> | <code>int \| None</code> | Limit number of results. Leave empty to get the full list.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7892,7 +7938,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.social_sentiment(symbol)
+result = client.stock_ownership.with_raw_response.social_sentiment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SocialSentiment
@@ -7903,7 +7949,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.social_sentiment(symbol)
+result = await async_client.stock_ownership.with_raw_response.social_sentiment("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SocialSentiment
@@ -7924,7 +7970,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date \| None</code> | From date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
 | <code>to</code> | <code>Date \| None</code> | To date <code>YYYY-MM-DD</code>.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -7972,7 +8018,9 @@ Get a list of reported lobbying activities in the Senate and the House.
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.stock_lobbying(symbol, from_, to)
+result = client.stock_ownership.with_raw_response.stock_lobbying(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type LobbyingResult
@@ -7983,7 +8031,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.stock_lobbying(symbol, from_, to)
+result = await async_client.stock_ownership.with_raw_response.stock_lobbying(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type LobbyingResult
@@ -8004,7 +8054,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8052,7 +8102,9 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.stock_usa_spending(symbol, from_, to)
+result = client.stock_ownership.with_raw_response.stock_usa_spending(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type UsaSpendingResult
@@ -8063,7 +8115,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.stock_usa_spending(symbol, from_, to)
+result = await async_client.stock_ownership.with_raw_response.stock_usa_spending(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type UsaSpendingResult
@@ -8084,7 +8138,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code> |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8132,7 +8186,9 @@ List USPTO patents for companies. Limit to 250 records per API call.
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.stock_uspto_patent(symbol, from_, to)
+result = client.stock_ownership.with_raw_response.stock_uspto_patent(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type UsptoPatentResult
@@ -8143,7 +8199,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.stock_uspto_patent(symbol, from_, to)
+result = await async_client.stock_ownership.with_raw_response.stock_uspto_patent(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type UsptoPatentResult
@@ -8164,7 +8222,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8212,7 +8270,9 @@ Get a list of H1-B and Permanent visa applications for companies from the DOL. T
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.stock_visa_application(symbol, from_, to)
+result = client.stock_ownership.with_raw_response.stock_visa_application(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type VisaApplicationResult
@@ -8223,7 +8283,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.stock_visa_application(symbol, from_, to)
+result = await async_client.stock_ownership.with_raw_response.stock_visa_application(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type VisaApplicationResult
@@ -8244,7 +8306,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8292,7 +8354,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_ownership.with_raw_response.supply_chain_relationships(symbol)
+result = client.stock_ownership.with_raw_response.supply_chain_relationships("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SupplyChainRelationships
@@ -8303,7 +8365,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_ownership.with_raw_response.supply_chain_relationships(symbol)
+result = await async_client.stock_ownership.with_raw_response.supply_chain_relationships("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type SupplyChainRelationships
@@ -8322,7 +8384,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8374,7 +8436,7 @@ Get company peers. Return a list of peers operating in the same country and sect
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.company_peers(symbol)
+result = client.stock_prices.with_raw_response.company_peers("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[str]
@@ -8385,7 +8447,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.company_peers(symbol)
+result = await async_client.stock_prices.with_raw_response.company_peers("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[str]
@@ -8405,7 +8467,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>grouping</code> | <code>str \| None</code> | Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>, <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8453,7 +8515,9 @@ Get historical market cap data for global companies.
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.historical_market_cap(symbol, from_, to)
+result = client.stock_prices.with_raw_response.historical_market_cap(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalMarketCapData
@@ -8464,7 +8528,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.historical_market_cap(symbol, from_, to)
+result = await async_client.stock_prices.with_raw_response.historical_market_cap(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalMarketCapData
@@ -8485,7 +8551,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Company symbol. |
 | <code>from_</code> | <code>Date</code> | From date <code>YYYY-MM-DD</code>. |
 | <code>to</code> | <code>Date</code> | To date <code>YYYY-MM-DD</code>. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8533,7 +8599,7 @@ Get a list of holidays for global exchanges.
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.market_holiday(exchange)
+result = client.stock_prices.with_raw_response.market_holiday("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MarketHoliday
@@ -8544,7 +8610,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.market_holiday(exchange)
+result = await async_client.stock_prices.with_raw_response.market_holiday("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MarketHoliday
@@ -8563,7 +8629,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange code. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8611,7 +8677,7 @@ Get current market status for global exchanges (whether exchanges are open or cl
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.market_status(exchange)
+result = client.stock_prices.with_raw_response.market_status("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MarketStatus
@@ -8622,7 +8688,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.market_status(exchange)
+result = await async_client.stock_prices.with_raw_response.market_status("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type MarketStatus
@@ -8641,7 +8707,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>exchange</code> | <code>str</code> | Exchange code. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8689,7 +8755,7 @@ Get company price performance statistics such as 52-week high/low, YTD return an
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.price_metrics(symbol)
+result = client.stock_prices.with_raw_response.price_metrics("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PriceMetrics
@@ -8700,7 +8766,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.price_metrics(symbol)
+result = await async_client.stock_prices.with_raw_response.price_metrics("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type PriceMetrics
@@ -8720,7 +8786,7 @@ match result:
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol of the company: AAPL. |
 | <code>date</code> | <code>str \| None</code> | Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8768,7 +8834,7 @@ Get global dividends data.
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_basic_dividends(symbol)
+result = client.stock_prices.with_raw_response.stock_basic_dividends("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Dividends2
@@ -8779,7 +8845,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_basic_dividends(symbol)
+result = await async_client.stock_prices.with_raw_response.stock_basic_dividends("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type Dividends2
@@ -8798,7 +8864,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8846,7 +8912,7 @@ Get last bid/ask data for US stocks.
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_bidask(symbol)
+result = client.stock_prices.with_raw_response.stock_bidask("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type LastBidAsk
@@ -8857,7 +8923,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_bidask(symbol)
+result = await async_client.stock_prices.with_raw_response.stock_bidask("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type LastBidAsk
@@ -8876,7 +8942,7 @@ match result:
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>str</code> | Symbol. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -8924,7 +8990,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_candles(symbol, resolution, from_, to)
+result = client.stock_prices.with_raw_response.stock_candles("some example string", "some example string", 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type StockCandles
@@ -8935,7 +9001,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_candles(symbol, resolution, from_, to)
+result = await async_client.stock_prices.with_raw_response.stock_candles(
+    "some example string", "some example string", 1, 1
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type StockCandles
@@ -8957,7 +9025,7 @@ match result:
 | <code>resolution</code> | <code>str</code> | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange. |
 | <code>from_</code> | <code>int</code> | UNIX timestamp. Interval initial value. |
 | <code>to</code> | <code>int</code> | UNIX timestamp. Interval end value. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -9005,7 +9073,9 @@ Get dividends data for common stocks going back 30 years.
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_dividends(symbol, from_, to)
+result = client.stock_prices.with_raw_response.stock_dividends(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[Dividends]
@@ -9016,7 +9086,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_dividends(symbol, from_, to)
+result = await async_client.stock_prices.with_raw_response.stock_dividends(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[Dividends]
@@ -9037,7 +9109,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | YYYY-MM-DD. |
 | <code>to</code> | <code>Date</code> | YYYY-MM-DD. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -9085,7 +9157,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_nbbo(symbol, date, limit, skip)
+result = client.stock_prices.with_raw_response.stock_nbbo("some example string", date(2024, 1, 15), 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalNbbo
@@ -9096,7 +9168,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_nbbo(symbol, date, limit, skip)
+result = await async_client.stock_prices.with_raw_response.stock_nbbo("some example string", date(2024, 1, 15), 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type HistoricalNbbo
@@ -9118,7 +9190,7 @@ match result:
 | <code>date</code> | <code>Date</code> | Date: 2020-04-02. |
 | <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
 | <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -9166,7 +9238,7 @@ Get splits data for stocks.
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_splits(symbol, from_, to)
+result = client.stock_prices.with_raw_response.stock_splits("some example string", date(2024, 1, 15), date(2024, 1, 15))
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[Split]
@@ -9177,7 +9249,9 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_splits(symbol, from_, to)
+result = await async_client.stock_prices.with_raw_response.stock_splits(
+    "some example string", date(2024, 1, 15), date(2024, 1, 15)
+)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[Split]
@@ -9198,7 +9272,7 @@ match result:
 | <code>symbol</code> | <code>str</code> | Symbol. |
 | <code>from_</code> | <code>Date</code> | YYYY-MM-DD. |
 | <code>to</code> | <code>Date</code> | YYYY-MM-DD. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -9246,7 +9320,7 @@ List supported stocks. We use the following symbology to identify stocks on Finn
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_symbols(exchange)
+result = client.stock_prices.with_raw_response.stock_symbols("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[StockSymbol]
@@ -9257,7 +9331,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_symbols(exchange)
+result = await async_client.stock_prices.with_raw_response.stock_symbols("some example string")
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type list[StockSymbol]
@@ -9279,7 +9353,7 @@ match result:
 | <code>mic</code> | <code>str \| None</code> | Filter by MIC code.<br>**Default**: <code>None</code> |
 | <code>security_type</code> | <code>str \| None</code> | Filter by security type used by OpenFigi standard.<br>**Default**: <code>None</code> |
 | <code>currency</code> | <code>str \| None</code> | Filter by currency.<br>**Default**: <code>None</code> |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>
@@ -9362,7 +9436,7 @@ match result:
 **Sync**
 
 ```python
-result = client.stock_prices.with_raw_response.stock_tick(symbol, date, limit, skip)
+result = client.stock_prices.with_raw_response.stock_tick("some example string", date(2024, 1, 15), 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type TickData
@@ -9373,7 +9447,7 @@ match result:
 **Async**
 
 ```python
-result = await async_client.stock_prices.with_raw_response.stock_tick(symbol, date, limit, skip)
+result = await async_client.stock_prices.with_raw_response.stock_tick("some example string", date(2024, 1, 15), 1, 1)
 match result:
     case Success(payload=payload):
         ...  # TODO: Handle 'payload' of type TickData
@@ -9395,7 +9469,7 @@ match result:
 | <code>date</code> | <code>Date</code> | Date: 2020-04-02. |
 | <code>limit</code> | <code>int</code> | Limit number of ticks returned. Maximum value: <code>25000</code> |
 | <code>skip</code> | <code>int</code> | Number of ticks to skip. Use this parameter to loop through the entire data. |
-| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout or extra headers. |
+| <code>request_options</code> | <code>[RequestOptionsOrDict](finnhub_api/core/request_options.py) \| None</code> | Per-call overrides for this one request, such as a timeout, extra headers, or its retry count and statuses. |
 
 </dd>
 </dl>

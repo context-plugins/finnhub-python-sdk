@@ -16,4 +16,4 @@ class UsaSpendingResult(SdkBaseModel):
 
 class UsaSpendingResultDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[UsaSpending | UsaSpendingDict]]
+    data: NotRequired[list[UsaSpendingDict]]

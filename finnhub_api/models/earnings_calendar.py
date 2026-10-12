@@ -13,4 +13,4 @@ class EarningsCalendar(SdkBaseModel):
 
 
 class EarningsCalendarDict(TypedDict):
-    earnings_calendar: NotRequired[list[EarningRelease | EarningReleaseDict]]
+    earnings_calendar: NotRequired[list[EarningReleaseDict]]

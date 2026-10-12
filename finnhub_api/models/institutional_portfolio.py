@@ -20,4 +20,4 @@ class InstitutionalPortfolio(SdkBaseModel):
 class InstitutionalPortfolioDict(TypedDict):
     name: NotRequired[str]
     cik: NotRequired[str]
-    data: NotRequired[list[InstitutionalPortfolioGroup | InstitutionalPortfolioGroupDict]]
+    data: NotRequired[list[InstitutionalPortfolioGroupDict]]

@@ -17,4 +17,4 @@ class PressRelease(SdkBaseModel):
 
 class PressReleaseDict(TypedDict):
     symbol: NotRequired[str]
-    major_development: NotRequired[list[Development | DevelopmentDict]]
+    major_development: NotRequired[list[DevelopmentDict]]

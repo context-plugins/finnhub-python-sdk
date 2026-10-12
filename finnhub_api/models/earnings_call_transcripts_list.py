@@ -16,4 +16,4 @@ class EarningsCallTranscriptsList(SdkBaseModel):
 
 class EarningsCallTranscriptsListDict(TypedDict):
     symbol: NotRequired[str]
-    transcripts: NotRequired[list[StockTranscripts | StockTranscriptsDict]]
+    transcripts: NotRequired[list[StockTranscriptsDict]]

@@ -243,9 +243,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /stock/transcripts`
 - **Auth**: `api_key`
-- **Signature**: `def transcripts(id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `id`
-- **Params**: `id` — query
+- **Signature**: `def transcripts(id_: str, *, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `id_`
+- **Params**: `id_` — query `id`
 - **Returns (parsed)**: `EarningsCallTranscripts`
 - **Returns (raw)**: `ApiResult[EarningsCallTranscripts, RawError]`
 - **Error**: `RawError` — **Case B**

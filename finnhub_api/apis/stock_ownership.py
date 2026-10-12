@@ -9,9 +9,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.congressional_trading import CongressionalTrading
 from ..models.fund_ownership import FundOwnership
@@ -41,16 +43,15 @@ class StockOwnership:
             symbol: Symbol of the company: AAPL.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.congressional_trading(
-            symbol, from_, to, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.congressional_trading(symbol, from_, to, request_options=request_options))
 
     def fund_ownership(
         self, symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None
@@ -63,14 +64,15 @@ class StockOwnership:
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.fund_ownership(symbol, limit=limit, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.fund_ownership(symbol, limit=limit, request_options=request_options))
 
     def insider_sentiment(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -84,14 +86,15 @@ class StockOwnership:
             symbol: Symbol of the company: AAPL.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.insider_sentiment(symbol, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.insider_sentiment(symbol, from_, to, request_options=request_options))
 
     def insider_transactions(
         self,
@@ -109,16 +112,17 @@ class StockOwnership:
             symbol: Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.insider_transactions(
-            symbol, from_=from_, to=to, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.insider_transactions(symbol, from_=from_, to=to, request_options=request_options)
+        )
 
     def investment_themes(self, theme: str, *, request_options: RequestOptionsOrDict | None = None) -> InvestmentThemes:
         """<p>Thematic investing involves creating a portfolio (or portion of a portfolio) by gathering together a
@@ -135,14 +139,15 @@ class StockOwnership:
         Args:
             theme: Investment theme. A full list of themes supported can be found <a target="_blank"
                 href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.investment_themes(theme, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.investment_themes(theme, request_options=request_options))
 
     def ownership(
         self, symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None
@@ -155,14 +160,15 @@ class StockOwnership:
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.ownership(symbol, limit=limit, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.ownership(symbol, limit=limit, request_options=request_options))
 
     def social_sentiment(
         self,
@@ -178,16 +184,17 @@ class StockOwnership:
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.social_sentiment(
-            symbol, from_=from_, to=to, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.social_sentiment(symbol, from_=from_, to=to, request_options=request_options)
+        )
 
     def stock_lobbying(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -198,14 +205,15 @@ class StockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_lobbying(symbol, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_lobbying(symbol, from_, to, request_options=request_options))
 
     def stock_usa_spending(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -223,14 +231,15 @@ class StockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
             to: To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_usa_spending(symbol, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_usa_spending(symbol, from_, to, request_options=request_options))
 
     def stock_uspto_patent(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -241,14 +250,15 @@ class StockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_uspto_patent(symbol, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_uspto_patent(symbol, from_, to, request_options=request_options))
 
     def stock_visa_application(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -259,16 +269,17 @@ class StockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
             to: To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_visa_application(
-            symbol, from_, to, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.stock_visa_application(symbol, from_, to, request_options=request_options)
+        )
 
     def supply_chain_relationships(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -279,14 +290,15 @@ class StockOwnership:
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.supply_chain_relationships(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.supply_chain_relationships(symbol, request_options=request_options))
 
     @property
     def with_raw_response(self) -> StockOwnershipWithRawResponse:
@@ -306,16 +318,17 @@ class AsyncStockOwnership:
             symbol: Symbol of the company: AAPL.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.congressional_trading(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def fund_ownership(
         self, symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None
@@ -328,16 +341,17 @@ class AsyncStockOwnership:
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.fund_ownership(symbol, limit=limit, request_options=request_options)
-        ).unwrap()
+        )
 
     async def insider_sentiment(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -351,16 +365,17 @@ class AsyncStockOwnership:
             symbol: Symbol of the company: AAPL.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.insider_sentiment(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def insider_transactions(
         self,
@@ -378,18 +393,19 @@ class AsyncStockOwnership:
             symbol: Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.insider_transactions(
                 symbol, from_=from_, to=to, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def investment_themes(
         self, theme: str, *, request_options: RequestOptionsOrDict | None = None
@@ -408,14 +424,15 @@ class AsyncStockOwnership:
         Args:
             theme: Investment theme. A full list of themes supported can be found <a target="_blank"
                 href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.investment_themes(theme, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.investment_themes(theme, request_options=request_options))
 
     async def ownership(
         self, symbol: str, *, limit: int | None = None, request_options: RequestOptionsOrDict | None = None
@@ -428,14 +445,15 @@ class AsyncStockOwnership:
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.ownership(symbol, limit=limit, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.ownership(symbol, limit=limit, request_options=request_options))
 
     async def social_sentiment(
         self,
@@ -451,16 +469,17 @@ class AsyncStockOwnership:
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.social_sentiment(symbol, from_=from_, to=to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def stock_lobbying(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -471,16 +490,15 @@ class AsyncStockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.stock_lobbying(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.stock_lobbying(symbol, from_, to, request_options=request_options))
 
     async def stock_usa_spending(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -498,16 +516,17 @@ class AsyncStockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
             to: To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stock_usa_spending(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def stock_uspto_patent(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -518,16 +537,17 @@ class AsyncStockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stock_uspto_patent(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def stock_visa_application(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -538,16 +558,17 @@ class AsyncStockOwnership:
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
             to: To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stock_visa_application(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def supply_chain_relationships(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -558,16 +579,15 @@ class AsyncStockOwnership:
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.supply_chain_relationships(symbol, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.supply_chain_relationships(symbol, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncStockOwnershipWithRawResponse:
@@ -584,7 +604,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol of the company: AAPL.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -609,7 +630,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -635,7 +657,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol of the company: AAPL.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -665,7 +688,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -698,7 +722,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             theme: Investment theme. A full list of themes supported can be found <a target="_blank"
                 href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -723,7 +748,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -751,7 +777,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -776,7 +803,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -806,7 +834,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
             to: To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -829,7 +858,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -852,7 +882,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
             to: To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -875,7 +906,8 @@ class StockOwnershipWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSc
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -900,7 +932,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol of the company: AAPL.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -909,7 +942,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/congressional-trading"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[CongressionalTrading],
+            decoder=async_json_decoder[CongressionalTrading],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -925,7 +958,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -934,7 +968,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/fund-ownership"),
             query_params=[param[str]("symbol", symbol), param[int | None]("limit", limit)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[FundOwnership],
+            decoder=async_json_decoder[FundOwnership],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -951,7 +985,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol of the company: AAPL.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -960,7 +995,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/insider-sentiment"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[InsiderSentiments],
+            decoder=async_json_decoder[InsiderSentiments],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -981,7 +1016,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
             from_: From date: 2020-03-15.
             to: To date: 2020-03-16.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -992,7 +1028,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
                 param[str]("symbol", symbol), param[Date | None]("from", from_), param[Date | None]("to", to)
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[InsiderTransactions],
+            decoder=async_json_decoder[InsiderTransactions],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1014,7 +1050,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             theme: Investment theme. A full list of themes supported can be found <a target="_blank"
                 href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1023,7 +1060,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/investment-theme"),
             query_params=[param[str]("theme", theme)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[InvestmentThemes],
+            decoder=async_json_decoder[InvestmentThemes],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1039,7 +1076,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
         Args:
             symbol: Symbol of the company: AAPL.
             limit: Limit number of results. Leave empty to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1048,7 +1086,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/ownership"),
             query_params=[param[str]("symbol", symbol), param[int | None]("limit", limit)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[Ownership],
+            decoder=async_json_decoder[Ownership],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1067,7 +1105,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1078,7 +1117,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
                 param[str]("symbol", symbol), param[Date | None]("from", from_), param[Date | None]("to", to)
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SocialSentiment],
+            decoder=async_json_decoder[SocialSentiment],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1092,7 +1131,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1101,7 +1141,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/lobbying"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[LobbyingResult],
+            decoder=async_json_decoder[LobbyingResult],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1122,7 +1162,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
             to: To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1131,7 +1172,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/usa-spending"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[UsaSpendingResult],
+            decoder=async_json_decoder[UsaSpendingResult],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1145,7 +1186,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1154,7 +1196,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/uspto-patent"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[UsptoPatentResult],
+            decoder=async_json_decoder[UsptoPatentResult],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1168,7 +1210,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             symbol: Symbol.
             from_: From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
             to: To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1177,7 +1220,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/visa-application"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[VisaApplicationResult],
+            decoder=async_json_decoder[VisaApplicationResult],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1191,7 +1234,8 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1200,7 +1244,7 @@ class AsyncStockOwnershipWithRawResponse(SecuredRawResponse[AsyncRawClient, Serv
             url_template=self._server.default("/stock/supply-chain"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[SupplyChainRelationships],
+            decoder=async_json_decoder[SupplyChainRelationships],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

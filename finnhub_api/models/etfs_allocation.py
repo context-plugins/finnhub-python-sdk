@@ -15,4 +15,4 @@ class EtfsAllocation(SdkBaseModel):
 
 class EtfsAllocationDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[EtfallocationData | EtfallocationDataDict]
+    data: NotRequired[EtfallocationDataDict]

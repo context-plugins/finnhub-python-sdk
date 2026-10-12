@@ -24,4 +24,4 @@ class SecsentimentAnalysisDict(TypedDict):
     access_number: NotRequired[str]
     symbol: NotRequired[str]
     cik: NotRequired[str]
-    sentiment: NotRequired[FilingSentiment | FilingSentimentDict]
+    sentiment: NotRequired[FilingSentimentDict]

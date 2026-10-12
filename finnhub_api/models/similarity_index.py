@@ -20,4 +20,4 @@ class SimilarityIndex(SdkBaseModel):
 class SimilarityIndexDict(TypedDict):
     symbol: NotRequired[str]
     cik: NotRequired[str]
-    similarity: NotRequired[list[SimilarityIndexInfo | SimilarityIndexInfoDict]]
+    similarity: NotRequired[list[SimilarityIndexInfoDict]]

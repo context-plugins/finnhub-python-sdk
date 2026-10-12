@@ -15,5 +15,5 @@ class AichatBody(SdkBaseModel):
 
 
 class AichatBodyDict(TypedDict):
-    messages: list[AichatMessage | AichatMessageDict]
+    messages: list[AichatMessageDict]
     stream: NotRequired[bool]

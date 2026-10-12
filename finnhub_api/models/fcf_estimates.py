@@ -18,6 +18,6 @@ class FcfEstimates(SdkBaseModel):
 
 
 class FcfEstimatesDict(TypedDict):
-    data: NotRequired[list[FcfEstimatesInfo | FcfEstimatesInfoDict]]
+    data: NotRequired[list[FcfEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

@@ -15,5 +15,5 @@ class BankBranchRes(SdkBaseModel):
 
 
 class BankBranchResDict(TypedDict):
-    data: NotRequired[list[BankBranchData | BankBranchDataDict]]
+    data: NotRequired[list[BankBranchDataDict]]
     symbol: NotRequired[str]

@@ -25,4 +25,4 @@ class MutualFundHoldingsDict(TypedDict):
     symbol: NotRequired[str]
     at_date: NotRequired[Date]
     number_of_holdings: NotRequired[int]
-    holdings: NotRequired[list[MutualFundHoldingsData | MutualFundHoldingsDataDict]]
+    holdings: NotRequired[list[MutualFundHoldingsDataDict]]

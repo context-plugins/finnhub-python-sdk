@@ -16,4 +16,4 @@ class FundOwnership(SdkBaseModel):
 
 class FundOwnershipDict(TypedDict):
     symbol: NotRequired[str]
-    ownership: NotRequired[list[FundOwnershipInfo | FundOwnershipInfoDict]]
+    ownership: NotRequired[list[FundOwnershipInfoDict]]

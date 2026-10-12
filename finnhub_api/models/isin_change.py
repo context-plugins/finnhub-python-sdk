@@ -21,4 +21,4 @@ class IsinChange(SdkBaseModel):
 class IsinChangeDict(TypedDict):
     from_date: NotRequired[str]
     to_date: NotRequired[str]
-    data: NotRequired[list[IsinChangeInfo | IsinChangeInfoDict]]
+    data: NotRequired[list[IsinChangeInfoDict]]

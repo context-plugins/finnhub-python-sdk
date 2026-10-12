@@ -17,4 +17,4 @@ class InstitutionalOwnershipGroup(SdkBaseModel):
 
 class InstitutionalOwnershipGroupDict(TypedDict):
     report_date: NotRequired[str]
-    ownership: NotRequired[list[InstitutionalOwnershipInfo | InstitutionalOwnershipInfoDict]]
+    ownership: NotRequired[list[InstitutionalOwnershipInfoDict]]

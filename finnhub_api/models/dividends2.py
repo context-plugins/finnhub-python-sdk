@@ -15,4 +15,4 @@ class Dividends2(SdkBaseModel):
 
 class Dividends2Dict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[Dividends2Info | Dividends2InfoDict]]
+    data: NotRequired[list[Dividends2InfoDict]]

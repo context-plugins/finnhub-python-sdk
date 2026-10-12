@@ -12,4 +12,4 @@ class EarningsCallLive(SdkBaseModel):
 
 
 class EarningsCallLiveDict(TypedDict):
-    event: NotRequired[list[EarningsCallLiveResult | EarningsCallLiveResultDict]]
+    event: NotRequired[list[EarningsCallLiveResultDict]]

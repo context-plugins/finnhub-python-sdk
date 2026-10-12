@@ -9,9 +9,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.dividends import Dividends
 from ..models.dividends2 import Dividends2
@@ -41,16 +43,15 @@ class StockPrices:
             symbol: Symbol of the company: AAPL.
             grouping: Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>,
                 <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.company_peers(
-            symbol, grouping=grouping, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.company_peers(symbol, grouping=grouping, request_options=request_options))
 
     def historical_market_cap(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -61,44 +62,45 @@ class StockPrices:
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.historical_market_cap(
-            symbol, from_, to, request_options=request_options
-        ).unwrap()
+        return unwrap(self._with_raw_response.historical_market_cap(symbol, from_, to, request_options=request_options))
 
     def market_holiday(self, exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> MarketHoliday:
         """Get a list of holidays for global exchanges.
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.market_holiday(exchange, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.market_holiday(exchange, request_options=request_options))
 
     def market_status(self, exchange: str, *, request_options: RequestOptionsOrDict | None = None) -> MarketStatus:
         """Get current market status for global exchanges (whether exchanges are open or close).
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.market_status(exchange, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.market_status(exchange, request_options=request_options))
 
     def price_metrics(
         self, symbol: str, *, date: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -109,42 +111,45 @@ class StockPrices:
             symbol: Symbol of the company: AAPL.
             date: Get data on a specific date in the past. The data is available weekly so your date will be
                 automatically adjusted to the last day of that week.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.price_metrics(symbol, date=date, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.price_metrics(symbol, date=date, request_options=request_options))
 
     def stock_basic_dividends(self, symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> Dividends2:
         """Get global dividends data.
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_basic_dividends(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_basic_dividends(symbol, request_options=request_options))
 
     def stock_bidask(self, symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> LastBidAsk:
         """Get last bid/ask data for US stocks.
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_bidask(symbol, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_bidask(symbol, request_options=request_options))
 
     def stock_candles(
         self, symbol: str, resolution: str, from_: int, to: int, *, request_options: RequestOptionsOrDict | None = None
@@ -159,16 +164,17 @@ class StockPrices:
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_candles(
-            symbol, resolution, from_, to, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.stock_candles(symbol, resolution, from_, to, request_options=request_options)
+        )
 
     def stock_dividends(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -179,14 +185,15 @@ class StockPrices:
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_dividends(symbol, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_dividends(symbol, from_, to, request_options=request_options))
 
     def stock_nbbo(
         self, symbol: str, date: Date, limit: int, skip: int, *, request_options: RequestOptionsOrDict | None = None
@@ -201,14 +208,15 @@ class StockPrices:
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_nbbo(symbol, date, limit, skip, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_nbbo(symbol, date, limit, skip, request_options=request_options))
 
     def stock_splits(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -219,14 +227,15 @@ class StockPrices:
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_splits(symbol, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_splits(symbol, from_, to, request_options=request_options))
 
     def stock_symbols(
         self,
@@ -249,16 +258,19 @@ class StockPrices:
             mic: Filter by MIC code.
             security_type: Filter by security type used by OpenFigi standard.
             currency: Filter by currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_symbols(
-            exchange, mic=mic, security_type=security_type, currency=currency, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.stock_symbols(
+                exchange, mic=mic, security_type=security_type, currency=currency, request_options=request_options
+            ),
+        )
 
     def stock_tick(
         self, symbol: str, date: Date, limit: int, skip: int, *, request_options: RequestOptionsOrDict | None = None
@@ -312,14 +324,15 @@ class StockPrices:
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.stock_tick(symbol, date, limit, skip, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.stock_tick(symbol, date, limit, skip, request_options=request_options))
 
     @property
     def with_raw_response(self) -> StockPricesWithRawResponse:
@@ -339,16 +352,17 @@ class AsyncStockPrices:
             symbol: Symbol of the company: AAPL.
             grouping: Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>,
                 <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.company_peers(symbol, grouping=grouping, request_options=request_options)
-        ).unwrap()
+        )
 
     async def historical_market_cap(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -359,16 +373,17 @@ class AsyncStockPrices:
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.historical_market_cap(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def market_holiday(
         self, exchange: str, *, request_options: RequestOptionsOrDict | None = None
@@ -377,14 +392,15 @@ class AsyncStockPrices:
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.market_holiday(exchange, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.market_holiday(exchange, request_options=request_options))
 
     async def market_status(
         self, exchange: str, *, request_options: RequestOptionsOrDict | None = None
@@ -393,14 +409,15 @@ class AsyncStockPrices:
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.market_status(exchange, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.market_status(exchange, request_options=request_options))
 
     async def price_metrics(
         self, symbol: str, *, date: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -411,16 +428,15 @@ class AsyncStockPrices:
             symbol: Symbol of the company: AAPL.
             date: Get data on a specific date in the past. The data is available weekly so your date will be
                 automatically adjusted to the last day of that week.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.price_metrics(symbol, date=date, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.price_metrics(symbol, date=date, request_options=request_options))
 
     async def stock_basic_dividends(
         self, symbol: str, *, request_options: RequestOptionsOrDict | None = None
@@ -429,28 +445,30 @@ class AsyncStockPrices:
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.stock_basic_dividends(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.stock_basic_dividends(symbol, request_options=request_options))
 
     async def stock_bidask(self, symbol: str, *, request_options: RequestOptionsOrDict | None = None) -> LastBidAsk:
         """Get last bid/ask data for US stocks.
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.stock_bidask(symbol, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.stock_bidask(symbol, request_options=request_options))
 
     async def stock_candles(
         self, symbol: str, resolution: str, from_: int, to: int, *, request_options: RequestOptionsOrDict | None = None
@@ -465,16 +483,17 @@ class AsyncStockPrices:
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stock_candles(symbol, resolution, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def stock_dividends(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -485,16 +504,15 @@ class AsyncStockPrices:
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
-            await self._with_raw_response.stock_dividends(symbol, from_, to, request_options=request_options)
-        ).unwrap()
+        return unwrap(await self._with_raw_response.stock_dividends(symbol, from_, to, request_options=request_options))
 
     async def stock_nbbo(
         self, symbol: str, date: Date, limit: int, skip: int, *, request_options: RequestOptionsOrDict | None = None
@@ -509,16 +527,17 @@ class AsyncStockPrices:
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stock_nbbo(symbol, date, limit, skip, request_options=request_options)
-        ).unwrap()
+        )
 
     async def stock_splits(
         self, symbol: str, from_: Date, to: Date, *, request_options: RequestOptionsOrDict | None = None
@@ -529,14 +548,15 @@ class AsyncStockPrices:
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.stock_splits(symbol, from_, to, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.stock_splits(symbol, from_, to, request_options=request_options))
 
     async def stock_symbols(
         self,
@@ -559,18 +579,19 @@ class AsyncStockPrices:
             mic: Filter by MIC code.
             security_type: Filter by security type used by OpenFigi standard.
             currency: Filter by currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stock_symbols(
                 exchange, mic=mic, security_type=security_type, currency=currency, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def stock_tick(
         self, symbol: str, date: Date, limit: int, skip: int, *, request_options: RequestOptionsOrDict | None = None
@@ -624,16 +645,17 @@ class AsyncStockPrices:
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.stock_tick(symbol, date, limit, skip, request_options=request_options)
-        ).unwrap()
+        )
 
     @property
     def with_raw_response(self) -> AsyncStockPricesWithRawResponse:
@@ -650,7 +672,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             symbol: Symbol of the company: AAPL.
             grouping: Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>,
                 <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -673,7 +696,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -694,7 +718,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -715,7 +740,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -738,7 +764,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             symbol: Symbol of the company: AAPL.
             date: Get data on a specific date in the past. The data is available weekly so your date will be
                 automatically adjusted to the last day of that week.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -759,7 +786,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -780,7 +808,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -807,7 +836,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -835,7 +865,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -862,7 +893,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -890,7 +922,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -925,7 +958,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             mic: Filter by MIC code.
             security_type: Filter by security type used by OpenFigi standard.
             currency: Filter by currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -996,7 +1030,8 @@ class StockPricesWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchem
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1026,7 +1061,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             symbol: Symbol of the company: AAPL.
             grouping: Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>,
                 <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1035,7 +1071,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/peers"),
             query_params=[param[str]("symbol", symbol), param[str | None]("grouping", grouping)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[str]],
+            decoder=async_json_decoder[list[str]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1049,7 +1085,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             symbol: Company symbol.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1058,7 +1095,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/historical-market-cap"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[HistoricalMarketCapData],
+            decoder=async_json_decoder[HistoricalMarketCapData],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1070,7 +1107,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1079,7 +1117,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/market-holiday"),
             query_params=[param[str]("exchange", exchange)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MarketHoliday],
+            decoder=async_json_decoder[MarketHoliday],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1091,7 +1129,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
 
         Args:
             exchange: Exchange code.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1100,7 +1139,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/market-status"),
             query_params=[param[str]("exchange", exchange)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[MarketStatus],
+            decoder=async_json_decoder[MarketStatus],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1114,7 +1153,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             symbol: Symbol of the company: AAPL.
             date: Get data on a specific date in the past. The data is available weekly so your date will be
                 automatically adjusted to the last day of that week.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1123,7 +1163,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/price-metric"),
             query_params=[param[str]("symbol", symbol), param[str | None]("date", date)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[PriceMetrics],
+            decoder=async_json_decoder[PriceMetrics],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1135,7 +1175,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1144,7 +1185,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/dividend2"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[Dividends2],
+            decoder=async_json_decoder[Dividends2],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1156,7 +1197,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
 
         Args:
             symbol: Symbol.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1165,7 +1207,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/bidask"),
             query_params=[param[str]("symbol", symbol)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[LastBidAsk],
+            decoder=async_json_decoder[LastBidAsk],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1183,7 +1225,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
                 be available depending on the exchange.
             from_: UNIX timestamp. Interval initial value.
             to: UNIX timestamp. Interval end value.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1197,7 +1240,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
                 param[int]("to", to),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[StockCandles],
+            decoder=async_json_decoder[StockCandles],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1211,7 +1254,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1220,7 +1264,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/dividend"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[Dividends]],
+            decoder=async_json_decoder[list[Dividends]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1238,7 +1282,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1252,7 +1297,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
                 param[int]("skip", skip),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[HistoricalNbbo],
+            decoder=async_json_decoder[HistoricalNbbo],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1266,7 +1311,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             symbol: Symbol.
             from_: YYYY-MM-DD.
             to: YYYY-MM-DD.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1275,7 +1321,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             url_template=self._server.default("/stock/split"),
             query_params=[param[str]("symbol", symbol), param[Date]("from", from_), param[Date]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[Split]],
+            decoder=async_json_decoder[list[Split]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1301,7 +1347,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             mic: Filter by MIC code.
             security_type: Filter by security type used by OpenFigi standard.
             currency: Filter by currency.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1315,7 +1362,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
                 param[str | None]("currency", currency),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[list[StockSymbol]],
+            decoder=async_json_decoder[list[StockSymbol]],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -1372,7 +1419,8 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
             date: Date: 2020-04-02.
             limit: Limit number of ticks returned. Maximum value: <code>25000</code>
             skip: Number of ticks to skip. Use this parameter to loop through the entire data.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1386,7 +1434,7 @@ class AsyncStockPricesWithRawResponse(SecuredRawResponse[AsyncRawClient, Server,
                 param[int]("skip", skip),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[TickData],
+            decoder=async_json_decoder[TickData],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

@@ -15,5 +15,5 @@ class BondYieldCurve(SdkBaseModel):
 
 
 class BondYieldCurveDict(TypedDict):
-    data: NotRequired[list[BondYieldCurveInfo | BondYieldCurveInfoDict]]
+    data: NotRequired[list[BondYieldCurveInfoDict]]
     code: NotRequired[str]

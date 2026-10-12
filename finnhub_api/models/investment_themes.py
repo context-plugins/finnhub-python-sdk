@@ -16,4 +16,4 @@ class InvestmentThemes(SdkBaseModel):
 
 class InvestmentThemesDict(TypedDict):
     theme: NotRequired[str]
-    data: NotRequired[list[InvestmentThemePortfolio | InvestmentThemePortfolioDict]]
+    data: NotRequired[list[InvestmentThemePortfolioDict]]

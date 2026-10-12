@@ -8,9 +8,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.etfs_allocation import EtfsAllocation
 from ..models.etfs_country_exposure import EtfsCountryExposure
@@ -32,16 +34,17 @@ class Etf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.etfs_allocation(
-            symbol=symbol, isin=isin, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.etfs_allocation(symbol=symbol, isin=isin, request_options=request_options)
+        )
 
     def etfs_country_exposure(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -51,16 +54,17 @@ class Etf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.etfs_country_exposure(
-            symbol=symbol, isin=isin, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.etfs_country_exposure(symbol=symbol, isin=isin, request_options=request_options)
+        )
 
     def etfs_holdings(
         self,
@@ -80,16 +84,19 @@ class Etf:
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
             date: Query holdings by date. You can use either this param or <code>skip</code> param, not both.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.etfs_holdings(
-            symbol=symbol, isin=isin, skip=skip, date=date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.etfs_holdings(
+                symbol=symbol, isin=isin, skip=skip, date=date, request_options=request_options
+            ),
+        )
 
     def etfs_profile(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -100,14 +107,15 @@ class Etf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.etfs_profile(symbol=symbol, isin=isin, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.etfs_profile(symbol=symbol, isin=isin, request_options=request_options))
 
     def etfs_sector_exposure(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -117,16 +125,17 @@ class Etf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.etfs_sector_exposure(
-            symbol=symbol, isin=isin, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.etfs_sector_exposure(symbol=symbol, isin=isin, request_options=request_options)
+        )
 
     @property
     def with_raw_response(self) -> EtfWithRawResponse:
@@ -145,16 +154,17 @@ class AsyncEtf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.etfs_allocation(symbol=symbol, isin=isin, request_options=request_options)
-        ).unwrap()
+        )
 
     async def etfs_country_exposure(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -164,18 +174,19 @@ class AsyncEtf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.etfs_country_exposure(
                 symbol=symbol, isin=isin, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def etfs_holdings(
         self,
@@ -195,18 +206,19 @@ class AsyncEtf:
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
             date: Query holdings by date. You can use either this param or <code>skip</code> param, not both.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.etfs_holdings(
                 symbol=symbol, isin=isin, skip=skip, date=date, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def etfs_profile(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -217,16 +229,17 @@ class AsyncEtf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.etfs_profile(symbol=symbol, isin=isin, request_options=request_options)
-        ).unwrap()
+        )
 
     async def etfs_sector_exposure(
         self, *, symbol: str | None = None, isin: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -236,18 +249,19 @@ class AsyncEtf:
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.etfs_sector_exposure(
                 symbol=symbol, isin=isin, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncEtfWithRawResponse:
@@ -263,7 +277,8 @@ class EtfWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -285,7 +300,8 @@ class EtfWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -317,7 +333,8 @@ class EtfWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
             date: Query holdings by date. You can use either this param or <code>skip</code> param, not both.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -345,7 +362,8 @@ class EtfWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -367,7 +385,8 @@ class EtfWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -391,7 +410,8 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -400,7 +420,7 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
             url_template=self._server.default("/etf/allocation"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EtfsAllocation],
+            decoder=async_json_decoder[EtfsAllocation],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -413,7 +433,8 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -422,7 +443,7 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
             url_template=self._server.default("/etf/country"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EtfsCountryExposure],
+            decoder=async_json_decoder[EtfsCountryExposure],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -445,7 +466,8 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
             skip: Skip the first n results. You can use this parameter to query historical constituents data. The latest
                 result is returned if skip=0 or not set.
             date: Query holdings by date. You can use either this param or <code>skip</code> param, not both.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -459,7 +481,7 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
                 param[str | None]("date", date),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EtfsHoldings],
+            decoder=async_json_decoder[EtfsHoldings],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -473,7 +495,8 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -482,7 +505,7 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
             url_template=self._server.default("/etf/profile"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EtfsProfile],
+            decoder=async_json_decoder[EtfsProfile],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -495,7 +518,8 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
         Args:
             symbol: ETF symbol.
             isin: ETF isin.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -504,7 +528,7 @@ class AsyncEtfWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAu
             url_template=self._server.default("/etf/sector"),
             query_params=[param[str | None]("symbol", symbol), param[str | None]("isin", isin)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[EtfsSectorExposure],
+            decoder=async_json_decoder[EtfsSectorExposure],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

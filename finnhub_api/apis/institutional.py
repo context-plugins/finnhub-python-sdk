@@ -8,9 +8,11 @@ from ..core import (
     RawError,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
     raw_error_response,
+    unwrap,
 )
 from ..models.institutional_ownership import InstitutionalOwnership
 from ..models.institutional_portfolio import InstitutionalPortfolio
@@ -33,16 +35,17 @@ class Institutional:
             cusip: Filter by CUSIP.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.institutional_ownership(
-            symbol, cusip, from_, to, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.institutional_ownership(symbol, cusip, from_, to, request_options=request_options)
+        )
 
     def institutional_portfolio(
         self, cik: str, from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None
@@ -54,14 +57,15 @@ class Institutional:
             cik: Fund's CIK.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.institutional_portfolio(cik, from_, to, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.institutional_portfolio(cik, from_, to, request_options=request_options))
 
     def institutional_profile(
         self, *, cik: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -70,14 +74,15 @@ class Institutional:
 
         Args:
             cik: Filter by CIK. Leave blank to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return self._with_raw_response.institutional_profile(cik=cik, request_options=request_options).unwrap()
+        return unwrap(self._with_raw_response.institutional_profile(cik=cik, request_options=request_options))
 
     @property
     def with_raw_response(self) -> InstitutionalWithRawResponse:
@@ -99,18 +104,19 @@ class AsyncInstitutional:
             cusip: Filter by CUSIP.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.institutional_ownership(
                 symbol, cusip, from_, to, request_options=request_options
-            )
-        ).unwrap()
+            ),
+        )
 
     async def institutional_portfolio(
         self, cik: str, from_: str, to: str, *, request_options: RequestOptionsOrDict | None = None
@@ -122,16 +128,17 @@ class AsyncInstitutional:
             cik: Fund's CIK.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.institutional_portfolio(cik, from_, to, request_options=request_options)
-        ).unwrap()
+        )
 
     async def institutional_profile(
         self, *, cik: str | None = None, request_options: RequestOptionsOrDict | None = None
@@ -140,14 +147,15 @@ class AsyncInstitutional:
 
         Args:
             cik: Filter by CIK. Leave blank to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             successful operation
 
         Raises:
             ApiError: If the API responds with an error status code. ``error`` is ``RawError``."""
-        return (await self._with_raw_response.institutional_profile(cik=cik, request_options=request_options)).unwrap()
+        return unwrap(await self._with_raw_response.institutional_profile(cik=cik, request_options=request_options))
 
     @property
     def with_raw_response(self) -> AsyncInstitutionalWithRawResponse:
@@ -166,7 +174,8 @@ class InstitutionalWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSch
             cusip: Filter by CUSIP.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -195,7 +204,8 @@ class InstitutionalWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSch
             cik: Fund's CIK.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -216,7 +226,8 @@ class InstitutionalWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSch
 
         Args:
             cik: Filter by CIK. Leave blank to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -243,7 +254,8 @@ class AsyncInstitutionalWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             cusip: Filter by CUSIP.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -257,7 +269,7 @@ class AsyncInstitutionalWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
                 param[str]("to", to),
             ],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[InstitutionalOwnership],
+            decoder=async_json_decoder[InstitutionalOwnership],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -272,7 +284,8 @@ class AsyncInstitutionalWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             cik: Fund's CIK.
             from_: From date <code>YYYY-MM-DD</code>.
             to: To date <code>YYYY-MM-DD</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -281,7 +294,7 @@ class AsyncInstitutionalWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             url_template=self._server.default("/institutional/portfolio"),
             query_params=[param[str]("cik", cik), param[str]("from", from_), param[str]("to", to)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[InstitutionalPortfolio],
+            decoder=async_json_decoder[InstitutionalPortfolio],
             error_mapper=raw_error_response,
             request_options=request_options,
         )
@@ -293,7 +306,8 @@ class AsyncInstitutionalWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
 
         Args:
             cik: Filter by CIK. Leave blank to get the full list.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -302,7 +316,7 @@ class AsyncInstitutionalWithRawResponse(SecuredRawResponse[AsyncRawClient, Serve
             url_template=self._server.default("/institutional/profile"),
             query_params=[param[str | None]("cik", cik)],
             auth_scheme=self._auth.api_key,
-            decoder=json_decoder[InstitutionalProfile],
+            decoder=async_json_decoder[InstitutionalProfile],
             error_mapper=raw_error_response,
             request_options=request_options,
         )

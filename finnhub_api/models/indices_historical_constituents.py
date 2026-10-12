@@ -19,4 +19,4 @@ class IndicesHistoricalConstituents(SdkBaseModel):
 
 class IndicesHistoricalConstituentsDict(TypedDict):
     symbol: NotRequired[str]
-    historical_constituents: NotRequired[list[IndexHistoricalConstituent | IndexHistoricalConstituentDict]]
+    historical_constituents: NotRequired[list[IndexHistoricalConstituentDict]]

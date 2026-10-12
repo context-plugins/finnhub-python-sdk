@@ -17,4 +17,4 @@ class EtfsCountryExposure(SdkBaseModel):
 
 class EtfsCountryExposureDict(TypedDict):
     symbol: NotRequired[str]
-    country_exposure: NotRequired[list[EtfcountryExposureData | EtfcountryExposureDataDict]]
+    country_exposure: NotRequired[list[EtfcountryExposureDataDict]]

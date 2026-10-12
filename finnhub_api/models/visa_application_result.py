@@ -16,4 +16,4 @@ class VisaApplicationResult(SdkBaseModel):
 
 class VisaApplicationResultDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[VisaApplication | VisaApplicationDict]]
+    data: NotRequired[list[VisaApplicationDict]]

@@ -25,9 +25,9 @@ class NewsSentiment(SdkBaseModel):
 
 
 class NewsSentimentDict(TypedDict):
-    buzz: NotRequired[CompanyNewsStatistics | CompanyNewsStatisticsDict]
+    buzz: NotRequired[CompanyNewsStatisticsDict]
     company_news_score: NotRequired[float]
     sector_average_bullish_percent: NotRequired[float]
     sector_average_news_score: NotRequired[float]
-    sentiment: NotRequired[Sentiment | SentimentDict]
+    sentiment: NotRequired[SentimentDict]
     symbol: NotRequired[str]

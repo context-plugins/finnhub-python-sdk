@@ -22,7 +22,7 @@ class AirlinePriceIndexData(SdkBaseModel):
 
 
 class AirlinePriceIndexDataDict(TypedDict):
-    data: NotRequired[list[AirlinePriceIndex | AirlinePriceIndexDict]]
+    data: NotRequired[list[AirlinePriceIndexDict]]
     airline: NotRequired[str]
     from_: NotRequired[str]
     to: NotRequired[str]

@@ -18,6 +18,6 @@ class EbitdaEstimates(SdkBaseModel):
 
 
 class EbitdaEstimatesDict(TypedDict):
-    data: NotRequired[list[EbitdaEstimatesInfo | EbitdaEstimatesInfoDict]]
+    data: NotRequired[list[EbitdaEstimatesInfoDict]]
     freq: NotRequired[str]
     symbol: NotRequired[str]

@@ -16,4 +16,4 @@ class HistoricalCompanyEsg(SdkBaseModel):
 
 class HistoricalCompanyEsgDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[CompanyEsg2 | CompanyEsg2Dict]]
+    data: NotRequired[list[CompanyEsg2Dict]]

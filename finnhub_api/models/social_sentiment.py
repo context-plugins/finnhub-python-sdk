@@ -16,4 +16,4 @@ class SocialSentiment(SdkBaseModel):
 
 class SocialSentimentDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[SentimentContent | SentimentContentDict]]
+    data: NotRequired[list[SentimentContentDict]]

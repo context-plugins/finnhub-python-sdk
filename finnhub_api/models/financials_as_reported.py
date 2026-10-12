@@ -20,4 +20,4 @@ class FinancialsAsReported(SdkBaseModel):
 class FinancialsAsReportedDict(TypedDict):
     symbol: NotRequired[str]
     cik: NotRequired[str]
-    data: NotRequired[list[Report | ReportDict]]
+    data: NotRequired[list[ReportDict]]

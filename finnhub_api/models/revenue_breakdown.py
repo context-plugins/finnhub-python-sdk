@@ -20,4 +20,4 @@ class RevenueBreakdown(SdkBaseModel):
 class RevenueBreakdownDict(TypedDict):
     symbol: NotRequired[str]
     cik: NotRequired[str]
-    data: NotRequired[list[BreakdownItem | BreakdownItemDict]]
+    data: NotRequired[list[BreakdownItemDict]]

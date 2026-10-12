@@ -16,4 +16,4 @@ class UsptoPatentResult(SdkBaseModel):
 
 class UsptoPatentResultDict(TypedDict):
     symbol: NotRequired[str]
-    data: NotRequired[list[UsptoPatent | UsptoPatentDict]]
+    data: NotRequired[list[UsptoPatentDict]]

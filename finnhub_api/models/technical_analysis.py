@@ -13,5 +13,5 @@ class TechnicalAnalysis(SdkBaseModel):
 
 
 class TechnicalAnalysisDict(TypedDict):
-    count: NotRequired[Indicator | IndicatorDict]
+    count: NotRequired[IndicatorDict]
     signal: NotRequired[str]

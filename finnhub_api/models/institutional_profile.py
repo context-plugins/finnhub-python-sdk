@@ -16,4 +16,4 @@ class InstitutionalProfile(SdkBaseModel):
 
 class InstitutionalProfileDict(TypedDict):
     cik: NotRequired[str]
-    data: NotRequired[list[InstitutionalProfileInfo | InstitutionalProfileInfoDict]]
+    data: NotRequired[list[InstitutionalProfileInfoDict]]
